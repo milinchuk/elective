@@ -9,13 +9,10 @@
 --%>
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%
-    request.setAttribute("courses", (List<Course>)request.getAttribute("courses"));
-%>
 <html>
 <head>
     <title></title>
-    <link rel="stylesheet" href="<c:url value="/bootstrap.css"/>" >
+    <link rel="stylesheet" type="text/css" href="<c:url value="/bootstrap.css"/>" >
     <style>
         .course-mini{
             width: 28%;
@@ -37,13 +34,11 @@
             <hr>
             <c:forEach items="${courses}" var="course">
                 <div class="course-mini">
-                    <h2><a href="/course/<c:out value="${course.id}"/>" ><c:out value="${course.name}"/></a></h2>
+                    <h2><a href="/user/course/?id=<c:out value="${course.id}"/>" ><c:out value="${course.name}"/></a></h2>
                         <%--<h5><span class="glyphicon glyphicon-time"></span>--%>
-                    <h5>  Tutor <a href="#"><c:out value="${course.tutor.lastName}"/></a>
-                            <%--<span class="glyphicon glyphicon-thumbs-up"></span> 5--%>
-                    </h5>
+                    <h5>  Tutor: <c:out value="${course.tutor.lastName}"/> </h5>
                     <p><c:out value="${course.about}"/></p>
-                    <a href="/course/<c:out value="${course.id}"/>"><button type="button" class="btn btn-primary">Read more</button></a>
+                    <a href="/user/course/<c:out value="${course.id}"/>"><button type="button" class="btn btn-primary">Follow</button></a>
                 </div>
             </c:forEach>
         </div>

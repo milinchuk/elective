@@ -12,7 +12,7 @@
 
     <title>Login</title>
 
-    <link rel="stylesheet" href="<c:url value="/bootstrap.css"/>" >
+    <link rel="stylesheet"type="text/css" href="<c:url value="/bootstrap.css"/>" >
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css">
     <%--<link href="<c:url value="/css/bootstrap.css.map"/>" type="text/css" rel="stylesheet">--%>
     <%--<link href="<c:url value="/css/bootstrap.min.css"/>" type="text/css" rel="stylesheet">--%>
