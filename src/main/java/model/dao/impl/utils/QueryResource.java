@@ -9,6 +9,9 @@ import java.util.Properties;
 public class QueryResource {
     private Properties properties;
 
+    public static final String COURSE_QUERIES_URL = "course_query.properties";
+    public static final String USER_QUERIES_URL = "user_query.properties";
+    public static final String PROGRESS_QUERIES_URL = "progress_query.properties";
     public static final String CREATE = "create";
     public static final String DELETE = "delete";
     public static final String UPDATE = "update";

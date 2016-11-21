@@ -1,5 +1,6 @@
 package model.dao.impl;
 
+import model.dao.impl.utils.QueryResource;
 import model.dao.interfaces.UserDAO;
 import model.dao.impl.utils.UserPickUtil;
 import model.entity.User;
@@ -18,19 +19,12 @@ public class UserDAOImpl implements UserDAO {
     private UserPickUtil userPickUtil;
     private Properties queries;
 
-    private static final String QUERIES_URL = "user_query.properties";
-    private static final String CREATE = "create";
-    private static final String DELETE = "delete";
-    private static final String UPDATE = "update";
-    private static final String FIND_ONE = "findOne";
-    private static final String FIND_BY_COURSE = "findByCourse";
-
     public UserDAOImpl(Connection connection) {
         this.connection = connection;
         this.userPickUtil = new UserPickUtil();
         this.queries = new Properties();
         try {
-            InputStream inputStream = UserDAOImpl.class.getClassLoader().getResourceAsStream(QUERIES_URL);
+            InputStream inputStream = UserDAOImpl.class.getClassLoader().getResourceAsStream(QueryResource.USER_QUERIES_URL);
             queries.load(inputStream);
         } catch (Exception e) {
             e.printStackTrace();
@@ -40,10 +34,9 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public User findOne(String email) {
         try {
-            PreparedStatement statement = connection.prepareStatement(queries.getProperty(FIND_ONE));
+            PreparedStatement statement = connection.prepareStatement(queries.getProperty(QueryResource.FIND_ONE));
             statement.setString(1, email);
             ResultSet resultSet = statement.executeQuery();
-
             User user = new User();
             if(resultSet.next()){
                 user = userPickUtil.pick(resultSet);
@@ -59,7 +52,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public List<User> findByCourseFollow(Integer id) {
         try {
-            PreparedStatement statement = connection.prepareStatement(queries.getProperty(FIND_BY_COURSE));
+            PreparedStatement statement = connection.prepareStatement(queries.getProperty(QueryResource.FIND_BY_COURSE));
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
             List<User> users = new ArrayList<User>();
@@ -68,7 +61,6 @@ public class UserDAOImpl implements UserDAO {
             }
             statement.close();
             return users;
-
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
@@ -78,7 +70,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public void create(User user) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(queries.getProperty(CREATE));
+            PreparedStatement preparedStatement = connection.prepareStatement(queries.getProperty(QueryResource.CREATE));
             preparedStatement.setString(1, user.getEmail());
             preparedStatement.setString(2, user.getPassword());
             preparedStatement.setString(3, user.getFirstName());
@@ -94,7 +86,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public void update(User user) {
         try {
-            PreparedStatement statement = connection.prepareStatement(queries.getProperty(UPDATE));
+            PreparedStatement statement = connection.prepareStatement(queries.getProperty(QueryResource.UPDATE));
             statement.setString(1, user.getEmail());
             statement.setString(2, user.getPassword());
             statement.setString(3, user.getFirstName());
@@ -111,7 +103,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public void delete(String email) {
         try {
-            PreparedStatement statement = connection.prepareStatement(queries.getProperty(DELETE));
+            PreparedStatement statement = connection.prepareStatement(queries.getProperty(QueryResource.DELETE));
             statement.execute();
         } catch (SQLException e) {
             e.printStackTrace();

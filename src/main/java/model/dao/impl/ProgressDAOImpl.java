@@ -22,12 +22,10 @@ public class ProgressDAOImpl implements ProgressDAO {
     private ProgressPickUtil progressPickUtil;
     private QueryResource resource;
 
-    private String QUERIES_URL = "progress_query.properties";
-
     public ProgressDAOImpl(Connection connection) {
         this.connection = connection;
         this.progressPickUtil = new ProgressPickUtil();
-        this.resource = new QueryResource(QUERIES_URL);
+        this.resource = new QueryResource(QueryResource.PROGRESS_QUERIES_URL);
     }
 
     @Override

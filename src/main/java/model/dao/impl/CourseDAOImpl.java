@@ -19,13 +19,10 @@ public class CourseDAOImpl implements CourseDAO {
     private CoursePickUtil coursePickUtil;
     private QueryResource resource;
 
-    private static final String QUERIES_URL = "course_query.properties";
-
-
     public CourseDAOImpl(Connection connection) {
         this.connection = connection;
         coursePickUtil = new CoursePickUtil();
-        resource = new QueryResource(QUERIES_URL);
+        resource = new QueryResource(QueryResource.COURSE_QUERIES_URL);
     }
 
     @Override
