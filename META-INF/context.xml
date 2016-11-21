@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<Context reloadable="true" privileged="true">
+
+    <!-- **** Note - we have added in the reloadable and privileged attributes
+    20
+    to enable the invoker servlet and cgi support (other changes needed in
+    21
+    web.xml too for that, though **** -->
+
+    <!-- Default set of monitored resources -->
+    <WatchedResource>WEB-INF/web.xml</WatchedResource>
+
+    <!--<ResourceLink name="jdbc/elective"-->
+                  <!--global="jdbc/elective"-->
+                  <!--type="javax.sql.DataSource" />-->
+
+    <!--<Resource name="jdbc/elective" auth="Container"-->
+              <!--type="javax.sql.DataSource" maxActive="100"-->
+              <!--maxIdle="30" maxWait="10000"-->
+              <!--username="root"-->
+              <!--password="1111"-->
+              <!--driverClassName="com.mysql.jdbc.Driver"-->
+              <!--url="jdbc:protocol://hostname:3306/elective"/>-->
+</Context>
