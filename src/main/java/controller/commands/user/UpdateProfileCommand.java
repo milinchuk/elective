@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Created by click on 11/18/2016.
  */
-public class UserUpdateCommand implements Command {
+public class UpdateProfileCommand implements Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         return null;
