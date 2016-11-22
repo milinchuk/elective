@@ -1,22 +1,20 @@
-package controller; /**
+package controller;
+/**
  * Created by click on 11/5/2016.
  */
 import controller.commands.Command;
 import controller.commands.CommandHolder;
-import utils.UrlHolder;
 import controller.commands.authorization.LoginCommand;
+import controller.commands.authorization.LogoutCommand;
 import controller.commands.authorization.SignUpCommand;
 import controller.commands.course.*;
-import controller.commands.progress.ProgressFindByCourseCommand;
-import controller.commands.progress.ProgressFindCommand;
-import controller.commands.progress.ProgressesUserCommand;
-import controller.commands.user.*;
-import controller.security.Permition;
-import model.entity.User;
-import validators.CommandValidator;
-import validators.Errors;
-import validators.Validator;
-
+import controller.commands.progress.ProgressStudentsCommand;
+import controller.commands.progress.ProgressUpdateCommand;
+import controller.commands.user.ProfileCommand;
+import controller.commands.user.UpdateProfileCommand;
+import controller.security.Permission;
+import utils.UrlHolder;
+import validators.*;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -37,47 +35,49 @@ public class DispatcherServlet extends HttpServlet {
     public void init() throws ServletException {
         super.init();
         Map<String, Command> getCommand = new HashMap<>();
-        getCommand.put(UrlHolder.PREFIX, new CourseFindAllCommand());
-        getCommand.put(UrlHolder.COURSES, new CourseFindAllCommand());
-        getCommand.put(UrlHolder.COURSES + UrlHolder.SUFFIX, new CourseFindByUserCommand());
-        getCommand.put(UrlHolder.COURSE + UrlHolder.SUFFIX, new CourseFindOneCommand());
-        getCommand.put(UrlHolder.STUDENTS + UrlHolder.SUFFIX, new ProgressFindByCourseCommand());
-        getCommand.put(UrlHolder.STUDENT + UrlHolder.SUFFIX, new ProgressFindCommand());
+        Map<String, Command> postCommand = new HashMap<>();
+        // ---------- get commands
+        // for unregister
         getCommand.put(UrlHolder.LOGIN, new LoginCommand());
         getCommand.put(UrlHolder.SIGNUP, new SignUpCommand());
-        getCommand.put(UrlHolder.PROFILE + UrlHolder.SUFFIX, new ProfileCommand());
-        getCommand.put(UrlHolder.MY_COURSES + UrlHolder.SUFFIX, new ProgressesUserCommand());
-//        // post commands
-//        Map<String, Command> postCommands = new HashMap<>();
-//        postCommands.put("/course", new CourseCreateCommand());
-//        postCommands.put("/login", new LoginCommand());
-//        postCommands.put("/follow", new CourseFollowCommand());
-//        postCommands.put("/signup", new SignUpCommand());
-//
-//        // put commands
-//        Map<String, Command> putCommands = new HashMap<>();
-//        putCommands.put("/course/{id}", new CourseUpdateCommand());
-//        putCommands.put("/profile/{id}", new UserUpdateCommand());
-//        putCommands.put("/student/{id}", new ProgressUpdateCommand());
+
+        // for register
+        getCommand.put(UrlHolder.PROFILE, new ProfileCommand());
+        getCommand.put(UrlHolder.MY_COURSES, new UserCoursesCommand());
+        getCommand.put(UrlHolder.FIND, new FindCoursesCommand());
+        getCommand.put(UrlHolder.STUDENTS + UrlHolder.SUFFIX, new ProgressStudentsCommand());
+        getCommand.put(UrlHolder.LOGOUT, new LogoutCommand());
+        getCommand.put(UrlHolder.COURSE, new OpenCourseCommand());
+        getCommand.put(UrlHolder.COURSE_ADD, new CourseCommand());
+
+        // ----------- post commands
+        // create
+        postCommand.put(UrlHolder.COURSE_ADD, new CourseCreateCommand());
+        postCommand.put(UrlHolder.FOLLOW, new CourseFollowCommand());
+        // update
+        postCommand.put(UrlHolder.PROFILE, new UpdateProfileCommand());
+        postCommand.put(UrlHolder.COURSE_EDIT, new CourseUpdateCommand());
+        postCommand.put(UrlHolder.STUDENT_EDIT, new ProgressUpdateCommand());
+        // delete
+        postCommand.put(UrlHolder.UNFOLLOW, new CourseFollowCommand());
+        postCommand.put(UrlHolder.COURSE_DELETE, new CourseDeleteCommand());
+
         commandHolder = new CommandHolder();
         commandHolder.setGetCommands(getCommand);
+        commandHolder.setPostCommands(postCommand);
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // imitate autorization
-        Permition permition = new Permition();
-        User user = new User();
-        permition.hasPermition(request, user);
-
-        System.out.println(request.getRequestURI());
+        // imitate authorization
+        Permission permission = new Permission();
+        permission.hasPermission(request);
 
         // check on FILE NOT FOUND
-        Errors errors = new Errors();
         Command command = commandHolder.getGetCommand(request.getRequestURI());
-        Validator<Command> commandValidator = new CommandValidator();
-        if(!commandValidator.validate(command, errors)){
+        Validator commandValidator = new CommandValidator();
+        if(!commandValidator.validate(command)){
             command = commandHolder.getPageNotFoundCommand();
         }
 
@@ -85,13 +85,24 @@ public class DispatcherServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-//    @Override
-//    protected void doPut(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException {
-//    }
-//
-//    @Override
-//    protected void doDelete(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException {
-//    }
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        RequestDispatcher dispatcher = doRequest(request, response);
+        dispatcher.forward(request, response);
+    }
+
+    protected RequestDispatcher doRequest(HttpServletRequest request, HttpServletResponse response){
+        Permission permission = new Permission();
+        permission.hasPermission(request);
+
+        Command command = commandHolder.getPostCommand(request.getRequestURI());
+        Validator commandValidator = new CommandValidator();
+        if(!commandValidator.validate(command)){
+            command = commandHolder.getPageNotFoundCommand();
+        }
+       return request.getRequestDispatcher(command.execute(request, response));
+    }
+
+
 }
