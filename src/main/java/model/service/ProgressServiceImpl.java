@@ -42,11 +42,11 @@ public class ProgressServiceImpl implements ProgressService {
     }
 
     @Override
-    public void delete(String courseCode, String userEmail) {
+    public void delete(Integer progressId) {
         // add checking
         AbstractConnection connection = connectionFactory.getMySqlConnection();
         ProgressDAO progressDAO = daoFactory.getProgressDAO(connection);
-        progressDAO.delete(courseCode, userEmail);
+        progressDAO.delete(progressId);
         connection.close();
     }
 
@@ -60,11 +60,11 @@ public class ProgressServiceImpl implements ProgressService {
     }
 
     @Override
-    public Progress findOne(String courseCode, String userEmail) {
+    public Progress findOne(Integer id) {
         // add check
         AbstractConnection connection = connectionFactory.getMySqlConnection();
         ProgressDAO progressDAO = daoFactory.getProgressDAO(connection);
-        Progress progress = progressDAO.findOne(courseCode, userEmail);
+        Progress progress = progressDAO.findOne(id);
         connection.close();
         return progress;
     }

@@ -2,6 +2,7 @@ package model.service.interfaces;
 
 import model.entity.Progress;
 
+import javax.swing.*;
 import java.util.List;
 
 /**
@@ -9,9 +10,9 @@ import java.util.List;
  */
 public interface ProgressService {
     void create(Progress progress);
-    void delete(String courseCode, String userEmail);
+    void delete(Integer progressId);
     void update(Progress progress);
-    Progress findOne(String courseCode, String userEmail);
+    Progress findOne(Integer id);
     List<Progress> findByUser(Integer id);
     List<Progress> findByCourse(Integer id);
 }
