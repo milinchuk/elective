@@ -35,32 +35,29 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public void create(Course course, User user) {
-        CourseDAO courseDAO = daoFactory.getCourseDAO(connectionFactory.getMySqlConnection());
+    public void create(Course course) {
+        AbstractConnection connection = connectionFactory.getMySqlConnection();
+        CourseDAO courseDAO = daoFactory.getCourseDAO(connection);
         if(courseDAO.findOne(course.getId()) == null) {
-            if (user.getRole() == User.TUTOR) {
-                courseDAO.create(course);
-            }
-        } else {
-            // COURSE EXIST!
+            courseDAO.create(course);
         }
+        connection.close();
     }
 
     @Override
-    public void delete(Integer id, User user) {
-        CourseDAO courseDAO = daoFactory.getCourseDAO(connectionFactory.getMySqlConnection());
-        Course course = courseDAO.findOne(id);
-        if(course.getTutor().getId() == user.getId()){
-            courseDAO.delete(id);
-        }
+    public void delete(Integer id) {
+        AbstractConnection connection = connectionFactory.getMySqlConnection();
+        CourseDAO courseDAO = daoFactory.getCourseDAO(connection);
+        courseDAO.delete(id);
+        connection.close();
     }
 
     @Override
-    public void update(Course course, User user) {
-        CourseDAO courseDAO = daoFactory.getCourseDAO(connectionFactory.getMySqlConnection());
-        if(course.getTutor().getId() == user.getId()){
-            courseDAO.update(course);
-        }
+    public void update(Course course) {
+        AbstractConnection connection = connectionFactory.getMySqlConnection();
+        CourseDAO courseDAO = daoFactory.getCourseDAO(connection);
+        courseDAO.update(course);
+        connection.close();
     }
 
     @Override
@@ -83,8 +80,20 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public List<Course> findByStudent(Integer id) {
-        CourseDAO courseDAO = daoFactory.getCourseDAO(connectionFactory.getMySqlConnection());
-        return courseDAO.findByStudent(id);
+        AbstractConnection connection = connectionFactory.getMySqlConnection();
+        CourseDAO courseDAO = daoFactory.getCourseDAO(connection);
+        List<Course> courses = courseDAO.findByStudent(id);
+        connection.close();
+        return courses;
+    }
+
+    @Override
+    public List<Course> findUnfollow(Integer studentId) {
+        AbstractConnection connection = connectionFactory.getMySqlConnection();
+        CourseDAO courseDAO = daoFactory.getCourseDAO(connection);
+        List<Course> courses = courseDAO.findUnfollow(studentId);
+        connection.close();
+        return courses;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package model.service;
 
+import config.connection.AbstractConnection;
 import config.connection.factory.ConnectionFactory;
 import config.connection.factory.StandartConnectionFactory;
 import model.dao.factory.DAOFactory;
@@ -35,31 +36,42 @@ public class UserServiceImpl implements UserService {
     public void create(User user) {
         // check if user has email and password
         // check if email unique
-        UserDAO userDAO = daoFactory.getUserDAO(connectionFactory.getMySqlConnection());
+        AbstractConnection connection = connectionFactory.getMySqlConnection();
+        UserDAO userDAO = daoFactory.getUserDAO(connection);
         userDAO.create(user);
+        connection.close();
     }
 
     @Override
     public void delete(String email) {
-        UserDAO userDAO = daoFactory.getUserDAO(connectionFactory.getMySqlConnection());
+        AbstractConnection connection = connectionFactory.getMySqlConnection();
+        UserDAO userDAO = daoFactory.getUserDAO(connection);
         userDAO.delete(email);
     }
 
     @Override
     public void update(User user) {
-        UserDAO userDAO = daoFactory.getUserDAO(connectionFactory.getMySqlConnection());
+        AbstractConnection connection = connectionFactory.getMySqlConnection();
+        UserDAO userDAO = daoFactory.getUserDAO(connection);
         userDAO.update(user);
+        connection.close();
     }
 
     @Override
-    public User findOne(String email) {
-        UserDAO userDAO = daoFactory.getUserDAO(connectionFactory.getMySqlConnection());
-        return userDAO.findOne(email);
+    public User findOne(Integer id) {
+        AbstractConnection connection = connectionFactory.getMySqlConnection();
+        UserDAO userDAO = daoFactory.getUserDAO(connection);
+        User user = userDAO.findOne(id);
+        connection.close();
+        return user;
     }
 
     @Override
     public List<User> findByCourse(Integer id) {
-        UserDAO userDAO = daoFactory.getUserDAO(connectionFactory.getMySqlConnection());
-        return userDAO.findByCourseFollow(id);
+        AbstractConnection connection = connectionFactory.getMySqlConnection();
+        UserDAO userDAO = daoFactory.getUserDAO(connection);
+        List<User> users = userDAO.findByCourseFollow(id);
+        connection.close();
+        return users;
     }
 }

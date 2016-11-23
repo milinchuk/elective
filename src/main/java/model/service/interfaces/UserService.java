@@ -12,6 +12,6 @@ public interface UserService {
     void create(User user);
     void delete(String email);
     void update(User user);
-    User findOne(String email);
+    User findOne(Integer id);
     List<User> findByCourse(Integer id);
 }
