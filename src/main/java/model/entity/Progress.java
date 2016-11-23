@@ -8,7 +8,7 @@ public class Progress {
     private User student;
     private Course course;
     private String note;
-    private Integer mark;
+    private String mark;
 
     public Progress() {
     }
@@ -45,11 +45,11 @@ public class Progress {
         this.note = note;
     }
 
-    public Integer getMark() {
+    public String getMark() {
         return mark;
     }
 
-    public void setMark(Integer mark) {
+    public void setMark(String mark) {
         this.mark = mark;
     }
 }

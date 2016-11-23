@@ -11,8 +11,8 @@ public class User {
     private String lastName;
     private int role;
 
-    public static int STUDENT = 1;
-    public static int TUTOR = 2;
+    public static int TUTOR = 1;
+    public static int STUDENT = 2;
 
     public User() {
     }
