@@ -38,7 +38,9 @@ public class UserServiceImpl implements UserService {
         // check if email unique
         AbstractConnection connection = connectionFactory.getMySqlConnection();
         UserDAO userDAO = daoFactory.getUserDAO(connection);
-        userDAO.create(user);
+        if(userDAO.findOne(user.getId()) != null) {
+            userDAO.create(user);
+        }
         connection.close();
     }
 
