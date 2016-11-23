@@ -9,15 +9,23 @@ import java.sql.ResultSet;
  * Created by click on 11/5/2016.
  */
 public class CoursePickUtil implements PickUtil{
+    public static final String COURSES = "courses.";
+    public static final String ID = "id";
+    public static final String CODE = "code";
+    public static final String ABOUT = "about";
+    public static final String NAME = "name";
+    public static final String START_DATE = "start_date";
+    public static final String END_DATE = "end_date";
+
     public Course pick(ResultSet resultSet){
         try {
             Course course = new Course();
-            course.setId(resultSet.getInt("id"));
-            course.setCode(resultSet.getString("code"));
-            course.setAbout(resultSet.getString("about"));
-            course.setName(resultSet.getString("name"));
-            course.setStartDate(resultSet.getDate("start_date"));
-            course.setEndDate(resultSet.getDate("end_date"));
+            course.setId(resultSet.getInt(COURSES + ID));
+            course.setCode(resultSet.getString(CODE));
+            course.setAbout(resultSet.getString(ABOUT));
+            course.setName(resultSet.getString(NAME));
+            course.setStartDate(resultSet.getDate(START_DATE));
+            course.setEndDate(resultSet.getDate(END_DATE));
             UserPickUtil userPickUtil = new UserPickUtil();
             User user = userPickUtil.pick(resultSet);
             course.setTutor(user);

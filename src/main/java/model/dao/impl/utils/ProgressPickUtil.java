@@ -3,6 +3,7 @@ package model.dao.impl.utils;
 import model.entity.Course;
 import model.entity.Progress;
 import model.entity.User;
+import utils.constants.AttributesHolder;
 
 import java.sql.ResultSet;
 
@@ -14,9 +15,9 @@ public class ProgressPickUtil implements PickUtil<Progress> {
     public Progress pick(ResultSet resultSet) {
         try {
             Progress progress = new Progress();
-            progress.setId(resultSet.getInt("id"));
-            progress.setMark(resultSet.getInt("mark"));
-            progress.setNote(resultSet.getString("note"));
+            progress.setId(resultSet.getInt(AttributesHolder.PROGRESS + AttributesHolder.DOT + AttributesHolder.ID));
+            progress.setMark(resultSet.getString(AttributesHolder.MARK));
+            progress.setNote(resultSet.getString(AttributesHolder.NOTE));
 
             UserPickUtil userPickUtil = new UserPickUtil();
             User user = userPickUtil.pick(resultSet);

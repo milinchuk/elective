@@ -44,6 +44,23 @@ public class CourseDAOImpl implements CourseDAO {
     }
 
     @Override
+    public List<Course> findUnfollow(Integer userId) {
+        try {
+            List<Course> courses = new ArrayList<>();
+            PreparedStatement statement = connection.prepareStatement(resource.getQuery(QueryResource.FIND_UNFOLLOW));
+            statement.setInt(1, userId);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()){
+                courses.add(coursePickUtil.pick(resultSet));
+            }
+            return courses;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
     public List<Course> findByTutor(Integer id) {
         List<Course> courses = new ArrayList<>();
         try {

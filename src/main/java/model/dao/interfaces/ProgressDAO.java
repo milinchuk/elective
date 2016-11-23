@@ -7,11 +7,9 @@ import java.util.List;
 /**
  * Created by click on 11/10/2016.
  */
-public interface ProgressDAO {
-    void create(Progress progress);
-    void delete(String courseCode, String userEmail);
-    void update(Progress progress);
-    Progress findOne(String courseCode, String userEmail);
+public interface ProgressDAO extends GeneralDAO<Progress> {
+    void delete(Integer id);
+    Progress findOne(Integer id);
     List<Progress> findByUser(Integer id);
     List<Progress> findByCourse(Integer id);
 }

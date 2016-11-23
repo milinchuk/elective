@@ -32,10 +32,10 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public User findOne(String email) {
+    public User findOne(Integer id) {
         try {
             PreparedStatement statement = connection.prepareStatement(queries.getProperty(QueryResource.FIND_ONE));
-            statement.setString(1, email);
+            statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
             User user = new User();
             if(resultSet.next()){

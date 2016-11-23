@@ -20,6 +20,7 @@ public class QueryResource {
     public static final String FIND_ALL = "find.all";
     public static final String FIND_BY_TUTOR = "find.by.tutor";
     public static final String FIND_BY_STUDENT = "find.by.student";
+    public static final String FIND_UNFOLLOW = "find.unfollow";
 
     public QueryResource(String resourceUrl){
         properties = new Properties();

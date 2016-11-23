@@ -7,10 +7,8 @@ import java.util.List;
 /**
  * Created by click on 11/5/2016.
  */
-public interface UserDAO {
-    void create(User user);
-    void update(User user);
+public interface UserDAO extends GeneralDAO<User> {
     void delete(String email);
-    User findOne(String email);
+    User findOne(Integer id);
     List<User> findByCourseFollow(Integer id);
 }

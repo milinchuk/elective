@@ -11,6 +11,7 @@ import model.entity.Progress;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,22 +31,55 @@ public class ProgressDAOImpl implements ProgressDAO {
 
     @Override
     public void create(Progress progress) {
-
+        try {
+            PreparedStatement statement = connection.prepareStatement(resource.getQuery(QueryResource.CREATE));
+            statement.setInt(1, progress.getCourse().getId());
+            statement.setInt(2, progress.getStudent().getId());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public void delete(String courseCode, String userEmail) {
-
+    public void delete(Integer id) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(resource.getQuery(QueryResource.DELETE));
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void update(Progress progress) {
-
+        try {
+            PreparedStatement statement = connection.prepareStatement(resource.getQuery(QueryResource.UPDATE));
+            statement.setString(1, progress.getMark());
+            statement.setString(2, progress.getNote());
+            statement.setInt(3, progress.getId());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public Progress findOne(String courseCode, String userEmail) {
-        return null;
+    public Progress findOne(Integer id) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(resource.getQuery(QueryResource.FIND_ONE));
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            Progress progress = null;
+            if(resultSet.next()){
+                progress = progressPickUtil.pick(resultSet);
+            }
+            return progress;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override
