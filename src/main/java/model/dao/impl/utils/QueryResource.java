@@ -6,7 +6,7 @@ import java.util.Properties;
 /**
  * Created by click on 11/11/2016.
  */
-public class QueryResource {
+public class QueryResource {;
     private Properties properties;
 
     public static final String COURSE_QUERIES_URL = "course_query.properties";
@@ -21,6 +21,8 @@ public class QueryResource {
     public static final String FIND_BY_TUTOR = "find.by.tutor";
     public static final String FIND_BY_STUDENT = "find.by.student";
     public static final String FIND_UNFOLLOW = "find.unfollow";
+    public static final String FIND_BY_USER_COURSE = "find.by.user.course";
+    public static final String FIND_ONE_BY_EMAIL = "find.by.email";
 
     public QueryResource(String resourceUrl){
         properties = new Properties();

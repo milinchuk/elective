@@ -50,6 +50,25 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
+    public User findOne(String email) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    queries.getProperty(QueryResource.FIND_ONE_BY_EMAIL));
+            statement.setString(1, email);
+            ResultSet resultSet = statement.executeQuery();
+            User user = null;
+            if(resultSet.next()){
+                user = userPickUtil.pick(resultSet);
+            }
+            statement.close();
+            return user;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
     public List<User> findByCourseFollow(Integer id) {
         try {
             PreparedStatement statement = connection.prepareStatement(queries.getProperty(QueryResource.FIND_BY_COURSE));
@@ -88,11 +107,9 @@ public class UserDAOImpl implements UserDAO {
         try {
             PreparedStatement statement = connection.prepareStatement(queries.getProperty(QueryResource.UPDATE));
             statement.setString(1, user.getEmail());
-            statement.setString(2, user.getPassword());
-            statement.setString(3, user.getFirstName());
-            statement.setString(4, user.getLastName());
-            statement.setInt(5, user.getRole());
-            statement.setInt(6, user.getId());
+            statement.setString(2, user.getFirstName());
+            statement.setString(3, user.getLastName());
+            statement.setInt(4, user.getId());
             statement.executeUpdate();
             statement.close();
         } catch (SQLException e) {

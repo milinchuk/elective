@@ -83,6 +83,24 @@ public class ProgressDAOImpl implements ProgressDAO {
     }
 
     @Override
+    public Progress findOne(Integer userId, Integer courseId) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(resource.getQuery(QueryResource.FIND_BY_USER_COURSE));
+            statement.setInt(1, userId);
+            statement.setInt(2, courseId);
+            ResultSet resultSet = statement.executeQuery();
+            Progress progress = null;
+            if(resultSet.next()){
+                progress = progressPickUtil.pick(resultSet);
+            }
+            return progress;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
     public List<Progress> findByUser(Integer id) {
         try {
             PreparedStatement statement = connection.prepareStatement(resource.getQuery(QueryResource.FIND_BY_STUDENT));
