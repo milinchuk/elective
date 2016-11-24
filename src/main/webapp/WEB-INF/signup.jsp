@@ -1,3 +1,4 @@
+<%@ page import="utils.constants.AttributesHolder" %>
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -42,12 +43,26 @@
         <div class="center jumbotron authorization-section">
             <form action="" method="post">
                 <h2 class="form-signin-heading">Please sign up</h2>
+                <c:forEach items="${errors.messages}" var="msg">
+                    <p>${msg}</p>
+                </c:forEach>
                 <br>
-                <input type="text" class="form-control" name="j_username" placeholder="Email address" required autofocus >
+                <input type="text" class="form-control" name="<%=AttributesHolder.FIRST_NAME%>" value="<c:out value="${user.firstName}"/>" placeholder="First name" required>
                 <br>
-                <input type="password" class="form-control" name="j_password" placeholder="Password" required >
+                <input type="text" class="form-control" name="<%=AttributesHolder.LAST_NAME%>" value="<c:out value="${user.lastName}"/>" placeholder="Last name" required >
                 <br>
-                <input type="password" class="form-control" name="j_password" placeholder="Confirm Password" required >
+                <div class="form-group">
+                    <select class="form-control" name="role" id="sel1">
+                        <option>Choose your role ...</option>
+                        <option>student</option>
+                        <option>tutor</option>
+                    </select>
+                </div>
+                <input type="text" class="form-control" name="<%=AttributesHolder.EMAIL%>" value="<c:out value="${user.email}"/>" placeholder="Email address" required >
+                <br>
+                <input type="password" class="form-control" name="<%=AttributesHolder.PASSWORD%>" placeholder="Password" required >
+                <br>
+                <input type="password" class="form-control" name="<%=AttributesHolder.CONFIRM_PASSWORD%>" placeholder="Confirm Password" required >
                 <br>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
                 <h5>Have an account? <a href="/login">Login here!</a>

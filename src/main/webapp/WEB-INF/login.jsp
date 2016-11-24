@@ -1,3 +1,6 @@
+<%@ page import="utils.constants.UrlHolder" %>
+<%@ page import="utils.constants.AttributesHolder" %>
+<%@ page import="utils.constants.PagesHolder" %>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
@@ -14,17 +17,6 @@
 
     <link rel="stylesheet"type="text/css" href="<c:url value="/bootstrap.css"/>" >
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css">
-    <%--<link href="<c:url value="/css/bootstrap.css.map"/>" type="text/css" rel="stylesheet">--%>
-    <%--<link href="<c:url value="/css/bootstrap.min.css"/>" type="text/css" rel="stylesheet">--%>
-    <%--<link href="<c:url value="/css/bootstrap.min.css.map"/>" type="text/css" rel="stylesheet">--%>
-    <%--<link href="<c:url value="/css/bootstrap-theme.css.map"/>" type="text/css" rel="stylesheet">--%>
-    <%--<link href="<c:url value="/css/bootstrap-theme.min.css"/>" type="text/css" rel="stylesheet">--%>
-    <%--<link href="<c:url value="/css/bootstrap-theme.min.css.map"/>" type="text/css" rel="stylesheet">--%>
-    <%--<link href="<c:url value="/css/bootstrap-theme.css" />" type="text/css" rel="stylesheet">--%>
-    <%--<link href="<c:url value="/css/style.css" />" type="text/css" rel="stylesheet">--%>
-    <%--<link rel="stylesheet" type="text/css" href="<c:url value="css/bootstrap-wysihtml5.css"/>" />--%>
-
-    <%--<jsp:include page="navigationElements/styles.jsp"/>--%>
     <style>
         .authorization-section {
             width: 50%;
@@ -42,15 +34,15 @@
 
 <div class="container">
     <div class="center jumbotron authorization-section">
-        <form action="" method="post">
+        <form action="<%=UrlHolder.LOGIN%>" method="post">
             <h2 class="form-signin-heading">Please log in</h2>
             <br>
-            <input type="text" class="form-control" name="j_username" placeholder="Email address" required autofocus >
+            <input type="text" class="form-control" name="<%=AttributesHolder.EMAIL%>" placeholder="Email address" required autofocus >
             <br>
-            <input type="password" class="form-control" name="j_password" placeholder="Password" required >
+            <input type="password" class="form-control" name="<%=AttributesHolder.PASSWORD%>" placeholder="Password" required >
             <br>
             <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-            <h5>Not register yet? <a href="/signup">Sign Up!</a>
+            <h5>Not register yet? <a href="<%=UrlHolder.SIGNUP%>">Sign Up!</a>
             </h5>
         </form>
     </div>
