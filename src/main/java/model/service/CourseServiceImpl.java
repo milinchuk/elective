@@ -38,9 +38,7 @@ public class CourseServiceImpl implements CourseService {
     public void create(Course course) {
         AbstractConnection connection = connectionFactory.getMySqlConnection();
         CourseDAO courseDAO = daoFactory.getCourseDAO(connection);
-        if(courseDAO.findOne(course.getId()) == null) {
-            courseDAO.create(course);
-        }
+        courseDAO.create(course);
         connection.close();
     }
 
