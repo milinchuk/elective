@@ -4,8 +4,8 @@ import controller.commands.Command;
 import model.entity.Progress;
 import model.service.ProgressServiceImpl;
 import model.service.interfaces.ProgressService;
-import utils.AttributesHolder;
-import utils.PagesHolder;
+import utils.constants.AttributesHolder;
+import utils.constants.PagesHolder;
 import validators.ParameterValidator;
 import validators.Validator;
 

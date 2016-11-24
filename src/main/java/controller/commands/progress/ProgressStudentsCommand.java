@@ -2,14 +2,10 @@ package controller.commands.progress;
 
 import controller.commands.Command;
 import model.entity.Progress;
-import model.entity.User;
 import model.service.ProgressServiceImpl;
-import model.service.UserServiceImpl;
 import model.service.interfaces.ProgressService;
-import model.service.interfaces.UserService;
-import utils.AttributesHolder;
-import utils.PagesHolder;
-import validators.Errors;
+import utils.constants.AttributesHolder;
+import utils.constants.PagesHolder;
 import validators.ParameterValidator;
 import validators.Validator;
 
