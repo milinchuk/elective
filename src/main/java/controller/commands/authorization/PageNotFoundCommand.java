@@ -14,7 +14,7 @@ import java.io.IOException;
  */
 public class PageNotFoundCommand implements Command {
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) {
         return PagesHolder.PAGE_NOT_FOUND_JSP;
     }
 }
