@@ -1,17 +1,16 @@
 package validators;
 
 import org.apache.commons.lang.StringUtils;
+import utils.constants.ErrorsMessagesHolder;
 
 /**
  * Created by click on 11/21/2016.
  */
 public class ParameterValidator implements Validator {
-    public static final String INVALID_NUMBER_VALUE = "Invalid number value";
-
     @Override
     public boolean validate(Object o, Errors errors) {
         if(!validate(o)){
-            errors.addMessage(INVALID_NUMBER_VALUE);
+            errors.addMessage(ErrorsMessagesHolder.INVALID_NUMBER_VALUE);
             errors.setResult(true);
             return false;
         }

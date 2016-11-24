@@ -1,18 +1,16 @@
 package validators;
 
 import controller.commands.Command;
+import utils.constants.ErrorsMessagesHolder;
 
 /**
  * Created by click on 11/20/2016.
  */
 public class CommandValidator implements Validator {
-
-    public static final String PAGE_NOT_FOUND = "Page not found";
-
     @Override
     public boolean validate(Object command, Errors errors) {
         if(validate(command)){
-            errors.addMessage(PAGE_NOT_FOUND);
+            errors.addMessage(ErrorsMessagesHolder.PAGE_NOT_FOUND);
             errors.setResult(true);
             return false;
         }

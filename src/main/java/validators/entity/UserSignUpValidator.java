@@ -2,6 +2,7 @@ package validators.entity;
 
 import model.entity.User;
 import org.apache.commons.lang.StringUtils;
+import utils.constants.ErrorsMessagesHolder;
 import validators.Errors;
 import validators.Validator;
 
@@ -28,20 +29,20 @@ public class UserSignUpValidator implements Validator<User> {
     @Override
     public boolean validate(User user, Errors errors) {
         if (!namePattern.matcher(user.getFirstName()).matches()){
-            reject(errors, "first.name.invalid");
+            reject(errors, ErrorsMessagesHolder.FIRST_NAME_INVALID);
         }
         if (!namePattern.matcher(user.getLastName()).matches()){
-            reject(errors, "last.name.invalid");
+            reject(errors, ErrorsMessagesHolder.LAST_NAME_INVALID);
         }
         if (user.getRole() == null) {
-            reject(errors, "role.invalid");
+            reject(errors, ErrorsMessagesHolder.ROLE_INVALID);
         }
         if (!emailPattern.matcher(user.getEmail()).matches()) {
-            reject(errors, "email.invalid");
+            reject(errors, ErrorsMessagesHolder.EMAIL_INVALID);
         }
         if (!passwordPattern.matcher(user.getPassword()).matches() ||
                 !user.getPassword().equals(user.getConfirmPassword())) {
-            reject(errors, "password.invalid");
+            reject(errors, ErrorsMessagesHolder.PASSWORD_INVALID);
         }
         return !errors.hasError();
     }
