@@ -45,10 +45,6 @@ public class DispatcherServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // imitate authorization
-        Permission permission = new Permission();
-        permission.hasPermission(request);
-
         Command command = commandHolder.getGetCommand(
                 String.valueOf(request.getSession().getAttribute(AttributesHolder.ROLE))
                         + request.getRequestURI());
@@ -59,10 +55,6 @@ public class DispatcherServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // imitate authorization
-        Permission permission = new Permission();
-        permission.hasPermission(request);
-
         Command command = commandHolder.getPostCommand(
                 String.valueOf(request.getSession().getAttribute(AttributesHolder.ROLE))
                 + request.getRequestURI());
