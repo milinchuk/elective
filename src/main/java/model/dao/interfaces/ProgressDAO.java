@@ -10,6 +10,7 @@ import java.util.List;
 public interface ProgressDAO extends GeneralDAO<Progress> {
     void delete(Integer id);
     Progress findOne(Integer id);
+    Progress findOne(Integer userId, Integer courseId);
     List<Progress> findByUser(Integer id);
     List<Progress> findByCourse(Integer id);
 }

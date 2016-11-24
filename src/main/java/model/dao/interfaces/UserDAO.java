@@ -10,5 +10,6 @@ import java.util.List;
 public interface UserDAO extends GeneralDAO<User> {
     void delete(String email);
     User findOne(Integer id);
+    User findOne(String email);
     List<User> findByCourseFollow(Integer id);
 }
