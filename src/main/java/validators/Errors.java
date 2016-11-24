@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class Errors {
     private List<String> messages;
-    private boolean result;
+    private boolean result = true;
 
     public Errors() {
         messages = new ArrayList<>();
@@ -23,7 +23,7 @@ public class Errors {
     }
 
     public boolean hasError(){
-        return result;
+        return !result;
     }
 
     public void setResult(boolean result) {

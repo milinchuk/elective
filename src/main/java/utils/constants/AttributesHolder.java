@@ -19,4 +19,12 @@ public interface AttributesHolder {
     String NOTE = "note";
     String PROGRESS = "progress";
     String DOT = ".";
+    String EMAIL = "email";
+    String FIRST_NAME = "firstName";
+    String LAST_NAME = "lastName";
+    String PASSWORD = "password";
+    String CONFIRM_PASSWORD = "confirmPassword";
+    String ERRORS = "errors";
+    String STUDENT = "student";
+    String TUTOR = "tutor";
 }

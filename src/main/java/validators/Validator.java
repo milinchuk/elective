@@ -5,4 +5,5 @@ package validators;
  */
 public interface Validator<T> {
     public boolean validate(T t, Errors errors);
+    public boolean validate(T t);
 }

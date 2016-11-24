@@ -1,9 +1,7 @@
 package controller.commands.holder;
 
 import controller.commands.Command;
-import controller.commands.authorization.LoginCommand;
-import controller.commands.authorization.LogoutCommand;
-import controller.commands.authorization.SignUpCommand;
+import controller.commands.authorization.*;
 import controller.commands.course.*;
 import controller.commands.progress.CourseUnfollowCommand;
 import controller.commands.progress.ProgressStudentsCommand;
@@ -13,7 +11,6 @@ import controller.commands.user.UpdateProfileCommand;
 import model.entity.User;
 import utils.constants.UrlHolder;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -68,11 +65,15 @@ public class CommandsInit {
     }
 
     public void initUnregisterCommands(CommandHolder commandHolder){
-        // get commands
         // for unregister
         Map<String, Command> getCommand = commandHolder.getGetCommands();
-        getCommand.put(UrlHolder.LOGIN, new LoginCommand());
-        getCommand.put(UrlHolder.SIGNUP, new SignUpCommand());
+        getCommand.put(UrlHolder.NULL + UrlHolder.LOGIN, new OpenLoginCommand());
+        getCommand.put(UrlHolder.NULL + UrlHolder.SIGNUP, new OpenSignUpCommand());
+        // post commands
+        Map<String, Command> postCommand = commandHolder.getPostCommands();
+        postCommand.put(UrlHolder.NULL + UrlHolder.LOGIN, new LoginCommand());
+        postCommand.put(UrlHolder.NULL + UrlHolder.SIGNUP, new SignUpCommand());
+
     }
 
 }

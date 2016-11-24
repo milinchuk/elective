@@ -1,14 +1,19 @@
 package utils.constants;
 
+import model.entity.User;
+
 /**
  * Created by click on 11/21/2016.
  */
 public interface UrlHolder {
     String LOGIN = "/login";
     String SIGNUP = "/signup";
+    String NULL = "null";
 
     String SUFFIX = "/";
     String PREFIX = "/user";
+    String STUDENT_ROLE = String.valueOf(User.STUDENT);
+    String TUTOR_ROLE = String.valueOf(User.TUTOR);
 
     String COURSE = PREFIX + "/course" + SUFFIX;
     String COURSES = PREFIX + "/courses";
@@ -23,4 +28,5 @@ public interface UrlHolder {
     String STUDENT_EDIT = PREFIX + "/student/edit";
     String UNFOLLOW = PREFIX + "/unfollow";
     String COURSE_DELETE = COURSE + "delete";
+    String USER = "/user";
 }
