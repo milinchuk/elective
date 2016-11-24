@@ -5,9 +5,8 @@ import model.entity.Course;
 import model.entity.User;
 import model.service.CourseServiceImpl;
 import model.service.interfaces.CourseService;
-import utils.AttributesHolder;
-import utils.PagesHolder;
-import validators.Errors;
+import utils.constants.AttributesHolder;
+import utils.constants.PagesHolder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

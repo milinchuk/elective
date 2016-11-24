@@ -4,8 +4,8 @@ import controller.commands.Command;
 import model.entity.Course;
 import model.service.CourseServiceImpl;
 import model.service.interfaces.CourseService;
-import utils.AttributesHolder;
-import utils.PagesHolder;
+import utils.constants.AttributesHolder;
+import utils.constants.PagesHolder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,12 +15,13 @@ import java.util.List;
  * Created by click on 11/22/2016.
  */
 public class FindCoursesCommand implements Command {
-    CourseService service = CourseServiceImpl.getInstance();
+    protected CourseService service = CourseServiceImpl.getInstance();
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        List<Course> courseList = service.findAll();
+        List<Course> courseList = service.findUnfollow(Integer.valueOf(String.valueOf(request.getSession().
+                getAttribute(AttributesHolder.ID))));
         request.setAttribute(AttributesHolder.COURSES, courseList);
-        return PagesHolder.COURSES;
+        return PagesHolder.FIND_COURSES;
     }
 }

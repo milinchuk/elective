@@ -1,7 +1,7 @@
 package controller.commands.course;
 
 import controller.commands.Command;
-import utils.PagesHolder;
+import utils.constants.PagesHolder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

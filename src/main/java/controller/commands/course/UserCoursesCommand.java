@@ -8,8 +8,8 @@ import model.service.CourseServiceImpl;
 import model.service.ProgressServiceImpl;
 import model.service.interfaces.CourseService;
 import model.service.interfaces.ProgressService;
-import utils.AttributesHolder;
-import utils.PagesHolder;
+import utils.constants.AttributesHolder;
+import utils.constants.PagesHolder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
