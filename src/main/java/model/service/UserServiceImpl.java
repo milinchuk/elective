@@ -34,11 +34,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void create(User user) {
-        // check if user has email and password
-        // check if email unique
         AbstractConnection connection = connectionFactory.getMySqlConnection();
         UserDAO userDAO = daoFactory.getUserDAO(connection);
-        if(userDAO.findOne(user.getId()) != null) {
+        if((user != null) && (userDAO.findOne(user.getEmail()) == null)) {
             userDAO.create(user);
         }
         connection.close();
@@ -64,6 +62,15 @@ public class UserServiceImpl implements UserService {
         AbstractConnection connection = connectionFactory.getMySqlConnection();
         UserDAO userDAO = daoFactory.getUserDAO(connection);
         User user = userDAO.findOne(id);
+        connection.close();
+        return user;
+    }
+
+    @Override
+    public User findOne(String email) {
+        AbstractConnection connection = connectionFactory.getMySqlConnection();
+        UserDAO userDAO = daoFactory.getUserDAO(connection);
+        User user = userDAO.findOne(email);
         connection.close();
         return user;
     }

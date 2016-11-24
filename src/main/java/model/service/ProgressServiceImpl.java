@@ -37,7 +37,7 @@ public class ProgressServiceImpl implements ProgressService {
         // add cheking
         AbstractConnection connection = connectionFactory.getMySqlConnection();
         ProgressDAO progressDAO = daoFactory.getProgressDAO(connection);
-        Progress existProgress = progressDAO.findOne(progress.getId());
+        Progress existProgress = progressDAO.findOne(progress.getStudent().getId(), progress.getCourse().getId());
         if(existProgress == null) {
             progressDAO.create(progress);
         }

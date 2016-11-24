@@ -13,5 +13,6 @@ public interface UserService {
     void delete(String email);
     void update(User user);
     User findOne(Integer id);
+    User findOne(String email);
     List<User> findByCourse(Integer id);
 }
