@@ -1,5 +1,6 @@
-package controller.commands;
+package controller.commands.holder;
 
+import controller.commands.Command;
 import controller.commands.authorization.PageNotFoundCommand;
 
 import java.util.HashMap;
@@ -11,14 +12,10 @@ import java.util.Map;
 public class CommandHolder {
     private Map<String, Command> postCommands;
     private Map<String, Command> getCommands;
-    private Map<String, Command> putCommands;
-    private Map<String, Command> deleteCommands;
 
     public CommandHolder() {
         postCommands = new HashMap<>();
         getCommands = new HashMap<>();
-        putCommands = new HashMap<>();
-        putCommands = new HashMap<>();
     }
 
     public Command getPostCommand(String url){
@@ -27,14 +24,6 @@ public class CommandHolder {
 
     public Command getGetCommand(String url){
         return getCommands.get(url);
-    }
-
-    public Command getPutCommand(String url){
-        return putCommands.get(url);
-    }
-
-    public Command getDeleteCommand(String url){
-        return deleteCommands.get(url);
     }
 
     public Map<String, Command> getPostCommands() {
@@ -51,22 +40,6 @@ public class CommandHolder {
 
     public void setGetCommands(Map<String, Command> getCommands) {
         this.getCommands = getCommands;
-    }
-
-    public Map<String, Command> getPutCommands() {
-        return putCommands;
-    }
-
-    public void setPutCommands(Map<String, Command> putCommands) {
-        this.putCommands = putCommands;
-    }
-
-    public Map<String, Command> getDeleteCommands() {
-        return deleteCommands;
-    }
-
-    public void setDeleteCommands(Map<String, Command> deleteCommands) {
-        this.deleteCommands = deleteCommands;
     }
 
     public Command getPageNotFoundCommand() {
