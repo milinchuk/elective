@@ -4,8 +4,8 @@ import controller.commands.Command;
 import model.entity.User;
 import model.service.UserServiceImpl;
 import model.service.interfaces.UserService;
-import utils.AttributesHolder;
-import utils.PagesHolder;
+import utils.constants.AttributesHolder;
+import utils.constants.PagesHolder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
