@@ -1,5 +1,7 @@
 <%@ page import="model.entity.Course" %>
 <%@ page import="java.util.List" %>
+<%@ page import="utils.constants.UrlHolder" %>
+<%@ page import="utils.constants.AttributesHolder" %>
 <%--
   Created by IntelliJ IDEA.
   User: click
@@ -27,18 +29,20 @@
 <jsp:include page="navigationElements/upperPanel.jsp"/>
 
 <div class="container-fluid">
-    <div class="row content">
-        <jsp:include page="navigationElements/leftPanel.jsp" />
+        <div class="row content">
+            <jsp:include page="navigationElements/leftPanel.jsp" />
         <div class="col-sm-9 section">
             <h2><small>FIND COURSES</small></h2>
             <hr>
             <c:forEach items="${courses}" var="course">
                 <div class="course-mini">
-                    <h2><a href="/user/course/?id=<c:out value="${course.id}"/>" ><c:out value="${course.name}"/></a></h2>
-                        <%--<h5><span class="glyphicon glyphicon-time"></span>--%>
+                    <h2><a href="#"><c:out value="${course.name}"/></a></h2>
                     <h5>  Tutor: <c:out value="${course.tutor.lastName}"/> </h5>
                     <p><c:out value="${course.about}"/></p>
-                    <a href="/user/course/<c:out value="${course.id}"/>"><button type="button" class="btn btn-primary">Follow</button></a>
+                    <%--here must be form--%>
+                    <form action="<%=UrlHolder.FOLLOW%>" method="post">
+                        <button type="submit" name="course" class="btn btn-primary" value="<c:out value="${course.id}"/>">Follow</button>
+                    </form>
                 </div>
             </c:forEach>
         </div>

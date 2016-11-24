@@ -1,4 +1,4 @@
-<%@ page import="utils.UrlHolder" %>
+<%@ page import="utils.constants.UrlHolder" %>
 <%--
   Created by IntelliJ IDEA.
   User: click
@@ -14,11 +14,11 @@
             <a class="navbar-brand" href="#">Elective</a>
         </div>
         <ul class="nav navbar-nav">
-            <li><a href="/user/myCourses"> My Courses</a></li>
-            <li><a href="/user/courses">Find Courses</a></li>
-            <li><a href="/user/profile">Profile</a></li>
-                <li><a href="/login">Login</a></li>
-                <li><a href="/user/logout">Logout</a></li>
+                <li><a href="<%=UrlHolder.FIND%>">Find Courses</a></li>
+                <li><a href="<%=UrlHolder.MY_COURSES%>"> My Courses</a></li>
+                <li><a href="<%=UrlHolder.PROFILE%>">Profile</a></li>
+                <li><a href="<%=UrlHolder.LOGOUT%>">Logout</a></li>
+            <c:if test=""><li><a href="<%=UrlHolder.LOGIN%>">Login</a></li></c:if>
         </ul>
     </div>
 </nav>

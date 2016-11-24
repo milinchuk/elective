@@ -22,24 +22,24 @@
             <div class="col-sm-9 section">
                 <h2><small>MY PROFILE</small></h2>
                 <hr>
+                <form action="/user/profile" method="post">
+                    <div class="form-group">
+                        <h3><small>First name: </small></h3>
+                        <input type='text' class="form-control" name="firstName" value="<c:out value="${user.firstName}"/>"/>
+                    </div>
 
-                <div class="form-group">
-                    <h3><small>First name: </small></h3>
-                </div>
+                    <div class="form-group">
+                        <h3><small>Last name: </small></h3>
+                        <input type='text' class="form-control" name="lastName" value="<c:out value="${user.lastName}"/>"/>
+                    </div>
 
-                <div class="form-group">
-                    <h3><small>Last name: </small></h3>
-                </div>
+                    <div class="form-group">
+                        <h3><small>Email: </small></h3>
+                        <input type='text' class="form-control" name="email" value="<c:out value="${user.email}"/>"/>
+                    </div>
 
-                <div class="form-group">
-                    <h3><small>Email: </small></h3>
-                </div>
-
-                <div class="form-group">
-                    <h3><small>Role: </small></h3>
-                </div>
-
-                <button type="button" class="btn btn-success">Save</button>
+                    <button type="submit" name="id" value="<c:out value="${user.id}"/>" class="btn btn-success">Save</button>
+                </form>
             </div>
         </div>
     </div>

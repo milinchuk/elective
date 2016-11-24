@@ -37,15 +37,19 @@
                         <th>Full name</th>
                         <th>Mark</th>
                         <th>Note</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <c:forEach items="${progresses}" var="progress">
+                    <c:forEach items="${students}" var="progress">
                         <tr>
-                            <td><c:out value="${progress.id}"/></td>
-                            <td><c:out value="${progress.student.firstName}"/> <c:out value="${progress.student.lastName}"/></td>
-                            <td><c:out value="${progress.mark}"/></td>
-                            <td><c:out value="${progress.note}"/></td>
+                            <form action="/user/student/edit" method="post">
+                                <td><input readonly style="border: none; width: 15px;" name="id" value="<c:out value="${progress.id}"/>"/></td>
+                                <td><c:out value="${progress.student.firstName}"/> <c:out value="${progress.student.lastName}"/></td>
+                                <td><input name="mark" class="form-control" value="<c:out value="${progress.mark}"/>"/></td>
+                                <td><input name="note" class="form-control" value="<c:out value="${progress.note}"/>"/></td>
+                                <td><button class="btn btn-success" name="course" type="submit" value="<c:out value="${progress.course.id}"/>">Save</button></td>
+                            </form>
                         </tr>
                     </c:forEach>
                 </tbody>
