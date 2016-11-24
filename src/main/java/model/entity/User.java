@@ -7,9 +7,10 @@ public class User {
     private Integer id;
     private String email;
     private String password;
+    private String confirmPassword;
     private String firstName;
     private String lastName;
-    private int role;
+    private Integer role;
 
     public static int TUTOR = 1;
     public static int STUDENT = 2;
@@ -57,12 +58,20 @@ public class User {
         this.password = password;
     }
 
-    public int getRole() {
+    public Integer getRole() {
         return role;
     }
 
-    public void setRole(int role) {
+    public void setRole(Integer role) {
         this.role = role;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 
     @Override
