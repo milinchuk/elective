@@ -27,4 +27,6 @@ public interface AttributesHolder {
     String ERRORS = "errors";
     String STUDENT = "student";
     String TUTOR = "tutor";
+    String URL_PARAMETER = "urlParam";
+    String COMMAND = "command";
 }

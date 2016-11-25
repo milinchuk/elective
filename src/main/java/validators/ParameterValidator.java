@@ -1,6 +1,7 @@
 package validators;
 
 import org.apache.commons.lang.StringUtils;
+import utils.constants.AttributesHolder;
 import utils.constants.ErrorsMessagesHolder;
 
 /**
@@ -10,7 +11,7 @@ public class ParameterValidator implements Validator {
     @Override
     public boolean validate(Object o, Errors errors) {
         if(!validate(o)){
-            errors.addMessage(ErrorsMessagesHolder.INVALID_NUMBER_VALUE);
+            errors.addMessage(AttributesHolder.URL_PARAMETER, ErrorsMessagesHolder.INVALID_NUMBER_VALUE);
             errors.setResult(true);
             return false;
         }
