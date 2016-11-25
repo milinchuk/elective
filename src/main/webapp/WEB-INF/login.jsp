@@ -43,12 +43,12 @@
             <h2 class="form-signin-heading">Please log in</h2>
             <br>
             <div class="alert-danger">
-                <strong>!</strong><c:out value="${errors.messages['email']}" />
+                <c:out value="${errors.messages['email']}" />
             </div>
             <input type="text" class="form-control" name="<%=AttributesHolder.EMAIL%>" placeholder="Email address" required autofocus >
             <br>
             <div class="alert-danger">
-                <strong>!</strong><c:out value="${errors.messages['password']}" />
+                <c:out value="${errors.messages['password']}" />
             </div>
             <input type="password" class="form-control" name="<%=AttributesHolder.PASSWORD%>" placeholder="Password" required >
             <br>

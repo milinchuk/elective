@@ -39,19 +39,19 @@
                 <h2 class="form-signin-heading">Please sign up</h2>
                 <br>
                 <div class="alrt alert-danger">
-                    <strong>!</strong> <c:out value="${errors.messages['firstName']}"/>
+                    <c:out value="${errors.messages['firstName']}"/>
                 </div>
                 <input type="text" class="form-control" name="<%=AttributesHolder.FIRST_NAME%>" value="<c:out value="${user.firstName}"/>" placeholder="First name" required>
 
                 <br>
                 <div class="alert-danger">
-                    <strong>!</strong> <c:out value="${errors.messages['lastName']}" />
+                    <c:out value="${errors.messages['lastName']}" />
                 </div>
                 <input type="text" class="form-control" name="<%=AttributesHolder.LAST_NAME%>" value="<c:out value="${user.lastName}"/>" placeholder="Last name" required >
 
                 <br>
                 <div class="alert-danger">
-                    <strong>!</strong>  <c:out value="${errors.messages['role']}" />
+                    <c:out value="${errors.messages['role']}" />
                 </div>
                 <div class="form-group">
                     <select class="form-control" name="role" id="sel1">
@@ -61,12 +61,12 @@
                     </select>
                 </div>
                 <div class="alert-danger">
-                    <strong>!</strong> <c:out value="${errors.messages['email']}" />
+                    <c:out value="${errors.messages['email']}" />
                 </div>
                 <input type="text" class="form-control" name="<%=AttributesHolder.EMAIL%>" value="<c:out value="${user.email}"/>" placeholder="Email address" required >
                 <br>
                 <div class="alert-danger">
-                    <strong>!</strong> <c:out value="${errors.messages['password']}" />
+                    <c:out value="${errors.messages['password']}" />
                 </div>
                 <input type="password" class="form-control" name="<%=AttributesHolder.PASSWORD%>" placeholder="Password" required >
                 <br>
