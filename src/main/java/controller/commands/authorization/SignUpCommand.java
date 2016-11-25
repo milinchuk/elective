@@ -53,8 +53,8 @@ public class SignUpCommand implements Command {
             errors.addMessage(AttributesHolder.EMAIL, ErrorsMessagesHolder.USER_EXIST);
             errors.setResult(false);
         }
-        user.setPassword("");
-        user.setConfirmPassword("");
+        user.setPassword(null);
+        user.setConfirmPassword(null);
         request.setAttribute(AttributesHolder.USER, user);
         request.setAttribute(AttributesHolder.ERRORS, errors);
         return PagesHolder.SIGNUP;
