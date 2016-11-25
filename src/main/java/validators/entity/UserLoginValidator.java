@@ -2,6 +2,7 @@ package validators.entity;
 
 import model.entity.User;
 import org.apache.commons.lang.StringUtils;
+import utils.constants.AttributesHolder;
 import utils.constants.ErrorsMessagesHolder;
 import validators.Errors;
 import validators.Validator;
@@ -14,12 +15,12 @@ public class UserLoginValidator implements Validator<User> {
     public boolean validate(User user, Errors errors) {
         boolean res = true;
         if (StringUtils.isEmpty(user.getEmail())){
-            errors.addMessage(ErrorsMessagesHolder.EMAIL_EMPTY);
+            errors.addMessage(AttributesHolder.EMAIL, ErrorsMessagesHolder.EMAIL_EMPTY);
             res = false;
         }
 
         if (StringUtils.isEmpty(user.getPassword())){
-            errors.addMessage(ErrorsMessagesHolder.PASSWORD_EMPTY);
+            errors.addMessage(AttributesHolder.PASSWORD, ErrorsMessagesHolder.PASSWORD_EMPTY);
             res = false;
         }
         return res;

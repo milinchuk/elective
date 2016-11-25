@@ -7,18 +7,25 @@ import java.util.List;
  * Created by click on 11/20/2016.
  */
 public class Errors {
-    private List<String> messages;
+    private List<Message> messages;
     private boolean result = true;
 
     public Errors() {
         messages = new ArrayList<>();
     }
 
-    public void addMessage(String message){
+    public void addMessage(Message message){
         messages.add(message);
     }
 
-    public List<String> getMessages() {
+    public void addMessage(String attribute, String message) {
+        Message msg = new Message();
+        msg.setAttribute(attribute);
+        msg.setMessage(message);
+        messages.add(msg);
+    }
+
+    public List<Message> getMessages() {
         return messages;
     }
 
