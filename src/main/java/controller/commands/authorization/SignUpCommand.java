@@ -6,6 +6,7 @@ import model.entity.User;
 import model.service.UserServiceImpl;
 import model.service.interfaces.UserService;
 import utils.constants.AttributesHolder;
+import utils.constants.ErrorsMessagesHolder;
 import utils.constants.PagesHolder;
 import utils.pickers.request.RoleRequestPicker;
 import utils.pickers.request.SignupDataPicker;
@@ -49,7 +50,7 @@ public class SignUpCommand implements Command {
                 return PagesHolder.PROFILE;
             }
             // user exist
-            errors.addMessage("user.exist");
+            errors.addMessage(AttributesHolder.EMAIL, ErrorsMessagesHolder.USER_EXIST);
             errors.setResult(false);
         }
         user.setPassword("");

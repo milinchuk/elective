@@ -13,4 +13,6 @@ public interface ErrorsMessagesHolder {
     String PASSWORD_INVALID = "password.invalid";
     String PAGE_NOT_FOUND = "page.not.found";
     String INVALID_NUMBER_VALUE = "invalid.number.value";
+    String INVALID_AUTH_DATA = "invalid.auth.data";
+    String USER_EXIST = "user.exist";
 }
