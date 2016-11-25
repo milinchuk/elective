@@ -13,17 +13,6 @@
     <title>Sign Up</title>
     <link rel="stylesheet" href="<c:url value="/bootstrap.css"/>" >
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css">
-    <%--<link href="<c:url value="/css/bootstrap.css.map"/>" type="text/css" rel="stylesheet">--%>
-    <%--<link href="<c:url value="/css/bootstrap.min.css"/>" type="text/css" rel="stylesheet">--%>
-    <%--<link href="<c:url value="/css/bootstrap.min.css.map"/>" type="text/css" rel="stylesheet">--%>
-    <%--<link href="<c:url value="/css/bootstrap-theme.css.map"/>" type="text/css" rel="stylesheet">--%>
-    <%--<link href="<c:url value="/css/bootstrap-theme.min.css"/>" type="text/css" rel="stylesheet">--%>
-    <%--<link href="<c:url value="/css/bootstrap-theme.min.css.map"/>" type="text/css" rel="stylesheet">--%>
-    <%--<link href="<c:url value="/css/bootstrap-theme.css" />" type="text/css" rel="stylesheet">--%>
-    <%--<link href="<c:url value="/css/style.css" />" type="text/css" rel="stylesheet">--%>
-    <%--<link rel="stylesheet" type="text/css" href="<c:url value="css/bootstrap-wysihtml5.css"/>" />--%>
-
-    <%--<jsp:include page="navigationElements/styles.jsp"/>--%>
     <style>
         .authorization-section {
             width: 50%;
@@ -32,6 +21,11 @@
             float: none;
             margin-left: auto;
             margin-right: auto;
+        }
+        .alrt {
+            margin-bottom: 5px;
+            padding-left: 15px;
+            border-radius: 3px;
         }
     </style>
 </head>
@@ -43,14 +37,22 @@
         <div class="center jumbotron authorization-section">
             <form action="" method="post">
                 <h2 class="form-signin-heading">Please sign up</h2>
-                <c:forEach items="${errors.messages}" var="msg">
-                    <p>${msg}</p>
-                </c:forEach>
                 <br>
+                <div class="alrt alert-danger">
+                    <strong>!</strong> <c:out value="${errors.messages['firstName']}"/>
+                </div>
                 <input type="text" class="form-control" name="<%=AttributesHolder.FIRST_NAME%>" value="<c:out value="${user.firstName}"/>" placeholder="First name" required>
+
                 <br>
+                <div class="alert-danger">
+                    <strong>!</strong> <c:out value="${errors.messages['lastName']}" />
+                </div>
                 <input type="text" class="form-control" name="<%=AttributesHolder.LAST_NAME%>" value="<c:out value="${user.lastName}"/>" placeholder="Last name" required >
+
                 <br>
+                <div class="alert-danger">
+                    <strong>!</strong>  <c:out value="${errors.messages['role']}" />
+                </div>
                 <div class="form-group">
                     <select class="form-control" name="role" id="sel1">
                         <option>Choose your role ...</option>
@@ -58,8 +60,14 @@
                         <option>tutor</option>
                     </select>
                 </div>
+                <div class="alert-danger">
+                    <strong>!</strong> <c:out value="${errors.messages['email']}" />
+                </div>
                 <input type="text" class="form-control" name="<%=AttributesHolder.EMAIL%>" value="<c:out value="${user.email}"/>" placeholder="Email address" required >
                 <br>
+                <div class="alert-danger">
+                    <strong>!</strong> <c:out value="${errors.messages['password']}" />
+                </div>
                 <input type="password" class="form-control" name="<%=AttributesHolder.PASSWORD%>" placeholder="Password" required >
                 <br>
                 <input type="password" class="form-control" name="<%=AttributesHolder.CONFIRM_PASSWORD%>" placeholder="Confirm Password" required >
