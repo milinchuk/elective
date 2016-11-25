@@ -1,31 +1,26 @@
 package validators;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by click on 11/20/2016.
  */
 public class Errors {
-    private List<Message> messages;
+    private Map<String, String> messages;
     private boolean result = true;
 
     public Errors() {
-        messages = new ArrayList<>();
-    }
-
-    public void addMessage(Message message){
-        messages.add(message);
+        messages = new HashMap<>();
     }
 
     public void addMessage(String attribute, String message) {
-        Message msg = new Message();
-        msg.setAttribute(attribute);
-        msg.setMessage(message);
-        messages.add(msg);
+        messages.put(attribute, message);
     }
 
-    public List<Message> getMessages() {
+    public Map<String, String> getMessages() {
         return messages;
     }
 
