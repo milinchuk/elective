@@ -37,10 +37,12 @@ public class ProgressServiceImpl implements ProgressService {
         // add cheking
         AbstractConnection connection = connectionFactory.getMySqlConnection();
         ProgressDAO progressDAO = daoFactory.getProgressDAO(connection);
+        connection.beginTransaction();
         Progress existProgress = progressDAO.findOne(progress.getStudent().getId(), progress.getCourse().getId());
         if(existProgress == null) {
             progressDAO.create(progress);
         }
+        connection.commit();
         connection.close();
     }
 
@@ -49,7 +51,9 @@ public class ProgressServiceImpl implements ProgressService {
         // add checking
         AbstractConnection connection = connectionFactory.getMySqlConnection();
         ProgressDAO progressDAO = daoFactory.getProgressDAO(connection);
+        connection.beginTransaction();
         progressDAO.delete(progressId);
+        connection.commit();
         connection.close();
     }
 
@@ -58,7 +62,9 @@ public class ProgressServiceImpl implements ProgressService {
         // add check
         AbstractConnection connection = connectionFactory.getMySqlConnection();
         ProgressDAO progressDAO = daoFactory.getProgressDAO(connection);
+        connection.beginTransaction();
         progressDAO.update(progress);
+        connection.commit();
         connection.close();
     }
 

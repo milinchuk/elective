@@ -38,6 +38,7 @@ public class CourseServiceImpl implements CourseService {
     public void create(Course course) {
         AbstractConnection connection = connectionFactory.getMySqlConnection();
         CourseDAO courseDAO = daoFactory.getCourseDAO(connection);
+        connection.beginTransaction();
         courseDAO.create(course);
         connection.close();
     }
@@ -46,7 +47,9 @@ public class CourseServiceImpl implements CourseService {
     public void delete(Integer id) {
         AbstractConnection connection = connectionFactory.getMySqlConnection();
         CourseDAO courseDAO = daoFactory.getCourseDAO(connection);
+        connection.beginTransaction();
         courseDAO.delete(id);
+        connection.commit();
         connection.close();
     }
 
@@ -54,7 +57,9 @@ public class CourseServiceImpl implements CourseService {
     public void update(Course course) {
         AbstractConnection connection = connectionFactory.getMySqlConnection();
         CourseDAO courseDAO = daoFactory.getCourseDAO(connection);
+        connection.beginTransaction();
         courseDAO.update(course);
+        connection.commit();
         connection.close();
     }
 

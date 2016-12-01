@@ -36,16 +36,22 @@ public class UserServiceImpl implements UserService {
     public void create(User user) {
         AbstractConnection connection = connectionFactory.getMySqlConnection();
         UserDAO userDAO = daoFactory.getUserDAO(connection);
+
         if((user != null) && (userDAO.findOne(user.getEmail()) == null)) {
+            connection.beginTransaction();
             userDAO.create(user);
+            connection.commit();
         }
+
         connection.close();
     }
 
     @Override
     public void delete(String email) {
         AbstractConnection connection = connectionFactory.getMySqlConnection();
+        connection.beginTransaction();
         UserDAO userDAO = daoFactory.getUserDAO(connection);
+        connection.commit();
         userDAO.delete(email);
     }
 
@@ -53,7 +59,9 @@ public class UserServiceImpl implements UserService {
     public void update(User user) {
         AbstractConnection connection = connectionFactory.getMySqlConnection();
         UserDAO userDAO = daoFactory.getUserDAO(connection);
+        connection.beginTransaction();
         userDAO.update(user);
+        connection.commit();
         connection.close();
     }
 
