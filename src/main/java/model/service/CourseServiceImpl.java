@@ -40,6 +40,7 @@ public class CourseServiceImpl implements CourseService {
         CourseDAO courseDAO = daoFactory.getCourseDAO(connection);
         connection.beginTransaction();
         courseDAO.create(course);
+        connection.commit();
         connection.close();
     }
 
