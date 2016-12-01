@@ -99,12 +99,11 @@ public class CourseDAOImpl implements CourseDAO {
     public void create(Course course) {
         try {
             PreparedStatement statement = connection.prepareStatement(resource.getQuery(QueryResource.CREATE));
-            statement.setString(1, course.getCode());
-            statement.setString(2, course.getName());
-            statement.setString(3, course.getAbout());
-            statement.setDate(4, course.getStartDate());
-            statement.setDate(5, course.getEndDate());
-            statement.setInt(6, course.getTutor().getId());
+            statement.setString(1, course.getName());
+            statement.setString(2, course.getAbout());
+            statement.setDate(3, course.getStartDate());
+            statement.setDate(4, course.getEndDate());
+            statement.setInt(5, course.getTutor().getId());
             statement.execute();
             statement.close();
         } catch (SQLException e) {
@@ -117,13 +116,12 @@ public class CourseDAOImpl implements CourseDAO {
     public void update(Course course) {
         try {
             PreparedStatement statement = connection.prepareStatement(resource.getQuery(QueryResource.UPDATE));
-            statement.setString(1, course.getCode());
-            statement.setString(2, course.getName());
-            statement.setString(3, course.getAbout());
-            statement.setDate(4, course.getStartDate());
-            statement.setDate(5, course.getEndDate());
-            statement.setInt(6, course.getTutor().getId());
-            statement.setInt(7, course.getId());
+            statement.setString(1, course.getName());
+            statement.setString(2, course.getAbout());
+            statement.setDate(3, course.getStartDate());
+            statement.setDate(4, course.getEndDate());
+            statement.setInt(5, course.getTutor().getId());
+            statement.setInt(6, course.getId());
             statement.executeUpdate();
             statement.close();
         } catch (SQLException e) {

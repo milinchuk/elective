@@ -11,7 +11,6 @@ import java.sql.ResultSet;
 public class CoursePickUtil implements PickUtil{
     public static final String COURSES = "courses.";
     public static final String ID = "id";
-    public static final String CODE = "code";
     public static final String ABOUT = "about";
     public static final String NAME = "name";
     public static final String START_DATE = "start_date";
@@ -21,7 +20,6 @@ public class CoursePickUtil implements PickUtil{
         try {
             Course course = new Course();
             course.setId(resultSet.getInt(COURSES + ID));
-            course.setCode(resultSet.getString(CODE));
             course.setAbout(resultSet.getString(ABOUT));
             course.setName(resultSet.getString(NAME));
             course.setStartDate(resultSet.getDate(START_DATE));

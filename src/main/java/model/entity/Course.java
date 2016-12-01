@@ -7,7 +7,6 @@ import java.sql.Date;
  */
 public class Course {
     private Integer id;
-    private String code;
     private String name;
     private String about;
     private Date startDate;
@@ -20,14 +19,6 @@ public class Course {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
     }
 
     public String getName() {
@@ -68,5 +59,10 @@ public class Course {
 
     public void setTutor(User tutor) {
         this.tutor = tutor;
+    }
+
+    @Override
+    public boolean equals(Object course){
+        return this.getId().equals(((Course)course).getId());
     }
 }
