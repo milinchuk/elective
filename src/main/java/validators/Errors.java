@@ -31,4 +31,8 @@ public class Errors {
     public void setResult(boolean result) {
         this.result = result;
     }
+
+    public boolean getResult() {
+        return result;
+    }
 }

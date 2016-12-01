@@ -1,12 +1,10 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: click
-  Date: 5/31/2016
-  Time: 05:51
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ page import="model.entity.Course" %>
+<%@ page import="utils.constants.AttributesHolder" %>
+<%@ page import="utils.constants.UrlHolder" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <html>
 <head>
     <title></title>
@@ -26,29 +24,30 @@
 <body>
 <jsp:include page="navigationElements/upperPanel.jsp"/>
 
+<fmt:requestEncoding value="UTF-8" />
+<fmt:setBundle basename="course" var="msg"/>
 <div class="container-fluid">
     <div class="row content">
         <jsp:include page="navigationElements/leftPanel.jsp" />
         <div class="col-sm-9 section">
-            <h2><small>My courses</small></h2>
+            <h2><small><fmt:message key="my.courses" bundle="${msg}"/></small></h2>
             <hr>
             <div>
                 <table class="table">
                     <thead>
                     <tr>
-                        <th>Course name</th>
-                        <th>Tutor</th>
-                        <th>Start date</th>
-                        <th>End date</th>
-                        <th>Mark</th>
-                        <th>Note</th>
+                        <th><fmt:message key="course.name" bundle="${msg}"/></th>
+                        <th><fmt:message key="tutor" bundle="${msg}"/></th>
+                        <th><fmt:message key="start.date" bundle="${msg}"/></th>
+                        <th><fmt:message key="end.date" bundle="${msg}"/></th>
+                        <th><fmt:message key="mark" bundle="${msg}"/></th>
+                        <th><fmt:message key="note" bundle="${msg}"/></th>
                         <th></th>
                     </tr>
                     </thead>
                     <tbody>
                     <c:forEach items="${progresses}" var="progress">
                         <tr>
-
                                 <td><c:out value="${progress.course.name}"/></td>
                                 <td><c:out value="${progress.course.tutor.lastName}"/></td>
                                 <td><c:out value="${progress.course.startDate}"/></td>
@@ -64,15 +63,19 @@
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                        <h4 class="modal-title">Delete</h4>
+                                                        <h4 class="modal-title"><fmt:message key="unfollow" bundle="${msg}"/></h4>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <p>Are you sure to unfollow course?</p>
+                                                        <p><fmt:message key="msg.unfollow" bundle="${msg}"/></p>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <form action="/user/unfollow" method="post">
-                                                            <button type="submit" class="btn btn-danger" name="progress" value="<c:out value="${progress.id}"/>">Unfollow</button>
-                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                        <form action="${UrlHolder.UNFOLLOW}" method="post">
+                                                            <button type="submit" class="btn btn-danger" name="${AttributesHolder.PROGRESS}" value="<c:out value="${progress.id}"/>">
+                                                                <fmt:message key="unfollow" bundle="${msg}"/>
+                                                            </button>
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                                <fmt:message key="cancel" bundle="${msg}"/>
+                                                            </button>
                                                         </form>
                                                     </div>
                                                 </div>

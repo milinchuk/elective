@@ -1,8 +1,7 @@
 package validators;
 
-import controller.commands.Command;
+import i18n.messages.error.ErrorsMessages;
 import utils.constants.AttributesHolder;
-import utils.constants.ErrorsMessagesHolder;
 
 /**
  * Created by click on 11/20/2016.
@@ -11,7 +10,7 @@ public class CommandValidator implements Validator {
     @Override
     public boolean validate(Object command, Errors errors) {
         if(validate(command)){
-            errors.addMessage(AttributesHolder.COMMAND, ErrorsMessagesHolder.PAGE_NOT_FOUND);
+            errors.addMessage(AttributesHolder.COMMAND, ErrorsMessages.PAGE_NOT_FOUND);
             errors.setResult(true);
             return false;
         }

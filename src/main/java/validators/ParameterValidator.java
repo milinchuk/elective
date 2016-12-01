@@ -1,8 +1,8 @@
 package validators;
 
+import i18n.messages.error.ErrorsMessages;
 import org.apache.commons.lang.StringUtils;
 import utils.constants.AttributesHolder;
-import utils.constants.ErrorsMessagesHolder;
 
 /**
  * Created by click on 11/21/2016.
@@ -11,7 +11,7 @@ public class ParameterValidator implements Validator {
     @Override
     public boolean validate(Object o, Errors errors) {
         if(!validate(o)){
-            errors.addMessage(AttributesHolder.URL_PARAMETER, ErrorsMessagesHolder.INVALID_NUMBER_VALUE);
+            errors.addMessage(AttributesHolder.URL_PARAMETER, ErrorsMessages.INVALID_NUMBER_VALUE);
             errors.setResult(true);
             return false;
         }

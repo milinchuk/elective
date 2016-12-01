@@ -1,9 +1,9 @@
-package utils.constants;
+package i18n.messages.error;
 
 /**
  * Created by click on 11/25/2016.
  */
-public interface ErrorsMessagesHolder {
+public interface ErrorsMessages {
     String EMAIL_EMPTY = "email.empty";
     String PASSWORD_EMPTY = "password.empty";
     String FIRST_NAME_INVALID = "first.name.invalid";

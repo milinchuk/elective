@@ -5,8 +5,13 @@
   Time: 05:51
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<%@ page import="utils.constants.UrlHolder" %>
+<%@ page import="utils.constants.AttributesHolder" %>
+<%@ page import="utils.constants.PagesHolder" %>
+<%@ page import="java.util.Locale" %>
+<%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"  %>
 <html>
 <head>
     <title></title>
@@ -15,30 +20,35 @@
 
 <body>
     <jsp:include page="navigationElements/upperPanel.jsp"/>
+    <fmt:requestEncoding value="UTF-8" />
+    <fmt:setLocale value="${sessionScope[AttributesHolder.LOCALE]}" />
+    <fmt:setBundle basename="user" var="msg"/>
 
     <div class="container-fluid">
         <div class="row content">
             <jsp:include page="navigationElements/leftPanel.jsp" />
             <div class="col-sm-9 section">
-                <h2><small>MY PROFILE</small></h2>
+                <h2><small><fmt:message key="my.profile" bundle="${msg}"/></small></h2>
                 <hr>
-                <form action="/user/profile" method="post">
+                <form action="${UrlHolder.PROFILE}" method="post">
                     <div class="form-group">
-                        <h3><small>First name: </small></h3>
-                        <input type='text' class="form-control" name="firstName" value="<c:out value="${user.firstName}"/>"/>
+                        <h3><small><fmt:message key="first.name" bundle="${msg}"/>: </small></h3>
+                        <input type='text' class="form-control" name="${AttributesHolder.FIRST_NAME}" value="<c:out value="${user.firstName}"/>"/>
                     </div>
 
                     <div class="form-group">
-                        <h3><small>Last name: </small></h3>
-                        <input type='text' class="form-control" name="lastName" value="<c:out value="${user.lastName}"/>"/>
+                        <h3><small><fmt:message key="last.name" bundle="${msg}"/>: </small></h3>
+                        <input type='text' class="form-control" name="${AttributesHolder.LAST_NAME}" value="<c:out value="${user.lastName}"/>"/>
                     </div>
 
                     <div class="form-group">
-                        <h3><small>Email: </small></h3>
-                        <input type='text' class="form-control" name="email" value="<c:out value="${user.email}"/>"/>
+                        <h3><small><fmt:message key="email" bundle="${msg}"/>: </small></h3>
+                        <input type='text' class="form-control" name="${AttributesHolder.EMAIL}" value="<c:out value="${user.email}"/>"/>
                     </div>
 
-                    <button type="submit" name="id" value="<c:out value="${user.id}"/>" class="btn btn-success">Save</button>
+                    <button type="submit" name="${AttributesHolder.ID}" value="<c:out value="${user.id}"/>" class="btn btn-success">
+                        <fmt:message key="save" bundle="${msg}"/>
+                    </button>
                 </form>
             </div>
         </div>

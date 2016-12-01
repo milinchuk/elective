@@ -1,1 +1,0 @@
-<link rel="stylesheet" href="<c:url value="./bootstrap.css"/>" >

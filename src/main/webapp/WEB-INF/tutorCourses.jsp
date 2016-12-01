@@ -5,8 +5,13 @@
   Time: 05:51
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ page import="model.entity.Course" %>
+<%@ page import="utils.constants.AttributesHolder" %>
+<%@ page import="utils.constants.UrlHolder" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <html>
 <head>
     <title></title>
@@ -26,26 +31,27 @@
 
 <body>
 <jsp:include page="navigationElements/upperPanel.jsp"/>
-
+<fmt:requestEncoding value="UTF-8" />
+<fmt:setBundle basename="course" var="msg"/>
 <div class="container-fluid">
     <div class="row content">
         <jsp:include page="navigationElements/leftPanel.jsp" />
         <div class="col-sm-9 section">
-            <h2><small>My courses</small></h2>
+            <h2><small><fmt:message key="my.courses" bundle="${msg}"/></small></h2>
             <hr>
             <div>
-                <a href="/user/course/add">
-                    <button type="submit" class="btn btn-success">Add Course</button>
+                <a href="${UrlHolder.COURSE_ADD}">
+                    <button type="submit" class="btn btn-success"><fmt:message key="add.course" bundle="${msg}"/></button>
                 </a>
                 <table class="table">
                     <thead>
                     <tr>
                         <th></th>
                         <th></th>
-                        <th>Course name</th>
-                        <th>About</th>
-                        <th>Start date</th>
-                        <th>End date</th>
+                        <th><fmt:message key="course.name" bundle="${msg}"/></th>
+                        <th><fmt:message key="about" bundle="${msg}"/></th>
+                        <th><fmt:message key="start.date" bundle="${msg}"/></th>
+                        <th><fmt:message key="end.date" bundle="${msg}"/></th>
                         <th>
                         </th>
                     </tr>
@@ -62,15 +68,17 @@
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                <h4 class="modal-title">Delete</h4>
+                                                <h4 class="modal-title"><fmt:message key="delete" bundle="${msg}"/></h4>
                                             </div>
                                             <div class="modal-body">
-                                                <p>Are you sure to delete course?</p>
+                                                <p><fmt:message key="msg.delete" bundle="${msg}"/></p>
                                             </div>
                                             <div class="modal-footer">
-                                                <form action="/user/course/delete" method="post">
-                                                    <button type="submit" class="btn btn-danger" name="id" value="<c:out value="${course.id}"/>">Delete</button>
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                <form action="${UrlHolder.COURSE_DELETE}" method="post">
+                                                    <button type="submit" class="btn btn-danger" name="${AttributesHolder.ID}" value="<c:out value="${course.id}"/>">
+                                                        <fmt:message key="delete" bundle="${msg}"/>
+                                                    </button>
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal"><fmt:message key="cancel" bundle="${msg}"/></button>
                                                 </form>
                                             </div>
                                         </div>
@@ -78,8 +86,8 @@
                                 </div>
                             </td>
                             <td>
-                                <a href="/user/course/?id=<c:out value="${course.id}"/>">
-                                    <button type="button" class="btn btn-info btn-sm">Edit</button>
+                                <a href="${UrlHolder.COURSE}?${AttributesHolder.ID}=<c:out value="${course.id}"/>">
+                                    <button type="button" class="btn btn-info btn-sm"><fmt:message key="edit" bundle="${msg}"/></button>
                                 </a>
                             </td>
                             <td><c:out value="${course.name}"/></td>
@@ -87,7 +95,11 @@
                             <td><c:out value="${course.startDate}"/></td>
                             <td><c:out value="${course.endDate}"/></td>
                             <td>
-                                <a href="/user/students/?course=<c:out value="${course.id}"/>"><button type="button" class="btn btn-primary">Show students</button></a>
+                                <a href="${UrlHolder.STUDENTS}/?${AttributesHolder.COURSE}=<c:out value="${course.id}"/>">
+                                    <button type="button" class="btn btn-primary">
+                                    <fmt:message key="show.students" bundle="${msg}"/>
+                                </button>
+                                </a>
                             </td>
                         </tr>
                     </c:forEach>

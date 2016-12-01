@@ -1,13 +1,11 @@
 package validators.entity;
 
+import i18n.messages.error.ErrorsMessages;
 import model.entity.User;
-import org.apache.commons.lang.StringUtils;
 import utils.constants.AttributesHolder;
-import utils.constants.ErrorsMessagesHolder;
 import validators.Errors;
 import validators.Validator;
 
-import java.util.SplittableRandom;
 import java.util.regex.Pattern;
 
 /**
@@ -30,20 +28,20 @@ public class UserSignUpValidator implements Validator<User> {
     @Override
     public boolean validate(User user, Errors errors) {
         if (!namePattern.matcher(user.getFirstName()).matches()){
-            reject(errors, AttributesHolder.FIRST_NAME, ErrorsMessagesHolder.FIRST_NAME_INVALID);
+            reject(errors, AttributesHolder.FIRST_NAME, ErrorsMessages.FIRST_NAME_INVALID);
         }
         if (!namePattern.matcher(user.getLastName()).matches()){
-            reject(errors, AttributesHolder.LAST_NAME, ErrorsMessagesHolder.LAST_NAME_INVALID);
+            reject(errors, AttributesHolder.LAST_NAME, ErrorsMessages.LAST_NAME_INVALID);
         }
         if (user.getRole() == null) {
-            reject(errors, AttributesHolder.ROLE, ErrorsMessagesHolder.ROLE_INVALID);
+            reject(errors, AttributesHolder.ROLE, ErrorsMessages.ROLE_INVALID);
         }
         if (!emailPattern.matcher(user.getEmail()).matches()) {
-            reject(errors, AttributesHolder.EMAIL, ErrorsMessagesHolder.EMAIL_INVALID);
+            reject(errors, AttributesHolder.EMAIL, ErrorsMessages.EMAIL_INVALID);
         }
         if (!passwordPattern.matcher(user.getPassword()).matches() ||
                 !user.getPassword().equals(user.getConfirmPassword())) {
-            reject(errors, AttributesHolder.PASSWORD, ErrorsMessagesHolder.PASSWORD_INVALID);
+            reject(errors, AttributesHolder.PASSWORD, ErrorsMessages.PASSWORD_INVALID);
         }
         return !errors.hasError();
     }

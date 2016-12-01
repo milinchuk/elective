@@ -2,13 +2,12 @@ package controller.commands.authorization;
 
 import controller.commands.Command;
 import controller.security.EncryptPassword;
+import i18n.messages.error.ErrorsMessages;
 import model.entity.User;
 import model.service.UserServiceImpl;
 import model.service.interfaces.UserService;
 import utils.constants.AttributesHolder;
-import utils.constants.ErrorsMessagesHolder;
 import utils.constants.PagesHolder;
-import utils.pickers.request.RoleRequestPicker;
 import utils.pickers.request.SignupDataPicker;
 import validators.Errors;
 import validators.entity.UserSignUpValidator;
@@ -50,7 +49,7 @@ public class SignUpCommand implements Command {
                 return PagesHolder.PROFILE;
             }
             // user exist
-            errors.addMessage(AttributesHolder.EMAIL, ErrorsMessagesHolder.USER_EXIST);
+            errors.addMessage(AttributesHolder.EMAIL, ErrorsMessages.USER_EXIST);
             errors.setResult(false);
         }
         user.setPassword(null);

@@ -2,11 +2,11 @@ package controller.commands.authorization;
 
 import controller.commands.Command;
 import controller.security.EncryptPassword;
+import i18n.messages.error.ErrorsMessages;
 import model.entity.User;
 import model.service.UserServiceImpl;
 import model.service.interfaces.UserService;
 import utils.constants.AttributesHolder;
-import utils.constants.ErrorsMessagesHolder;
 import utils.constants.PagesHolder;
 import utils.pickers.request.LoginDataPicker;
 import validators.Errors;
@@ -41,12 +41,12 @@ public class LoginCommand implements Command {
                 HttpSession session = request.getSession();
                 session.setAttribute(AttributesHolder.ID, existUser.getId());
                 session.setAttribute(AttributesHolder.ROLE, existUser.getRole());
-
                 request.setAttribute(AttributesHolder.USER, existUser);
                 return PagesHolder.PROFILE;
             } else {
                 // invalid auth data
-                errors.addMessage(AttributesHolder.EMAIL, ErrorsMessagesHolder.INVALID_AUTH_DATA);
+                System.out.println("lolo");
+                errors.addMessage(AttributesHolder.EMAIL, ErrorsMessages.INVALID_AUTH_DATA);
                 errors.setResult(false);
             }
         }

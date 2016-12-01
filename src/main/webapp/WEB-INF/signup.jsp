@@ -1,8 +1,13 @@
+<%@ page import="utils.constants.UrlHolder" %>
 <%@ page import="utils.constants.AttributesHolder" %>
-<%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<%@ page import="utils.constants.PagesHolder" %>
+<%@ page import="java.util.Locale" %>
+<%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -26,54 +31,62 @@
             margin-bottom: 5px;
             padding-left: 15px;
             border-radius: 3px;
+            font-size: smaller;
         }
     </style>
 </head>
 
 <body>
     <jsp:include page="navigationElements/upperPanel.jsp"/>
+    <fmt:requestEncoding value="UTF-8" />
+    <fmt:setLocale value="${sessionScope[AttributesHolder.LOCALE]}" />
+    <fmt:setBundle basename="user" var="msg"/>
 
     <div class="container">
         <div class="center jumbotron authorization-section">
             <form action="" method="post">
-                <h2 class="form-signin-heading">Please sign up</h2>
+                <h2 class="form-signin-heading"><fmt:message key="signup" bundle="${msg}"/></h2>
                 <br>
                 <div class="alrt alert-danger">
-                    <c:out value="${errors.messages['firstName']}"/>
+                    <fmt:message key="${errors.messages['firstName']}" bundle="${msg}"/>
                 </div>
-                <input type="text" class="form-control" name="<%=AttributesHolder.FIRST_NAME%>" value="<c:out value="${user.firstName}"/>" placeholder="First name" required>
+                <input type="text" class="form-control" name="${AttributesHolder.FIRST_NAME}" value="<c:out value="${user.firstName}"/>"
+                       placeholder="<fmt:message key="first.name" bundle="${msg}"/>" required>
 
                 <br>
-                <div class="alert-danger">
-                    <c:out value="${errors.messages['lastName']}" />
+                <div class="alrt alert-danger">
+                    <fmt:message key="${errors.messages['lastName']}" bundle="${msg}" />
                 </div>
-                <input type="text" class="form-control" name="<%=AttributesHolder.LAST_NAME%>" value="<c:out value="${user.lastName}"/>" placeholder="Last name" required >
+                <input type="text" class="form-control" name="${AttributesHolder.LAST_NAME}"
+                       value="<c:out value="${user.lastName}"/>"
+                       placeholder="<fmt:message key="last.name" bundle="${msg}"/>" required >
 
                 <br>
-                <div class="alert-danger">
-                    <c:out value="${errors.messages['role']}" />
+                <div class="alrt alert-danger">
+                    <fmt:message key="${errors.messages['role']}" bundle="${msg}" />
                 </div>
                 <div class="form-group">
                     <select class="form-control" name="role" id="sel1">
-                        <option>Choose your role ...</option>
-                        <option>student</option>
-                        <option>tutor</option>
+                        <option><fmt:message key="choose.role" bundle="${msg}"/></option>
+                        <option><c:out value="${AttributesHolder.STUDENT}"/></option>
+                        <option><c:out value="${AttributesHolder.TUTOR}"/></option>
                     </select>
                 </div>
-                <div class="alert-danger">
-                    <c:out value="${errors.messages['email']}" />
+                <div class="alrt alert-danger">
+                    <fmt:message key="${errors.messages['email']}" bundle="${msg}" />
                 </div>
-                <input type="text" class="form-control" name="<%=AttributesHolder.EMAIL%>" value="<c:out value="${user.email}"/>" placeholder="Email address" required >
+                <input type="text" class="form-control" name="${AttributesHolder.EMAIL}" value="<c:out value="${user.email}"/>"
+                       placeholder="<fmt:message key="email" bundle="${msg}" />" required >
                 <br>
-                <div class="alert-danger">
-                    <c:out value="${errors.messages['password']}" />
+                <div class="alrt alert-danger">
+                    <fmt:message key="${errors.messages['password']}" bundle="${msg}"/>
                 </div>
-                <input type="password" class="form-control" name="<%=AttributesHolder.PASSWORD%>" placeholder="Password" required >
+                <input type="password" class="form-control" name="${AttributesHolder.PASSWORD}" placeholder="<fmt:message key="password" bundle="${msg}" />" required >
                 <br>
-                <input type="password" class="form-control" name="<%=AttributesHolder.CONFIRM_PASSWORD%>" placeholder="Confirm Password" required >
+                <input type="password" class="form-control" name="${AttributesHolder.CONFIRM_PASSWORD}" placeholder="<fmt:message key="confirm.password" bundle="${msg}"/>" required >
                 <br>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
-                <h5>Have an account? <a href="/login">Login here!</a>
+                <button class="btn btn-lg btn-primary btn-block" type="submit"><fmt:message key="signup" bundle="${msg}"/></button>
+                <h5><fmt:message key="have.account" bundle="${msg}"/> <a href="${UrlHolder.LOGIN}"><fmt:message key="login.here" bundle="${msg}"/></a>
                 </h5>
             </form>
         </div>

@@ -1,8 +1,10 @@
 <%@ page import="utils.constants.UrlHolder" %>
 <%@ page import="utils.constants.AttributesHolder" %>
 <%@ page import="utils.constants.PagesHolder" %>
+<%@ page import="java.util.Locale" %>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"  %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -30,30 +32,40 @@
             margin-bottom: 5px;
             padding-left: 15px;
             border-radius: 3px;
+            font-size: smaller;
         }
     </style>
 </head>
 
 <body>
 <jsp:include page="navigationElements/upperPanel.jsp"/>
+<fmt:requestEncoding value="UTF-8" />
+<fmt:setLocale value="${sessionScope[AttributesHolder.LOCALE]}" />
+<fmt:setBundle basename="user" var="msg"/>
 
 <div class="container">
     <div class="center jumbotron authorization-section">
-        <form action="<%=UrlHolder.LOGIN%>" method="post">
-            <h2 class="form-signin-heading">Please log in</h2>
+        <form action="${UrlHolder.LOGIN}" method="post">
+
+
+            <h2 class="form-signin-heading"><fmt:message key="login.msg" bundle="${msg}"/><br/></h2>
             <br>
-            <div class="alert-danger">
-                <c:out value="${errors.messages['email']}" />
+            <div class="alrt alert-danger">
+                <c:if test="${errors != null && !errors.result}">
+                    <fmt:message key="${errors.messages['email']}" bundle="${msg}"/>
+                </c:if>
             </div>
-            <input type="text" class="form-control" name="<%=AttributesHolder.EMAIL%>" placeholder="Email address" required autofocus >
+            <input type="text" class="form-control" name="${AttributesHolder.EMAIL}" placeholder="<fmt:message key="email" bundle="${msg}"/>" required autofocus >
             <br>
-            <div class="alert-danger">
-                <c:out value="${errors.messages['password']}" />
+            <div class="alrt alert-danger">
+                <c:if test="${errors != null && errors.messages['password'] != null}">
+                    <fmt:message key="${errors.messages['password']}" bundle="${msg}"/>
+                </c:if>
             </div>
-            <input type="password" class="form-control" name="<%=AttributesHolder.PASSWORD%>" placeholder="Password" required >
+            <input type="password" class="form-control" name="${AttributesHolder.PASSWORD}" placeholder="<fmt:message key="password" bundle="${msg}"/>" required >
             <br>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-            <h5>Not register yet? <a href="<%=UrlHolder.SIGNUP%>">Sign Up!</a>
+            <button class="btn btn-lg btn-primary btn-block" type="submit"><fmt:message key="login" bundle="${msg}"/></button>
+            <h5><fmt:message key="not.register" bundle="${msg}"/> <a href="${UrlHolder.SIGNUP}"><fmt:message key="signup" bundle="${msg}"/>!</a>
             </h5>
         </form>
     </div>

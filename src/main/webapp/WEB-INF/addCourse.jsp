@@ -1,4 +1,8 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page import="model.entity.Course" %>
+<%@ page import="utils.constants.AttributesHolder" %>
+<%@ page import="utils.constants.UrlHolder" %>
 <%--
   Created by IntelliJ IDEA.
   User: click
@@ -8,11 +12,6 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%
-    //    Course course = (Course)request.getAttribute("course");
-//    request.setAttribute("course", course);
-%>
 <html>
 <head>
     <title></title>
@@ -43,27 +42,29 @@
 
 <body>
 <jsp:include page="navigationElements/upperPanel.jsp"/>
+<fmt:requestEncoding value="UTF-8" />
+<fmt:setBundle basename="course" var="msg"/>
 <div class="container-fluid">
     <div class="row content">
         <jsp:include page="navigationElements/leftPanel.jsp" />
         <div class="col-sm-9 section">
-            <h2><small>ADD COURSE</small></h2>
+            <h2><small><fmt:message key="add.course" bundle="${msg}"/></small></h2>
             <hr>
-            <form action="/user/course/add" method="post">
-                <label for="name">Name:</label>
-                <input id="name" class="form-control" name="name" />
+            <form action="${UrlHolder.COURSE_ADD}" method="post">
+                <label for="name"><fmt:message key="name" bundle="${msg}"/></label>
+                <input id="name" class="form-control" name="${AttributesHolder.NAME}" />
 
-                <label for="name">About:</label>
-                <textarea name="about" style="resize: none;" class="form-control" rows="3"></textarea>
+                <label for="name"><fmt:message key="about" bundle="${msg}"/></label>
+                <textarea name="${AttributesHolder.ABOUT}" style="resize: none;" class="form-control" rows="3"></textarea>
 
-                <label for="name">Start date:</label>
+                <label for="name"><fmt:message key="start.date" bundle="${msg}"/></label>
                 <div class='input-group date col-xs-3' id='datetimepicker1'>
                     <input type='text' class="form-control"/>
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span>
                 </div>
-                <label for="name">End date:</label>
+                <label for="name"><fmt:message key="end.date" bundle="${msg}"/></label>
                 <div class='input-group date col-xs-3' id='datetimepicker2'>
                     <input type='text' class="form-control"/>
                         <span class="input-group-addon">
@@ -72,7 +73,7 @@
                 </div>
 
                 <br>
-                <button class="btn btn-success" type="submit"> Save</button>
+                <button class="btn btn-success" type="submit"><fmt:message key="save" bundle="${msg}"/></button>
             </form>
         </div>
     </div>
