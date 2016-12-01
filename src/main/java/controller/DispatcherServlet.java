@@ -2,25 +2,12 @@ package controller;
 /**
  * Created by click on 11/5/2016.
  */
+import config.CommandHolderFullInit;
 import controller.commands.Command;
 import controller.commands.holder.CommandHolder;
-import controller.commands.authorization.LoginCommand;
-import controller.commands.authorization.LogoutCommand;
-import controller.commands.authorization.SignUpCommand;
-import controller.commands.course.*;
-import controller.commands.holder.CommandsInit;
-import controller.commands.progress.CourseUnfollowCommand;
-import controller.commands.progress.ProgressStudentsCommand;
-import controller.commands.progress.ProgressUpdateCommand;
-import controller.commands.user.ProfileCommand;
-import controller.commands.user.UpdateProfileCommand;
-import controller.security.Permission;
 import utils.constants.AttributesHolder;
-import utils.constants.UrlHolder;
 import validators.*;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -32,14 +19,11 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class FirstServlet
 */
 public class DispatcherServlet extends HttpServlet {
-    private CommandHolder commandHolder;
+    private CommandHolder commandHolder = CommandHolderFullInit.init();
 
     @Override
     public void init() throws ServletException {
         super.init();
-        commandHolder = new CommandHolder();
-        CommandsInit commandsInit = new CommandsInit();
-        commandsInit.initCommandHolder(commandHolder);
     }
 
     @Override

@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 /**
  * Created by click on 11/5/2016.
  */
-public class CourseResultSetPicker implements ResultSetPicker {
+public class CourseResultSetPicker implements ResultSetPicker<Course> {
     private static final Logger logger = Logger.getLogger(CourseResultSetPicker.class);
     public static final String START_DATE = "start_date";
     public static final String END_DATE = "end_date";

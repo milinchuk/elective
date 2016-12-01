@@ -12,7 +12,7 @@ import java.sql.ResultSet;
 /**
  * Created by click on 11/5/2016.
  */
-public class UserResultSetPicker implements ResultSetPicker {
+public class UserResultSetPicker implements ResultSetPicker<User> {
     private static final Logger logger = Logger.getLogger(UserResultSetPicker.class);
     public static final String FIRST_NAME = "first_name";
     public static final String LAST_NAME = "last_name";
