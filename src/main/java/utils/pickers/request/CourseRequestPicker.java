@@ -1,13 +1,9 @@
 package utils.pickers.request;
 
-import com.sun.deploy.net.HttpRequest;
 import model.entity.Course;
 import model.entity.User;
 import utils.constants.AttributesHolder;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
-import java.net.Inet4Address;
 
 /**
  * Created by click on 11/22/2016.

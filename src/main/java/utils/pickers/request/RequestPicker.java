@@ -1,8 +1,6 @@
 package utils.pickers.request;
 
-import com.sun.deploy.net.HttpRequest;
 import utils.pickers.Picker;
-
 import javax.servlet.http.HttpServletRequest;
 
 /**

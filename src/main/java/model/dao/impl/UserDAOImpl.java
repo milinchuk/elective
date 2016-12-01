@@ -4,6 +4,8 @@ import model.dao.impl.utils.QueryResource;
 import model.dao.interfaces.UserDAO;
 import model.dao.impl.utils.UserPickUtil;
 import model.entity.User;
+import org.apache.log4j.Logger;
+import utils.constants.LoggingMessagesHanldler;
 
 import java.io.InputStream;
 import java.sql.*;
@@ -15,26 +17,21 @@ import java.util.Properties;
  * Created by click on 11/5/2016.
  */
 public class UserDAOImpl implements UserDAO {
+    private static final Logger logger = Logger.getLogger(ProgressDAOImpl.class);
     private Connection connection;
     private UserPickUtil userPickUtil;
-    private Properties queries;
+    private QueryResource resource;
 
     public UserDAOImpl(Connection connection) {
         this.connection = connection;
         this.userPickUtil = new UserPickUtil();
-        this.queries = new Properties();
-        try {
-            InputStream inputStream = UserDAOImpl.class.getClassLoader().getResourceAsStream(QueryResource.USER_QUERIES_URL);
-            queries.load(inputStream);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        this.resource = new QueryResource(QueryResource.USER_QUERIES_URL);
     }
 
     @Override
     public User findOne(Integer id) {
         try {
-            PreparedStatement statement = connection.prepareStatement(queries.getProperty(QueryResource.FIND_ONE));
+            PreparedStatement statement = connection.prepareStatement(resource.getQuery(QueryResource.FIND_ONE));
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
             User user = new User();
@@ -42,10 +39,11 @@ public class UserDAOImpl implements UserDAO {
                 user = userPickUtil.pick(resultSet);
             }
             statement.close();
+            logger.info(LoggingMessagesHanldler.SUCCESSFUL_FIND_ONE);
             return user;
         } catch (Exception e){
-            e.printStackTrace();
-            return null;
+            logger.error(LoggingMessagesHanldler.ERROR_FIND_ONE, e);
+            throw new RuntimeException(LoggingMessagesHanldler.ERROR_FIND_ONE, e);
         }
     }
 
@@ -53,7 +51,7 @@ public class UserDAOImpl implements UserDAO {
     public User findOne(String email) {
         try {
             PreparedStatement statement = connection.prepareStatement(
-                    queries.getProperty(QueryResource.FIND_ONE_BY_EMAIL));
+                    resource.getQuery(QueryResource.FIND_ONE_BY_EMAIL));
             statement.setString(1, email);
             ResultSet resultSet = statement.executeQuery();
             User user = null;
@@ -61,17 +59,18 @@ public class UserDAOImpl implements UserDAO {
                 user = userPickUtil.pick(resultSet);
             }
             statement.close();
+            logger.info(LoggingMessagesHanldler.SUCCESSFUL_FIND_ONE);
             return user;
         } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+            logger.error(LoggingMessagesHanldler.ERROR_FIND_ONE, e);
+            throw new RuntimeException(LoggingMessagesHanldler.ERROR_FIND_ONE, e);
         }
     }
 
     @Override
     public List<User> findByCourseFollow(Integer id) {
         try {
-            PreparedStatement statement = connection.prepareStatement(queries.getProperty(QueryResource.FIND_BY_COURSE));
+            PreparedStatement statement = connection.prepareStatement(resource.getQuery(QueryResource.FIND_BY_COURSE));
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
             List<User> users = new ArrayList<User>();
@@ -79,17 +78,18 @@ public class UserDAOImpl implements UserDAO {
                 users.add(userPickUtil.pick(resultSet));
             }
             statement.close();
+            logger.info(LoggingMessagesHanldler.SUCCESSFUL_FIND_BY_COURSE);
             return users;
         } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
+            logger.error(LoggingMessagesHanldler.ERROR_FIND_BY_COURSE, e);
+            throw new RuntimeException(LoggingMessagesHanldler.ERROR_FIND_BY_COURSE, e);
         }
     }
 
     @Override
     public void create(User user) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(queries.getProperty(QueryResource.CREATE));
+            PreparedStatement preparedStatement = connection.prepareStatement(resource.getQuery(QueryResource.CREATE));
             preparedStatement.setString(1, user.getEmail());
             preparedStatement.setString(2, user.getPassword());
             preparedStatement.setString(3, user.getFirstName());
@@ -97,33 +97,40 @@ public class UserDAOImpl implements UserDAO {
             preparedStatement.setInt(5, user.getRole());
             preparedStatement.executeUpdate();
             preparedStatement.close();
+            logger.info(LoggingMessagesHanldler.SUCCESSFUL_CREATE);
         } catch (Exception e){
-            e.printStackTrace();
+            logger.error(LoggingMessagesHanldler.ERROR_CREATE, e);
+            throw new RuntimeException(LoggingMessagesHanldler.ERROR_CREATE, e);
         }
     }
 
     @Override
     public void update(User user) {
         try {
-            PreparedStatement statement = connection.prepareStatement(queries.getProperty(QueryResource.UPDATE));
+            PreparedStatement statement = connection.prepareStatement(resource.getQuery(QueryResource.UPDATE));
             statement.setString(1, user.getEmail());
             statement.setString(2, user.getFirstName());
             statement.setString(3, user.getLastName());
             statement.setInt(4, user.getId());
             statement.executeUpdate();
             statement.close();
+            logger.info(LoggingMessagesHanldler.SUCCESSFUL_UPDATE);
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(LoggingMessagesHanldler.ERROR_UPDATE, e);
+            throw new RuntimeException(LoggingMessagesHanldler.ERROR_UPDATE, e);
         }
     }
 
     @Override
     public void delete(String email) {
         try {
-            PreparedStatement statement = connection.prepareStatement(queries.getProperty(QueryResource.DELETE));
+            PreparedStatement statement = connection.prepareStatement(resource.getQuery(QueryResource.DELETE));
             statement.execute();
+            statement.close();
+            logger.info(LoggingMessagesHanldler.SUCCESSFUL_DELETE);
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(LoggingMessagesHanldler.ERROR_DELETE, e);
+            throw new RuntimeException(LoggingMessagesHanldler.ERROR_DELETE, e);
         }
     }
 }
