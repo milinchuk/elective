@@ -1,11 +1,8 @@
 package model.dao.impl;
 
-import config.connection.AbstractConnection;
-import config.connection.factory.ConnectionFactory;
-import model.dao.impl.utils.ProgressPickUtil;
-import model.dao.impl.utils.QueryResource;
+import utils.pickers.resultSet.ProgressResultSetPicker;
+import utils.QueryResource;
 import model.dao.interfaces.ProgressDAO;
-import model.entity.Course;
 import model.entity.Progress;
 import org.apache.log4j.Logger;
 import utils.constants.LoggingMessagesHanldler;
@@ -23,12 +20,12 @@ import java.util.List;
 public class ProgressDAOImpl implements ProgressDAO {
     private static final Logger logger = Logger.getLogger(ProgressDAOImpl.class);
     private Connection connection;
-    private ProgressPickUtil progressPickUtil;
+    private ProgressResultSetPicker progressPickUtil;
     private QueryResource resource;
 
     public ProgressDAOImpl(Connection connection) {
         this.connection = connection;
-        this.progressPickUtil = new ProgressPickUtil();
+        this.progressPickUtil = new ProgressResultSetPicker();
         this.resource = new QueryResource(QueryResource.PROGRESS_QUERIES_URL);
     }
 

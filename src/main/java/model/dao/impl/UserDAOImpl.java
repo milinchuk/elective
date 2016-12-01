@@ -1,17 +1,15 @@
 package model.dao.impl;
 
-import model.dao.impl.utils.QueryResource;
+import utils.QueryResource;
 import model.dao.interfaces.UserDAO;
-import model.dao.impl.utils.UserPickUtil;
+import utils.pickers.resultSet.UserResultSetPicker;
 import model.entity.User;
 import org.apache.log4j.Logger;
 import utils.constants.LoggingMessagesHanldler;
 
-import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 /**
  * Created by click on 11/5/2016.
@@ -19,12 +17,12 @@ import java.util.Properties;
 public class UserDAOImpl implements UserDAO {
     private static final Logger logger = Logger.getLogger(ProgressDAOImpl.class);
     private Connection connection;
-    private UserPickUtil userPickUtil;
+    private UserResultSetPicker userPickUtil;
     private QueryResource resource;
 
     public UserDAOImpl(Connection connection) {
         this.connection = connection;
-        this.userPickUtil = new UserPickUtil();
+        this.userPickUtil = new UserResultSetPicker();
         this.resource = new QueryResource(QueryResource.USER_QUERIES_URL);
     }
 

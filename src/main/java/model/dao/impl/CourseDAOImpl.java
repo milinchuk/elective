@@ -1,8 +1,8 @@
 package model.dao.impl;
 
-import model.dao.impl.utils.QueryResource;
+import utils.QueryResource;
 import model.dao.interfaces.CourseDAO;
-import model.dao.impl.utils.CoursePickUtil;
+import utils.pickers.resultSet.CourseResultSetPicker;
 import model.entity.Course;
 import org.apache.log4j.Logger;
 import utils.constants.LoggingMessagesHanldler;
@@ -20,12 +20,12 @@ import java.util.List;
 public class CourseDAOImpl implements CourseDAO {
     private static final Logger logger = Logger.getLogger(CourseDAOImpl.class);
     private Connection connection;
-    private CoursePickUtil coursePickUtil;
+    private CourseResultSetPicker coursePickUtil;
     private QueryResource resource;
 
     public CourseDAOImpl(Connection connection) {
         this.connection = connection;
-        coursePickUtil = new CoursePickUtil();
+        coursePickUtil = new CourseResultSetPicker();
         resource = new QueryResource(QueryResource.COURSE_QUERIES_URL);
     }
 

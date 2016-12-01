@@ -1,16 +1,19 @@
-package model.dao.impl.utils;
+package utils.pickers.resultSet;
 
 import model.entity.Course;
 import model.entity.Progress;
 import model.entity.User;
+import org.apache.log4j.Logger;
 import utils.constants.AttributesHolder;
+import utils.constants.LoggingMessagesHanldler;
 
 import java.sql.ResultSet;
 
 /**
  * Created by click on 11/20/2016.
  */
-public class ProgressPickUtil implements PickUtil<Progress> {
+public class ProgressResultSetPicker implements ResultSetPicker<Progress> {
+    private static final Logger logger = Logger.getLogger(ProgressResultSetPicker.class);
     @Override
     public Progress pick(ResultSet resultSet) {
         try {
@@ -19,19 +22,18 @@ public class ProgressPickUtil implements PickUtil<Progress> {
             progress.setMark(resultSet.getString(AttributesHolder.MARK));
             progress.setNote(resultSet.getString(AttributesHolder.NOTE));
 
-            UserPickUtil userPickUtil = new UserPickUtil();
+            UserResultSetPicker userPickUtil = new UserResultSetPicker();
             User user = userPickUtil.pick(resultSet);
-
-            CoursePickUtil coursePickUtil = new CoursePickUtil();
+            CourseResultSetPicker coursePickUtil = new CourseResultSetPicker();
             Course course = coursePickUtil.pick(resultSet);
 
             progress.setCourse(course);
             progress.setStudent(user);
-
+            logger.info(LoggingMessagesHanldler.SUCCESSFUL_PICK_DATA);
             return progress;
         } catch (Exception e){
-            e.printStackTrace();
-            return null;
+            logger.error(LoggingMessagesHanldler.ERROR_PICK, e);
+            throw new RuntimeException(LoggingMessagesHanldler.ERROR_PICK, e);
         }
     }
 }

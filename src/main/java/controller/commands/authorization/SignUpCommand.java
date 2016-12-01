@@ -8,7 +8,7 @@ import model.service.UserServiceImpl;
 import model.service.interfaces.UserService;
 import utils.constants.AttributesHolder;
 import utils.constants.PagesHolder;
-import utils.pickers.request.SignupDataPicker;
+import utils.pickers.request.SignupDataRequestPicker;
 import validators.Errors;
 import validators.entity.UserSignUpValidator;
 
@@ -21,13 +21,13 @@ import javax.servlet.http.HttpSession;
  */
 public class SignUpCommand implements Command {
     protected UserSignUpValidator userSignUpValidator = new UserSignUpValidator();
-    private SignupDataPicker signupDataPicker = new SignupDataPicker();
+    private SignupDataRequestPicker signupDataRequestPicker = new SignupDataRequestPicker();
     private EncryptPassword encryptPassword = new EncryptPassword();
     private UserService userService = UserServiceImpl.getInstance();
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        User user = signupDataPicker.pick(request);
+        User user = signupDataRequestPicker.pick(request);
         Errors errors = new Errors();
         if (userSignUpValidator.validate(user, errors)) {
             // generate hash password

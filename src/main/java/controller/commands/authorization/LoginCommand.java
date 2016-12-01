@@ -8,7 +8,7 @@ import model.service.UserServiceImpl;
 import model.service.interfaces.UserService;
 import utils.constants.AttributesHolder;
 import utils.constants.PagesHolder;
-import utils.pickers.request.LoginDataPicker;
+import utils.pickers.request.LoginDataRequestPicker;
 import validators.Errors;
 import validators.entity.UserLoginValidator;
 
@@ -21,13 +21,13 @@ import javax.servlet.http.HttpSession;
  */
 public class LoginCommand implements Command {
     protected UserService userService = UserServiceImpl.getInstance();
-    protected LoginDataPicker loginDataPicker = new LoginDataPicker();
+    protected LoginDataRequestPicker loginDataRequestPicker = new LoginDataRequestPicker();
     protected UserLoginValidator userLoginValidator = new UserLoginValidator();
     private EncryptPassword encryptPassword = new EncryptPassword();
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        User user = loginDataPicker.pick(request);
+        User user = loginDataRequestPicker.pick(request);
         // validate
         Errors errors = new Errors();
         if (userLoginValidator.validate(user, errors)){

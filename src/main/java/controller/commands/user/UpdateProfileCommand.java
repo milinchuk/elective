@@ -1,6 +1,5 @@
 package controller.commands.user;
 
-import com.sun.deploy.net.HttpRequest;
 import controller.commands.Command;
 import model.entity.User;
 import model.service.UserServiceImpl;
@@ -8,9 +7,6 @@ import model.service.interfaces.UserService;
 import utils.constants.AttributesHolder;
 import utils.constants.PagesHolder;
 import utils.pickers.Picker;
-import utils.pickers.request.CourseRequestPicker;
-import utils.pickers.request.ProfileRequestPicker;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 

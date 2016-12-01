@@ -35,4 +35,5 @@ public class AttributesHolder {
     public static final String RU = "ru";
     public static final String UA = "ua";
     public static final String LOGIN = "login";
+    public static final String USERS = "users";
 }

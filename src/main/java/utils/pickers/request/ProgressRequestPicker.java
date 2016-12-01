@@ -2,7 +2,9 @@ package utils.pickers.request;
 
 import model.entity.Course;
 import model.entity.Progress;
+import org.apache.log4j.Logger;
 import utils.constants.AttributesHolder;
+import utils.constants.LoggingMessagesHanldler;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -10,15 +12,22 @@ import javax.servlet.http.HttpServletRequest;
  * Created by click on 11/23/2016.
  */
 public class ProgressRequestPicker extends RequestPicker<Progress>{
+    private static final Logger logger = Logger.getLogger(ProgressRequestPicker.class);
     @Override
     public Progress pick(HttpServletRequest request) {
-        Progress progress = new Progress();
-        Course course = new Course();
-        course.setId(Integer.valueOf(String.valueOf(request.getParameter(AttributesHolder.COURSE))));
-        progress.setId(Integer.valueOf(String.valueOf(request.getParameter(AttributesHolder.ID))));
-        progress.setCourse(course);
-        progress.setMark(String.valueOf(request.getParameter(AttributesHolder.MARK)));
-        progress.setNote(String.valueOf(request.getParameter(AttributesHolder.NOTE)));
-        return progress;
+        try {
+            Progress progress = new Progress();
+            Course course = new Course();
+            course.setId(Integer.valueOf(String.valueOf(request.getParameter(AttributesHolder.COURSE))));
+            progress.setId(Integer.valueOf(String.valueOf(request.getParameter(AttributesHolder.ID))));
+            progress.setCourse(course);
+            progress.setMark(String.valueOf(request.getParameter(AttributesHolder.MARK)));
+            progress.setNote(String.valueOf(request.getParameter(AttributesHolder.NOTE)));
+            logger.info(LoggingMessagesHanldler.SUCCESSFUL_PICK_DATA);
+            return progress;
+        } catch (RuntimeException e) {
+            logger.error(LoggingMessagesHanldler.ERROR_PICK, e);
+            return null;
+        }
     }
 }

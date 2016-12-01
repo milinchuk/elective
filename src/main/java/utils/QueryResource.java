@@ -1,4 +1,4 @@
-package model.dao.impl.utils;
+package utils;
 
 import java.io.IOException;
 import java.util.Properties;
@@ -6,7 +6,7 @@ import java.util.Properties;
 /**
  * Created by click on 11/11/2016.
  */
-public class QueryResource {;
+public class QueryResource {
     private Properties properties;
 
     public static final String COURSE_QUERIES_URL = "course_query.properties";
