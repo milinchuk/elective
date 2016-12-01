@@ -9,8 +9,8 @@ import model.service.interfaces.UserService;
 import utils.constants.AttributesHolder;
 import utils.constants.PagesHolder;
 import utils.pickers.request.LoginDataRequestPicker;
-import validators.Errors;
-import validators.entity.UserLoginValidator;
+import validators.entity.Errors;
+import validators.UserLoginValidator;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

@@ -1,10 +1,9 @@
-package validators.entity;
+package validators;
 
 import i18n.messages.error.ErrorsMessages;
 import model.entity.User;
 import utils.constants.AttributesHolder;
-import validators.Errors;
-import validators.Validator;
+import validators.entity.Errors;
 
 import java.util.regex.Pattern;
 

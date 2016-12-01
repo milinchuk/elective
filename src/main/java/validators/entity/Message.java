@@ -1,4 +1,4 @@
-package validators;
+package validators.entity;
 
 /**
  * Created by click on 11/25/2016.

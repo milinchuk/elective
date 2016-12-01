@@ -1,5 +1,7 @@
 package validators;
 
+import validators.entity.Errors;
+
 /**
  * Created by click on 11/20/2016.
  */

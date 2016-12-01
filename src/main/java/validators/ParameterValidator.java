@@ -3,6 +3,7 @@ package validators;
 import i18n.messages.error.ErrorsMessages;
 import org.apache.commons.lang.StringUtils;
 import utils.constants.AttributesHolder;
+import validators.entity.Errors;
 
 /**
  * Created by click on 11/21/2016.

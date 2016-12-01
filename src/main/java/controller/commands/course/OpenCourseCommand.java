@@ -6,7 +6,7 @@ import model.service.CourseServiceImpl;
 import model.service.interfaces.CourseService;
 import utils.constants.AttributesHolder;
 import utils.constants.PagesHolder;
-import validators.Errors;
+import validators.entity.Errors;
 import validators.ParameterValidator;
 import validators.Validator;
 

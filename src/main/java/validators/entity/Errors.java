@@ -1,4 +1,4 @@
-package validators;
+package validators.entity;
 
 import java.util.ArrayList;
 import java.util.HashMap;

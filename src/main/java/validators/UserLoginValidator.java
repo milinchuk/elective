@@ -1,11 +1,10 @@
-package validators.entity;
+package validators;
 
 import i18n.messages.error.ErrorsMessages;
 import model.entity.User;
 import org.apache.commons.lang.StringUtils;
 import utils.constants.AttributesHolder;
-import validators.Errors;
-import validators.Validator;
+import validators.entity.Errors;
 
 /**
  * Created by click on 11/24/2016.

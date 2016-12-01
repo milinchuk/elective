@@ -16,6 +16,7 @@ public interface LoggingMessagesHanldler {
     String ERROR_UNFOLLOW = "Error in unfollow.";
     String ERROR_FIND_BY_COURSE = "Error with find by course";
     String ERROR_PICK = "Error while pick object";
+    String ERROR_DATE = "Error with date.";
     String ERROR_OPERATION_WITH_EMPTY = "Error. Try to operate with empty object.";
     String SUCCESSFUL_FIND_ONE = "Successful find one.";
     String SUCCESSFUL_FIND_ALL = "Successful find all.";
@@ -27,5 +28,4 @@ public interface LoggingMessagesHanldler {
     String SUCCESSFUL_FIND_UNFOLLOW = "Successful find unfollow courses.";
     String SUCCESSFUL_FIND_BY_COURSE = "Successful find by course.";
     String SUCCESSFUL_PICK_DATA = "Successful set data.";
-
 }

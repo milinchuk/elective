@@ -2,6 +2,7 @@ package validators;
 
 import i18n.messages.error.ErrorsMessages;
 import utils.constants.AttributesHolder;
+import validators.entity.Errors;
 
 /**
  * Created by click on 11/20/2016.
