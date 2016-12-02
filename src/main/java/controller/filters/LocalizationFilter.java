@@ -25,9 +25,10 @@ public class LocalizationFilter implements Filter {
             throws IOException, ServletException {
         HttpServletRequest req = ((HttpServletRequest) request);
         HttpSession session = req.getSession();
-        Locale locale = LocaleHolder.DEFAULT;
+        Locale locale = localeHolder.getCurrentLocale();
         for (Locale loc: LocaleHolder.SUPPORTED) {
             if (loc.getLanguage().equals(req.getParameter(AttributesHolder.LANG))){
+                localeHolder.setCurrentLocale(loc);
                 locale = loc;
                 break;
             }
