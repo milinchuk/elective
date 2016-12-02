@@ -10,10 +10,9 @@ import utils.constants.AttributesHolder;
 import utils.constants.ResourseNames;
 import utils.constants.UrlHolder;
 import utils.pickers.request.CourseRequestPicker;
+import utils.pickers.request.ProfileRequestPicker;
 import utils.pickers.request.ProgressRequestPicker;
-import validators.CourseValidator;
-import validators.ParameterValidator;
-import validators.ProgressValidator;
+import validators.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -52,7 +51,7 @@ public class TutorCommandsInit implements CommandsInit {
         // create
         postCommand.put(User.TUTOR + UrlHolder.COURSE_ADD, new CourseCreateCommand(courseValidator));
         // update
-        postCommand.put(User.TUTOR + UrlHolder.PROFILE, new UpdateProfileCommand());
+        postCommand.put(User.TUTOR + UrlHolder.PROFILE, new UpdateProfileCommand(getProfileValidator(), new ProfileRequestPicker()));
         postCommand.put(User.TUTOR + UrlHolder.COURSE_EDIT, new CourseUpdateCommand(courseValidator,
                 new CourseRequestPicker()));
         postCommand.put(User.TUTOR + UrlHolder.STUDENT_EDIT,
@@ -69,5 +68,9 @@ public class TutorCommandsInit implements CommandsInit {
     private ProgressValidator getProgressValidator(){
         return new ProgressValidator(regex.getProperty(AttributesHolder.NOTE),
                 regex.getProperty(AttributesHolder.MARK));
+    }
+    private ProfileValidator getProfileValidator() {
+        return new ProfileValidator(regex.getProperty(AttributesHolder.NAME),
+                new EmailValidator(AttributesHolder.EMAIL));
     }
 }
