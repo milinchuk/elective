@@ -13,6 +13,12 @@ import java.util.regex.Pattern;
 public class ProfileValidator implements Validator<User> {
     private Pattern namePattern;
     private EmailValidator emailValidator;
+
+    public ProfileValidator(String nameRegex, EmailValidator emailValidator) {
+        this.namePattern = Pattern.compile(nameRegex);
+        this.emailValidator = emailValidator;
+    }
+
     @Override
     public boolean validate(User user, Errors errors) {
         if (!namePattern.matcher(user.getFirstName()).matches()) {

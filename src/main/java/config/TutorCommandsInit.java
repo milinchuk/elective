@@ -13,6 +13,7 @@ import utils.pickers.request.CourseRequestPicker;
 import utils.pickers.request.ProgressRequestPicker;
 import validators.CourseValidator;
 import validators.ParameterValidator;
+import validators.ProgressValidator;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -54,7 +55,8 @@ public class TutorCommandsInit implements CommandsInit {
         postCommand.put(User.TUTOR + UrlHolder.PROFILE, new UpdateProfileCommand());
         postCommand.put(User.TUTOR + UrlHolder.COURSE_EDIT, new CourseUpdateCommand(courseValidator,
                 new CourseRequestPicker()));
-        postCommand.put(User.TUTOR + UrlHolder.STUDENT_EDIT, new ProgressUpdateCommand(new ProgressRequestPicker()));
+        postCommand.put(User.TUTOR + UrlHolder.STUDENT_EDIT,
+                new ProgressUpdateCommand(new ProgressRequestPicker(), getProgressValidator()));
         // delete
         postCommand.put(User.TUTOR + UrlHolder.COURSE_DELETE, new CourseDeleteCommand());
         return postCommand;
@@ -62,5 +64,10 @@ public class TutorCommandsInit implements CommandsInit {
 
     private CourseValidator getCourseValidator(){
         return new CourseValidator(regex.getProperty(AttributesHolder.ABOUT));
+    }
+
+    private ProgressValidator getProgressValidator(){
+        return new ProgressValidator(regex.getProperty(AttributesHolder.NOTE),
+                regex.getProperty(AttributesHolder.MARK));
     }
 }

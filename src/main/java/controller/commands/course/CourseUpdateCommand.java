@@ -38,6 +38,7 @@ public class CourseUpdateCommand implements Command {
             return PagesHolder.TUTOR_COURSES;
         } else {
             request.setAttribute(AttributesHolder.COURSE, course);
+            request.setAttribute(AttributesHolder.ERRORS, errors);
             return PagesHolder.COURSE;
         }
     }

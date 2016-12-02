@@ -10,6 +10,7 @@ import model.service.interfaces.CourseService;
 import model.service.interfaces.ProgressService;
 import utils.constants.AttributesHolder;
 import utils.constants.PagesHolder;
+import utils.pickers.request.ProgressRequestPicker;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,19 +22,18 @@ import java.util.List;
 public class CourseFollowCommand implements Command {
     protected ProgressService progressService = ProgressServiceImpl.getInstance();
     protected CourseService courseService = CourseServiceImpl.getInstance();
+    private ProgressRequestPicker progressRequestPicker;
+
+    public CourseFollowCommand(ProgressRequestPicker progressRequestPicker) {
+        this.progressRequestPicker = progressRequestPicker;
+    }
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         // create progress
-        Progress progress = new Progress();
-        Course course = new Course();
-        course.setId(Integer.parseInt(String.valueOf(request.getParameter(AttributesHolder.COURSE))));
-        User user = new User();
-        user.setId(Integer.parseInt(String.valueOf(request.getSession().getAttribute(AttributesHolder.ID))));
-        progress.setCourse(course);
-        progress.setStudent(user);
+        Progress progress = progressRequestPicker.pick(request);
         progressService.create(progress);
-        List<Course> courses = courseService.findUnfollow(user.getId());
+        List<Course> courses = courseService.findUnfollow(progress.getStudent().getId());
         request.setAttribute(AttributesHolder.COURSES, courses);
         return PagesHolder.FIND_COURSES;
     }

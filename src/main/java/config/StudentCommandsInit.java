@@ -9,8 +9,13 @@ import controller.commands.progress.CourseUnfollowCommand;
 import controller.commands.user.ProfileCommand;
 import controller.commands.user.UpdateProfileCommand;
 import model.entity.User;
+import utils.constants.AttributesHolder;
 import utils.constants.UrlHolder;
+import utils.pickers.request.ProfileRequestPicker;
+import utils.pickers.request.ProgressRequestPicker;
+import validators.EmailValidator;
 import validators.ParameterValidator;
+import validators.ProfileValidator;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -42,11 +47,17 @@ public class StudentCommandsInit implements CommandsInit {
         Map<String, Command> postCommand = new HashMap<>();
         // ----------- post commands
         // create
-        postCommand.put(User.STUDENT + UrlHolder.FOLLOW, new CourseFollowCommand());
+        postCommand.put(User.STUDENT + UrlHolder.FOLLOW, new CourseFollowCommand(new ProgressRequestPicker()));
         // update
-        postCommand.put(User.STUDENT + UrlHolder.PROFILE, new UpdateProfileCommand());
+        postCommand.put(User.STUDENT + UrlHolder.PROFILE, new UpdateProfileCommand(getProfileValidator(),
+                new ProfileRequestPicker()));
         // delete
         postCommand.put(User.STUDENT + UrlHolder.UNFOLLOW, new CourseUnfollowCommand(new ParameterValidator()));
         return postCommand;
+    }
+
+    private ProfileValidator getProfileValidator() {
+        return new ProfileValidator(regex.getProperty(AttributesHolder.NAME),
+                new EmailValidator(AttributesHolder.EMAIL));
     }
 }
