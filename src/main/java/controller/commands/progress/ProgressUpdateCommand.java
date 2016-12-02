@@ -17,10 +17,15 @@ import java.util.List;
  */
 public class ProgressUpdateCommand implements Command {
     protected ProgressService progressService = ProgressServiceImpl.getInstance();
+    private ProgressRequestPicker progressRequestPicker;
+
+    public ProgressUpdateCommand(ProgressRequestPicker progressRequestPicker) {
+        this.progressRequestPicker = progressRequestPicker;
+    }
+
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
-        ProgressRequestPicker picker = new ProgressRequestPicker();
-        Progress progress = picker.pick(request);
+        Progress progress = progressRequestPicker.pick(request);
         progressService.update(progress);
         request.setAttribute(AttributesHolder.STUDENTS, progressService.findByCourse(progress.getCourse().getId()));
         return PagesHolder.STUDENTS;

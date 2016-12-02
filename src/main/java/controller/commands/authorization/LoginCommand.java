@@ -21,9 +21,13 @@ import javax.servlet.http.HttpSession;
  */
 public class LoginCommand implements Command {
     protected UserService userService = UserServiceImpl.getInstance();
-    protected LoginDataRequestPicker loginDataRequestPicker = new LoginDataRequestPicker();
-    protected UserLoginValidator userLoginValidator = new UserLoginValidator();
-    private EncryptPassword encryptPassword = new EncryptPassword();
+    private LoginDataRequestPicker loginDataRequestPicker;
+    private UserLoginValidator userLoginValidator;
+
+    public LoginCommand(LoginDataRequestPicker loginDataRequestPicker, UserLoginValidator userLoginValidator) {
+        this.loginDataRequestPicker = loginDataRequestPicker;
+        this.userLoginValidator = userLoginValidator;
+    }
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
@@ -32,7 +36,7 @@ public class LoginCommand implements Command {
         Errors errors = new Errors();
         if (userLoginValidator.validate(user, errors)){
             // encrypt password
-            user.setPassword(encryptPassword.encrypt(user.getPassword()));
+            user.setPassword(EncryptPassword.encrypt(user.getPassword()));
             // find profile
             User existUser = userService.findOne(user.getEmail());
             if ( (existUser != null) && (user.getEmail().equals(existUser.getEmail())
@@ -45,7 +49,6 @@ public class LoginCommand implements Command {
                 return PagesHolder.PROFILE;
             } else {
                 // invalid auth data
-                System.out.println("lolo");
                 errors.addMessage(AttributesHolder.EMAIL, ErrorsMessages.INVALID_AUTH_DATA);
                 errors.setResult(false);
             }

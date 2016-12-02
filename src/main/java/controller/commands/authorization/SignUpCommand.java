@@ -20,10 +20,14 @@ import javax.servlet.http.HttpSession;
  * Created by click on 11/18/2016.
  */
 public class SignUpCommand implements Command {
-    protected UserSignUpValidator userSignUpValidator = new UserSignUpValidator();
-    private SignupDataRequestPicker signupDataRequestPicker = new SignupDataRequestPicker();
-    private EncryptPassword encryptPassword = new EncryptPassword();
-    private UserService userService = UserServiceImpl.getInstance();
+    protected UserService userService = UserServiceImpl.getInstance();
+    private SignupDataRequestPicker signupDataRequestPicker;
+    private UserSignUpValidator userSignUpValidator;
+
+    public SignUpCommand(SignupDataRequestPicker signupDataRequestPicker, UserSignUpValidator userSignUpValidator) {
+        this.signupDataRequestPicker = signupDataRequestPicker;
+        this.userSignUpValidator = userSignUpValidator;
+    }
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
@@ -31,7 +35,7 @@ public class SignUpCommand implements Command {
         Errors errors = new Errors();
         if (userSignUpValidator.validate(user, errors)) {
             // generate hash password
-            user.setPassword(encryptPassword.encrypt(user.getPassword()));
+            user.setPassword(EncryptPassword.encrypt(user.getPassword()));
 
             // check if user exist
             if (userService.findOne(user.getEmail()) == null) {

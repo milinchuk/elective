@@ -12,11 +12,9 @@ import java.util.regex.Pattern;
  */
 public class CourseValidator implements Validator<Course> {
     private Pattern textPattern;
-    private ParameterValidator parameterValidator;
 
-    public CourseValidator(String textRegex, ParameterValidator parameterValidator) {
+    public CourseValidator(String textRegex) {
         this.textPattern = Pattern.compile(textRegex);
-        this.parameterValidator = parameterValidator;
     }
 
     @Override
@@ -31,15 +29,16 @@ public class CourseValidator implements Validator<Course> {
         }
 
         // dates validate
-        if (course.getStartDate().compareTo(course.getEndDate()) == 1) {
-            setError(errors, AttributesHolder.START_DATE, ErrorsMessages.DATE_INVALID);
-        }
+//        if (course.getStartDate()!= null && course.getStartDate().compareTo(course.getEndDate()) == 1) {
+//            setError(errors, AttributesHolder.START_DATE, ErrorsMessages.DATE_INVALID);
+//        }
 
-        return errors.getResult();
+        return errors.hasError();
     }
 
     @Override
     public boolean validate(Course course) {
+        // name validate
         if ( (!textPattern.matcher(course.getName()).matches()) ||
                 (!textPattern.matcher(course.getAbout()).matches()) ||
                 (course.getStartDate().compareTo(course.getEndDate()) == 1) ) {

@@ -2,17 +2,26 @@ package config;
 
 import controller.commands.Command;
 import controller.commands.holder.CommandHolder;
+import utils.constants.ResourseNames;
 
+import java.io.IOException;
 import java.util.Map;
+import java.util.Properties;
 
 /**
  * Created by click on 12/2/2016.
  */
 public class CommandHolderFullInit {
     public static CommandHolder init(){
-        DefaultCommandsInit defaultCommandsInit = new DefaultCommandsInit();
-        StudentCommandsInit studentCommandsInit = new StudentCommandsInit();
-        TutorCommandsInit tutorCommandsInit = new TutorCommandsInit();
+        Properties properties = new Properties();
+        try {
+            properties.load(CommandHolderFullInit.class.getClassLoader().getResourceAsStream(ResourseNames.REGEX));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        DefaultCommandsInit defaultCommandsInit = new DefaultCommandsInit(properties);
+        StudentCommandsInit studentCommandsInit = new StudentCommandsInit(properties);
+        TutorCommandsInit tutorCommandsInit = new TutorCommandsInit(properties);
 
         Map<String, Command> getCommands = defaultCommandsInit.initGetCommands();
         getCommands.putAll(studentCommandsInit.initGetCommands());

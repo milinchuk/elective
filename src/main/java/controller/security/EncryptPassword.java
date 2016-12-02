@@ -9,7 +9,7 @@ import java.security.NoSuchAlgorithmException;
 public class EncryptPassword {
     public static final String algorithm = "MD5";
 
-    public String encrypt(String passwordToHash) {
+    public static String encrypt(String passwordToHash) {
         String generatedPassword = null;
         try {
             // Create MessageDigest instance for MD5

@@ -1,17 +1,16 @@
 package utils;
 
+import utils.constants.ResourseNames;
+
 import java.io.IOException;
 import java.util.Properties;
 
 /**
  * Created by click on 11/11/2016.
  */
-public class QueryResource {
+public class QueryResource implements ResourseNames {
     private Properties properties;
 
-    public static final String COURSE_QUERIES_URL = "course_query.properties";
-    public static final String USER_QUERIES_URL = "user_query.properties";
-    public static final String PROGRESS_QUERIES_URL = "progress_query.properties";
     public static final String CREATE = "create";
     public static final String DELETE = "delete";
     public static final String UPDATE = "update";

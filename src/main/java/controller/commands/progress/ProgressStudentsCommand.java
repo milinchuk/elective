@@ -17,12 +17,16 @@ import java.util.List;
  * Created by click on 11/22/2016.
  */
 public class ProgressStudentsCommand implements Command {
-    ProgressService progressService = ProgressServiceImpl.getInstance();
+    protected ProgressService progressService = ProgressServiceImpl.getInstance();
+    private ParameterValidator parameterValidator;
+
+    public ProgressStudentsCommand(ParameterValidator parameterValidator) {
+        this.parameterValidator = parameterValidator;
+    }
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         // get course id from request
-        Validator parameterValidator = new ParameterValidator();
         Object courseId = request.getParameter(AttributesHolder.COURSE);
         if(!parameterValidator.validate(courseId)){
             return PagesHolder.PAGE_NOT_FOUND_JSP;

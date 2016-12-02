@@ -15,10 +15,7 @@ public class UserSignUpValidator implements Validator<User> {
     private Pattern passwordPattern;
     private Pattern namePattern;
 
-    public UserSignUpValidator() {
-        String emailRegex = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-        String passwordRegex = "[^\\s]{4,}";
-        String nameRegex = "^[\\p{L} \\.'\\-]+$";
+    public UserSignUpValidator(String emailRegex, String passwordRegex, String nameRegex) {
         emailPattern = Pattern.compile(emailRegex);
         passwordPattern = Pattern.compile(passwordRegex);
         namePattern = Pattern.compile(nameRegex);

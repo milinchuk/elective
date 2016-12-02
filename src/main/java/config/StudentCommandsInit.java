@@ -10,14 +10,22 @@ import controller.commands.user.ProfileCommand;
 import controller.commands.user.UpdateProfileCommand;
 import model.entity.User;
 import utils.constants.UrlHolder;
+import validators.ParameterValidator;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 /**
  * Created by click on 12/2/2016.
  */
 public class StudentCommandsInit implements CommandsInit {
+    private Properties regex;
+
+    public StudentCommandsInit(Properties regex) {
+        this.regex = regex;
+    }
+
     @Override
     public Map<String, Command> initGetCommands() {
         Map<String, Command> getCommand = new HashMap<>();
@@ -38,7 +46,7 @@ public class StudentCommandsInit implements CommandsInit {
         // update
         postCommand.put(User.STUDENT + UrlHolder.PROFILE, new UpdateProfileCommand());
         // delete
-        postCommand.put(User.STUDENT + UrlHolder.UNFOLLOW, new CourseUnfollowCommand());
+        postCommand.put(User.STUDENT + UrlHolder.UNFOLLOW, new CourseUnfollowCommand(new ParameterValidator()));
         return postCommand;
     }
 }
