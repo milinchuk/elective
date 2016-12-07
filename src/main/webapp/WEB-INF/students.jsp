@@ -29,6 +29,7 @@
 <jsp:include page="navigationElements/upperPanel.jsp"/>
 
 <fmt:requestEncoding value="UTF-8" />
+<fmt:setLocale value="${sessionScope[AttributesHolder.LOCALE]}" />
 <fmt:setBundle basename="course" var="msg"/>
 
 <div class="container-fluid">
@@ -51,10 +52,26 @@
                     <c:forEach items="${students}" var="progress">
                         <tr>
                             <form action="${UrlHolder.STUDENT_EDIT}" method="post">
-                                <td><input readonly style="border: none; width: 15px;" name="${AttribitesHolder.ID}" value="<c:out value="${progress.id}"/>"/></td>
+                                <td><input hidden style="border: none; width: 15px;" name="${AttributesHolder.ID}" value="<c:out value="${progress.id}"/>"/></td>
                                 <td><c:out value="${progress.student.firstName}"/> <c:out value="${progress.student.lastName}"/></td>
-                                <td><input name="mark" class="form-control" value="<c:out value="${progress.mark}"/>"/></td>
-                                <td><input name="note" class="form-control" value="<c:out value="${progress.note}"/>"/></td>
+
+                                <td>
+                                    <c:if test="${student != null && student == progress.id && errors != null && errors.messages['mark'] != null}">
+                                        <div class="alrt alert-danger">
+                                            <fmt:message key="${errors.messages['mark']}" bundle="${msg}" />
+                                        </div>
+                                    </c:if>
+                                    <input name="mark" class="form-control" value="<c:out value="${progress.mark}"/>"/>
+                                </td>
+
+                                <td>
+                                    <c:if test="${student!= null && student == progress.id && errors != null && errors.messages['note'] != null}">
+                                        <div class="alrt alert-danger">
+                                            <fmt:message key="${errors.messages['note']}" bundle="${msg}" />
+                                        </div>
+                                    </c:if>
+                                    <input name="note" class="form-control" value="<c:out value="${progress.note}"/>"/>
+                                </td>
                                 <td><button class="btn btn-success" name="${AttributesHolder.COURSE}" type="submit" value="<c:out value="${progress.course.id}"/>">Save</button></td>
                             </form>
                         </tr>

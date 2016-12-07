@@ -47,7 +47,7 @@ public class StudentCommandsInit implements CommandsInit {
         Map<String, Command> postCommand = new HashMap<>();
         // ----------- post commands
         // create
-        postCommand.put(User.STUDENT + UrlHolder.FOLLOW, new CourseFollowCommand(new ProgressRequestPicker()));
+        postCommand.put(User.STUDENT + UrlHolder.FOLLOW, new CourseFollowCommand());
         // update
         postCommand.put(User.STUDENT + UrlHolder.PROFILE, new UpdateProfileCommand(getProfileValidator(),
                 new ProfileRequestPicker()));
@@ -58,6 +58,6 @@ public class StudentCommandsInit implements CommandsInit {
 
     private ProfileValidator getProfileValidator() {
         return new ProfileValidator(regex.getProperty(AttributesHolder.NAME),
-                new EmailValidator(AttributesHolder.EMAIL));
+                new EmailValidator(regex.getProperty(AttributesHolder.EMAIL)));
     }
 }

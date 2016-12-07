@@ -18,14 +18,14 @@ public class ProgressRequestPicker extends RequestPicker<Progress>{
         try {
             Progress progress = new Progress();
             Course course = new Course();
-            course.setId(Integer.valueOf(String.valueOf(request.getParameter(AttributesHolder.COURSE))));
-            progress.setId(Integer.valueOf(String.valueOf(request.getParameter(AttributesHolder.ID))));
+            course.setId(Integer.valueOf(request.getParameter(AttributesHolder.COURSE)));
+            progress.setId(Integer.valueOf(request.getParameter(AttributesHolder.ID)));
             progress.setCourse(course);
-            progress.setMark(String.valueOf(request.getParameter(AttributesHolder.MARK)));
-            progress.setNote(String.valueOf(request.getParameter(AttributesHolder.NOTE)));
+            progress.setMark(request.getParameter(AttributesHolder.MARK));
+            progress.setNote(request.getParameter(AttributesHolder.NOTE));
             logger.info(LoggingMessagesHanldler.SUCCESSFUL_PICK_DATA);
             return progress;
-        } catch (RuntimeException e) {
+        } catch (Exception e) {
             logger.error(LoggingMessagesHanldler.ERROR_PICK, e);
             return null;
         }

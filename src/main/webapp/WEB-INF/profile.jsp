@@ -31,16 +31,31 @@
                 <h2><small><fmt:message key="my.profile" bundle="${msg}"/></small></h2>
                 <hr>
                 <form action="${UrlHolder.PROFILE}" method="post">
+                    <c:if test="${errors != null && errors.messages['firstName'] != null}">
+                        <div class="alrt alert-danger">
+                            <fmt:message key="${errors.messages['firstName']}" bundle="${msg}" />
+                        </div>
+                    </c:if>
                     <div class="form-group">
                         <h3><small><fmt:message key="first.name" bundle="${msg}"/>: </small></h3>
                         <input type='text' class="form-control" name="${AttributesHolder.FIRST_NAME}" value="<c:out value="${user.firstName}"/>"/>
                     </div>
 
+                    <c:if test="${errors != null && errors.messages['lastName'] != null}">
+                        <div class="alrt alert-danger">
+                            <fmt:message key="${errors.messages['lastName']}" bundle="${msg}" />
+                        </div>
+                    </c:if>
                     <div class="form-group">
                         <h3><small><fmt:message key="last.name" bundle="${msg}"/>: </small></h3>
                         <input type='text' class="form-control" name="${AttributesHolder.LAST_NAME}" value="<c:out value="${user.lastName}"/>"/>
                     </div>
 
+                    <c:if test="${errors != null && errors.messages['email'] != null}">
+                        <div class="alrt alert-danger">
+                            <fmt:message key="${errors.messages['email']}" bundle="${msg}" />
+                        </div>
+                    </c:if>
                     <div class="form-group">
                         <h3><small><fmt:message key="email" bundle="${msg}"/>: </small></h3>
                         <input type='text' class="form-control" name="${AttributesHolder.EMAIL}" value="<c:out value="${user.email}"/>"/>

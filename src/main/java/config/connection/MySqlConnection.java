@@ -9,7 +9,7 @@ import java.sql.SQLException;
 /**
  * Created by click on 11/14/2016.
  */
-public class MySqlConnection implements AbstractConnection {
+public class MySqlConnection implements AbstractConnection  {
     private Connection connection;
     private static final Logger logger = Logger.getLogger(MySqlConnection.class);
 

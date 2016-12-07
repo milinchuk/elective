@@ -21,20 +21,23 @@ public class ProgressValidator implements Validator<Progress> {
 
     @Override
     public boolean validate(Progress progress, Errors errors) {
-        if (!notePattern.matcher(progress.getNote()).matches()) {
-            setError(errors, AttributesHolder.NOTE, ErrorsMessages.INVALID_NOTE);
-        }
+        if (progress != null) {
+            if (!notePattern.matcher(progress.getNote()).matches()) {
+                setError(errors, AttributesHolder.NOTE, ErrorsMessages.INVALID_NOTE);
+            }
 
-        if (!markPattern.matcher(progress.getMark()).matches()) {
-            setError(errors, AttributesHolder.MARK, ErrorsMessages.INVALID_MARK);
+            if (!markPattern.matcher(progress.getMark()).matches()) {
+                setError(errors, AttributesHolder.MARK, ErrorsMessages.INVALID_MARK);
+            }
+        } else {
+            setError(errors, AttributesHolder.PROGRESS, ErrorsMessages.INVALID);
         }
-
         return errors.getResult();
     }
 
     @Override
     public boolean validate(Progress progress) {
-        if ( (!notePattern.matcher(progress.getNote()).matches()) ||
+        if ( (progress == null) || (!notePattern.matcher(progress.getNote()).matches()) ||
                 (!markPattern.matcher(progress.getMark()).matches())) {
             return false;
         }

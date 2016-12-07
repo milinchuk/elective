@@ -27,7 +27,6 @@ public class DateValidator implements Validator<String> {
             errors.addMessage(AttributesHolder.START_DATE, ErrorsMessages.DATE_INVALID);
             return false;
         }
-
         return true;
     }
 

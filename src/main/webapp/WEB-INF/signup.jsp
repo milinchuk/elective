@@ -47,24 +47,30 @@
             <form action="" method="post">
                 <h2 class="form-signin-heading"><fmt:message key="signup" bundle="${msg}"/></h2>
                 <br>
-                <div class="alrt alert-danger">
-                    <fmt:message key="${errors.messages['firstName']}" bundle="${msg}"/>
-                </div>
+                <c:if test="${errors != null && errors.messages['firstname'] != null}">
+                    <div class="alrt alert-danger">
+                        <fmt:message key="${errors.messages['firstName']}" bundle="${msg}"/>
+                    </div>
+                </c:if>
                 <input type="text" class="form-control" name="${AttributesHolder.FIRST_NAME}" value="<c:out value="${user.firstName}"/>"
                        placeholder="<fmt:message key="first.name" bundle="${msg}"/>" required>
 
                 <br>
-                <div class="alrt alert-danger">
-                    <fmt:message key="${errors.messages['lastName']}" bundle="${msg}" />
-                </div>
+                <c:if test="${errors != null && errors.messages['lastname'] != null}">
+                    <div class="alrt alert-danger">
+                        <fmt:message key="${errors.messages['lastName']}" bundle="${msg}" />
+                    </div>
+                </c:if>
                 <input type="text" class="form-control" name="${AttributesHolder.LAST_NAME}"
                        value="<c:out value="${user.lastName}"/>"
                        placeholder="<fmt:message key="last.name" bundle="${msg}"/>" required >
 
                 <br>
-                <div class="alrt alert-danger">
-                    <fmt:message key="${errors.messages['role']}" bundle="${msg}" />
-                </div>
+                <c:if test="${errors != null && errors.messages['role'] != null}">
+                    <div class="alrt alert-danger">
+                        <fmt:message key="${errors.messages['role']}" bundle="${msg}" />
+                    </div>
+                </c:if>
                 <div class="form-group">
                     <select class="form-control" name="role" id="sel1">
                         <option><fmt:message key="choose.role" bundle="${msg}"/></option>
@@ -72,15 +78,20 @@
                         <option><c:out value="${AttributesHolder.TUTOR}"/></option>
                     </select>
                 </div>
-                <div class="alrt alert-danger">
-                    <fmt:message key="${errors.messages['email']}" bundle="${msg}" />
-                </div>
+
+                <c:if test="${errors != null && errors.messages['email'] != null}">
+                    <div class="alrt alert-danger">
+                        <fmt:message key="${errors.messages['email']}" bundle="${msg}" />
+                    </div>
+                </c:if>
                 <input type="text" class="form-control" name="${AttributesHolder.EMAIL}" value="<c:out value="${user.email}"/>"
                        placeholder="<fmt:message key="email" bundle="${msg}" />" required >
                 <br>
-                <div class="alrt alert-danger">
-                    <fmt:message key="${errors.messages['password']}" bundle="${msg}"/>
-                </div>
+                <c:if test="${errors != null && errors.messages['password'] != null}">
+                    <div class="alrt alert-danger">
+                        <fmt:message key="${errors.messages['password']}" bundle="${msg}"/>
+                    </div>
+                </c:if>
                 <input type="password" class="form-control" name="${AttributesHolder.PASSWORD}" placeholder="<fmt:message key="password" bundle="${msg}" />" required >
                 <br>
                 <input type="password" class="form-control" name="${AttributesHolder.CONFIRM_PASSWORD}" placeholder="<fmt:message key="confirm.password" bundle="${msg}"/>" required >

@@ -19,6 +19,7 @@ public class CommandHolderFullInit {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         DefaultCommandsInit defaultCommandsInit = new DefaultCommandsInit(properties);
         StudentCommandsInit studentCommandsInit = new StudentCommandsInit(properties);
         TutorCommandsInit tutorCommandsInit = new TutorCommandsInit(properties);

@@ -16,7 +16,7 @@ public class LocaleHolder {
             new Locale(AttributesHolder.UA, AttributesHolder.UA.toUpperCase()) };
 
     private Locale currentLocale;
-    public static final Locale DEFAULT = new Locale("ru", "RU");
+    public static final Locale DEFAULT = new Locale("en", "EN");
 
     public LocaleHolder(Locale currentLocale) {
         this.currentLocale = currentLocale;

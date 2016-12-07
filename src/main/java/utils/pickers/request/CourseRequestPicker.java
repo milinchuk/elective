@@ -15,19 +15,21 @@ public class CourseRequestPicker extends RequestPicker<Course> {
     private static final Logger logger = Logger.getLogger(CourseRequestPicker.class);
     @Override
     public Course pick(HttpServletRequest request) {
-        try {
+            try {
             User tutor = new User();
             tutor.setId(Integer.valueOf(String.valueOf(request.getSession().getAttribute(AttributesHolder.ID))));
             Course course = new Course();
             course.setName(String.valueOf(request.getParameter(AttributesHolder.NAME)));
             course.setAbout(String.valueOf(request.getParameter(AttributesHolder.ABOUT)));
-            course.setId(Integer.valueOf(String.valueOf(request.getParameter(AttributesHolder.ID))));
+            if(request.getParameter(AttributesHolder.ID) != null) {
+                course.setId(Integer.valueOf(String.valueOf(request.getParameter(AttributesHolder.ID))));
+            }
             course.setTutor(tutor);
 //        course.setStartDate(Date.valueOf(request.getAttribute(AttributesHolder.START_DATE)));
 //        course.setEndDate();
             logger.info(LoggingMessagesHanldler.SUCCESSFUL_PICK_DATA);
             return course;
-        } catch (RuntimeException e) {
+        } catch (Exception e) {
             logger.error(LoggingMessagesHanldler.ERROR_PICK, e);
             return null;
         }

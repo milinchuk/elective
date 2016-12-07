@@ -19,27 +19,32 @@ public class CourseValidator implements Validator<Course> {
 
     @Override
     public boolean validate(Course course, Errors errors) {
-        // name validate
-        if (!textPattern.matcher(course.getName()).matches()) {
-            setError(errors, AttributesHolder.NAME, ErrorsMessages.COURSE_NAME_INVALID);
-        }
+        if (course != null) {
+            // name validate
+            if (!textPattern.matcher(course.getName()).matches()) {
+                setError(errors, AttributesHolder.NAME, ErrorsMessages.COURSE_NAME_INVALID);
+            }
 
-        if(!textPattern.matcher(course.getAbout()).matches()) {
-            setError(errors, AttributesHolder.ABOUT, ErrorsMessages.COURSE_NAME_INVALID);
-        }
+            if (!textPattern.matcher(course.getAbout()).matches()) {
+                setError(errors, AttributesHolder.ABOUT, ErrorsMessages.COURSE_NAME_INVALID);
+            }
 
-        // dates validate
+            // dates validate
 //        if (course.getStartDate()!= null && course.getStartDate().compareTo(course.getEndDate()) == 1) {
 //            setError(errors, AttributesHolder.START_DATE, ErrorsMessages.DATE_INVALID);
 //        }
 
-        return errors.hasError();
+        } else {
+            setError(errors, AttributesHolder.COURSE, ErrorsMessages.INVALID);
+        }
+
+        return errors.getResult();
     }
 
     @Override
     public boolean validate(Course course) {
         // name validate
-        if ( (!textPattern.matcher(course.getName()).matches()) ||
+        if ( (course == null) || (!textPattern.matcher(course.getName()).matches()) ||
                 (!textPattern.matcher(course.getAbout()).matches()) ||
                 (course.getStartDate().compareTo(course.getEndDate()) == 1) ) {
             return false;

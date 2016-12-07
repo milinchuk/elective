@@ -32,6 +32,7 @@
 <body>
 <jsp:include page="navigationElements/upperPanel.jsp"/>
 <fmt:requestEncoding value="UTF-8" />
+<fmt:setLocale value="${sessionScope[AttributesHolder.LOCALE]}" />
 <fmt:setBundle basename="course" var="msg"/>
 <div class="container-fluid">
     <div class="row content">

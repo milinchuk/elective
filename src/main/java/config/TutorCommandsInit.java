@@ -49,7 +49,7 @@ public class TutorCommandsInit implements CommandsInit {
         CourseValidator courseValidator = getCourseValidator();
         // ----------- post commands
         // create
-        postCommand.put(User.TUTOR + UrlHolder.COURSE_ADD, new CourseCreateCommand(courseValidator));
+        postCommand.put(User.TUTOR + UrlHolder.COURSE_ADD, new CourseCreateCommand(courseValidator, new CourseRequestPicker()));
         // update
         postCommand.put(User.TUTOR + UrlHolder.PROFILE, new UpdateProfileCommand(getProfileValidator(), new ProfileRequestPicker()));
         postCommand.put(User.TUTOR + UrlHolder.COURSE_EDIT, new CourseUpdateCommand(courseValidator,
@@ -71,6 +71,6 @@ public class TutorCommandsInit implements CommandsInit {
     }
     private ProfileValidator getProfileValidator() {
         return new ProfileValidator(regex.getProperty(AttributesHolder.NAME),
-                new EmailValidator(AttributesHolder.EMAIL));
+                new EmailValidator(regex.getProperty(AttributesHolder.EMAIL)));
     }
 }

@@ -39,6 +39,7 @@ public class ProgressUpdateCommand implements Command {
             return PagesHolder.STUDENTS;
         } else {
             request.setAttribute(AttributesHolder.ERRORS, errors);
+            request.setAttribute(AttributesHolder.STUDENT, progress.getId());
             request.setAttribute(AttributesHolder.STUDENTS,
                     progressService.findByCourse(progress.getCourse().getId()));
             return PagesHolder.STUDENTS;

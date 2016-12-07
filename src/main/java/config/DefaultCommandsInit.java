@@ -9,6 +9,7 @@ import utils.constants.AttributesHolder;
 import utils.constants.UrlHolder;
 import utils.pickers.request.LoginDataRequestPicker;
 import utils.pickers.request.SignupDataRequestPicker;
+import validators.EmailValidator;
 import validators.UserLoginValidator;
 import validators.UserSignUpValidator;
 
@@ -49,7 +50,7 @@ public class DefaultCommandsInit implements CommandsInit {
     }
 
     private UserSignUpValidator getUserSignUpValidator(){
-        return new UserSignUpValidator(regex.getProperty(AttributesHolder.EMAIL),
+        return new UserSignUpValidator( new EmailValidator(regex.getProperty(AttributesHolder.EMAIL)),
                 regex.getProperty(AttributesHolder.PASSWORD),
                 regex.getProperty(AttributesHolder.NAME));
     }

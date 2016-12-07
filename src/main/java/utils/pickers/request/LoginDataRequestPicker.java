@@ -21,7 +21,7 @@ public class LoginDataRequestPicker extends RequestPicker<User> {
             user.setPassword(request.getParameter(AttributesHolder.PASSWORD));
             logger.info(LoggingMessagesHanldler.SUCCESSFUL_PICK_DATA);
             return user;
-        } catch (RuntimeException e) {
+        } catch (Exception e) {
             logger.error(LoggingMessagesHanldler.ERROR_PICK, e);
             return null;
         }

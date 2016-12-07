@@ -12,28 +12,28 @@ import validators.entity.Errors;
 public class UserLoginValidator implements Validator<User> {
     @Override
     public boolean validate(User user, Errors errors) {
-        boolean res = true;
-        if (StringUtils.isEmpty(user.getEmail())){
-            errors.addMessage(AttributesHolder.EMAIL, ErrorsMessages.EMAIL_EMPTY);
-            res = false;
-        }
+        if (user != null) {
+            if (StringUtils.isEmpty(user.getEmail())) {
+                setError(errors, AttributesHolder.EMAIL, ErrorsMessages.EMAIL_EMPTY);
+            }
 
-        if (StringUtils.isEmpty(user.getPassword())){
-            errors.addMessage(AttributesHolder.PASSWORD, ErrorsMessages.PASSWORD_EMPTY);
-            res = false;
+            if (StringUtils.isEmpty(user.getPassword())) {
+                setError(errors, AttributesHolder.PASSWORD, ErrorsMessages.PASSWORD_EMPTY);
+            }
+        } else {
+            setError(errors, AttributesHolder.USER, ErrorsMessages.INVALID);
         }
-        return res;
+        return errors.getResult();
     }
 
     @Override
     public boolean validate(User user) {
-        if (StringUtils.isEmpty(user.getEmail())){
-            return false;
-        }
+        return  !( (StringUtils.isEmpty(user.getEmail())) ||
+                    (StringUtils.isEmpty(user.getPassword())) );
+    }
 
-        if (StringUtils.isEmpty(user.getPassword())){
-            return false;
-        }
-        return true;
+    private void setError(Errors errors, String attribute, String errorMessage) {
+        errors.setResult(false);
+        errors.addMessage(attribute, errorMessage);
     }
 }

@@ -19,4 +19,5 @@ public interface ErrorsMessages {
     String DATE_INVALID = "date.invalid";
     String INVALID_NOTE = "invalid.note";
     String INVALID_MARK = "invalid.mark";
+    String INVALID = "invalid";
 }

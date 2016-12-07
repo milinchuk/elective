@@ -44,6 +44,7 @@
 <body>
 <jsp:include page="navigationElements/upperPanel.jsp"/>
 <fmt:requestEncoding value="UTF-8" />
+<fmt:setLocale value="${sessionScope[AttributesHolder.LOCALE]}" />
 <fmt:setBundle basename="course" var="msg"/>
 <div class="container-fluid">
     <div class="row content">
@@ -52,16 +53,34 @@
             <h2><small><fmt:message key="msg.edit.course" bundle="${msg}"/></small></h2>
             <hr>
             <form action="${UrlHolder.COURSE_EDIT}" method="post">
+
                 <label><fmt:message key="id" bundle="${msg}"/></label>
                 <input name="${AttributesHolder.ID}" style="border: none" readonly value="<c:out value="${course.id}"/>"/>
+
                 <br>
+                <c:if test="${errors != null && errors.messages['name'] != null}">
+                    <div class="alrt alert-danger">
+                        <fmt:message key="${errors.messages['name']}" bundle="${msg}" />
+                    </div>
+                </c:if>
                 <label for="name"><fmt:message key="name" bundle="${msg}"/></label>
                 <input name="${AttributesHolder.NAME}" id="name" class="form-control" value="<c:out value="${course.name}"/>"/>
+
                 <br>
+                <c:if test="${errors != null && errors.messages['about'] != null}">
+                    <div class="alrt alert-danger">
+                        <fmt:message key="${errors.messages['about']}" bundle="${msg}" />
+                    </div>
+                </c:if>
                 <label><fmt:message key="about" bundle="${msg}"/></label>
                 <textarea name="${AttributesHolder.ABOUT}" style="resize: none;" class="form-control" rows="3"><c:out value="${course.about}"/>
                 </textarea>
 
+                <c:if test="${errors != null && errors.messages['startDate'] != null}">
+                    <div class="alrt alert-danger">
+                        <fmt:message key="${errors.messages['startDate']}" bundle="${msg}" />
+                    </div>
+                </c:if>
                 <label for="name"><fmt:message key="start.date" bundle="${msg}"/></label>
                 <div class='input-group date col-xs-3' id='datetimepicker1'>
                     <input name="startDate" type='text' class="form-control"/>
@@ -69,12 +88,18 @@
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span>
                 </div>
+
+                <c:if test="${errors != null && errors.messages['endDate'] != null}">
+                    <div class="alrt alert-danger">
+                        <fmt:message key="${errors.messages['endDate']}" bundle="${msg}" />
+                    </div>
+                </c:if>
                 <label for="name"><fmt:message key="end.date" bundle="${msg}"/></label>
                         <div class='input-group date col-xs-3' id='datetimepicker2'>
                             <input name="endDate" type='text' class="form-control"/>
-                        <span class="input-group-addon">
+                        <button class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
-                        </span>
+                        </button>
                         </div>
                 <br>
                 <button class="btn btn-success" type="submit"><fmt:message key="save" bundle="${msg}"/></button>

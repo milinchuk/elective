@@ -55,7 +55,8 @@ public class DispatcherServlet extends HttpServlet {
         if(!commandValidator.validate(command)){
             command = commandHolder.getPageNotFoundCommand();
         }
-       return request.getRequestDispatcher(command.execute(request, response));
+        String path = command.execute(request, response);
+        return request.getRequestDispatcher(path);
     }
 
 

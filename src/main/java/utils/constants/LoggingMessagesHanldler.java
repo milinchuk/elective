@@ -28,4 +28,6 @@ public interface LoggingMessagesHanldler {
     String SUCCESSFUL_FIND_UNFOLLOW = "Successful find unfollow courses.";
     String SUCCESSFUL_FIND_BY_COURSE = "Successful find by course.";
     String SUCCESSFUL_PICK_DATA = "Successful set data.";
+    String SUCCESSFUL_SAVE = "Successful save.";
+    String TRY_ADD_INCORRECT_DATA = "Try add incorrect data";
 }

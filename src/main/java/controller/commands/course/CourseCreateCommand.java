@@ -5,9 +5,9 @@ import model.entity.Course;
 import model.entity.User;
 import model.service.CourseServiceImpl;
 import model.service.interfaces.CourseService;
-import org.apache.log4j.Logger;
 import utils.constants.AttributesHolder;
 import utils.constants.PagesHolder;
+import utils.pickers.request.CourseRequestPicker;
 import validators.CourseValidator;
 import validators.entity.Errors;
 
@@ -20,30 +20,23 @@ import java.util.List;
  */
 public class CourseCreateCommand implements Command {
     private CourseValidator courseValidator;
+    private CourseRequestPicker courseRequestPicker;
     protected CourseService courseService = CourseServiceImpl.getInstance();
-    private static final Logger logger = Logger.getLogger(CourseCreateCommand.class);
 
-    public CourseCreateCommand(CourseValidator courseValidator) {
+    public CourseCreateCommand(CourseValidator courseValidator, CourseRequestPicker courseRequestPicker) {
         this.courseValidator = courseValidator;
+        this.courseRequestPicker = courseRequestPicker;
     }
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         // get attributes
-        Course course = new Course();
-        // get user id from session
-        Integer tutorId = Integer.parseInt(String.valueOf(request.getSession().getAttribute(AttributesHolder.ID)));
-        User tutor = new User();
-        tutor.setId(tutorId);
-        // set course
-        course.setAbout(String.valueOf(request.getParameter(AttributesHolder.ABOUT)));
-        course.setName(String.valueOf(request.getParameter(AttributesHolder.NAME)));
-        course.setTutor(tutor);
+        Course course = courseRequestPicker.pick(request);
         // validate
         Errors errors = new Errors();
         if (courseValidator.validate(course, errors)){
             courseService.create(course);
-            List<Course> courses = courseService.findByTutor(tutorId);
+            List<Course> courses = courseService.findByTutor(course.getTutor().getId());
             request.setAttribute(AttributesHolder.COURSES, courses);
             return PagesHolder.TUTOR_COURSES;
         } else {

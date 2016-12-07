@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class CourseDeleteCommand implements Command {
     protected CourseService courseService = CourseServiceImpl.getInstance();
+
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         Integer tutorId = Integer.valueOf(String.valueOf(request.getSession().getAttribute(AttributesHolder.ID)));
