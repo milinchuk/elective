@@ -15,7 +15,8 @@ public interface ErrorsMessages {
     String INVALID_NUMBER_VALUE = "invalid.number.value";
     String INVALID_AUTH_DATA = "invalid.auth.data";
     String USER_EXIST = "user.exist";
-    String COURSE_NAME_INVALID = "course.name.invalid";
+    String COURSE_NAME_INVALID = "invalid.course.name";
+    String ABOUT_INVALID = "invalid.course.about";
     String DATE_INVALID = "date.invalid";
     String INVALID_NOTE = "invalid.note";
     String INVALID_MARK = "invalid.mark";

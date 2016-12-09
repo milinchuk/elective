@@ -10,6 +10,7 @@ import model.service.interfaces.CourseService;
 import model.service.interfaces.ProgressService;
 import utils.constants.AttributesHolder;
 import utils.constants.PagesHolder;
+import utils.constants.UrlHolder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,6 +36,6 @@ public class CourseFollowCommand implements Command {
         progressService.create(progress);
         List<Course> courses = courseService.findUnfollow(user.getId());
         request.setAttribute(AttributesHolder.COURSES, courses);
-        return PagesHolder.FIND_COURSES;
+        return UrlHolder.FIND;
     }
 }

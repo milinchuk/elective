@@ -22,6 +22,7 @@ public class ProfileRequestPicker extends RequestPicker<User>{
             user.setId(Integer.parseInt(String.valueOf(request.getSession().getAttribute(AttributesHolder.ID))));
             user.setEmail(String.valueOf(request.getParameter(AttributesHolder.EMAIL)));
             user.setFirstName(String.valueOf(request.getParameter(AttributesHolder.FIRST_NAME)));
+            System.out.println("FIRST :"+ user.getFirstName());
             user.setLastName(String.valueOf(request.getParameter(AttributesHolder.LAST_NAME)));
             logger.info(LoggingMessagesHanldler.SUCCESSFUL_PICK_DATA);
             return user;

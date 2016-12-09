@@ -7,6 +7,7 @@ import model.service.CourseServiceImpl;
 import model.service.interfaces.CourseService;
 import utils.constants.AttributesHolder;
 import utils.constants.PagesHolder;
+import utils.constants.UrlHolder;
 import utils.pickers.request.CourseRequestPicker;
 import validators.CourseValidator;
 import validators.entity.Errors;
@@ -38,11 +39,11 @@ public class CourseCreateCommand implements Command {
             courseService.create(course);
             List<Course> courses = courseService.findByTutor(course.getTutor().getId());
             request.setAttribute(AttributesHolder.COURSES, courses);
-            return PagesHolder.TUTOR_COURSES;
+            return UrlHolder.MY_COURSES;
         } else {
             request.setAttribute(AttributesHolder.COURSE, course);
             request.setAttribute(AttributesHolder.ERRORS, errors);
-            return PagesHolder.ADD_COURSE;
+            return UrlHolder.COURSE_ADD;
         }
     }
 }

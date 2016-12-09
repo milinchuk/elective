@@ -2,6 +2,7 @@ package controller.commands.authorization;
 
 import controller.commands.Command;
 import utils.constants.PagesHolder;
+import utils.constants.UrlHolder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +15,6 @@ public class LogoutCommand implements Command {
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         // clear session
         request.getSession().invalidate();
-        return PagesHolder.LOGIN;
+        return UrlHolder.LOGIN;
     }
 }

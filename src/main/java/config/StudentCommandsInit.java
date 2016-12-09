@@ -38,7 +38,6 @@ public class StudentCommandsInit implements CommandsInit {
         getCommand.put(User.STUDENT + UrlHolder.PROFILE, new ProfileCommand());
         getCommand.put(User.STUDENT + UrlHolder.MY_COURSES, new UserCoursesCommand());
         getCommand.put(User.STUDENT + UrlHolder.FIND, new FindCoursesCommand());
-        getCommand.put(User.STUDENT + UrlHolder.LOGOUT, new LogoutCommand());
         return getCommand;
     }
 
@@ -53,6 +52,7 @@ public class StudentCommandsInit implements CommandsInit {
                 new ProfileRequestPicker()));
         // delete
         postCommand.put(User.STUDENT + UrlHolder.UNFOLLOW, new CourseUnfollowCommand(new ParameterValidator()));
+        postCommand.put(User.STUDENT + UrlHolder.LOGOUT, new LogoutCommand());
         return postCommand;
     }
 

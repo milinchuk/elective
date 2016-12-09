@@ -6,6 +6,7 @@ import model.service.UserServiceImpl;
 import model.service.interfaces.UserService;
 import utils.constants.AttributesHolder;
 import utils.constants.PagesHolder;
+import utils.constants.UrlHolder;
 import utils.pickers.Picker;
 import utils.pickers.request.ProfileRequestPicker;
 import validators.ProfileValidator;
@@ -44,11 +45,12 @@ public class UpdateProfileCommand implements Command {
             userService.update(user);
             user = userService.findOne(user.getId());
             request.setAttribute(AttributesHolder.USER, user);
-            return PagesHolder.PROFILE;
+            return UrlHolder.PROFILE;
         } else {
             request.setAttribute(AttributesHolder.ERRORS, errors);
             request.setAttribute(AttributesHolder.USER, user);
             return PagesHolder.PROFILE;
         }
+
     }
 }

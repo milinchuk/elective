@@ -6,6 +6,7 @@ import model.service.ProgressServiceImpl;
 import model.service.interfaces.ProgressService;
 import utils.constants.AttributesHolder;
 import utils.constants.PagesHolder;
+import utils.constants.UrlHolder;
 import validators.ParameterValidator;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,7 +28,7 @@ public class CourseUnfollowCommand implements Command {
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         // validate
         if (!parameterValidator.validate(String.valueOf(request.getParameter(AttributesHolder.PROGRESS)))) {
-            return PagesHolder.PAGE_NOT_FOUND_JSP;
+            return UrlHolder.PAGE_NOT_FOUND;
         }
 
         Integer id = Integer.valueOf(String.valueOf(request.getParameter(AttributesHolder.PROGRESS)));
@@ -35,6 +36,6 @@ public class CourseUnfollowCommand implements Command {
         List<Progress> progresses = progressService.findByUser(Integer.valueOf(String.
              valueOf(request.getSession().getAttribute(AttributesHolder.ID))));
         request.setAttribute(AttributesHolder.PROGRESSES, progresses);
-        return PagesHolder.STUDENT_COURSES;
+        return UrlHolder.MY_COURSES;
     }
 }

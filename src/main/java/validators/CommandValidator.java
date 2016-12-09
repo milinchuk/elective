@@ -20,9 +20,6 @@ public class CommandValidator implements Validator {
 
     @Override
     public boolean validate(Object command) {
-        if(command == null){
-            return false;
-        }
-        return true;
+        return !(command == null);
     }
 }

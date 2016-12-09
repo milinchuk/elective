@@ -8,6 +8,7 @@ import model.service.UserServiceImpl;
 import model.service.interfaces.UserService;
 import utils.constants.AttributesHolder;
 import utils.constants.PagesHolder;
+import utils.constants.UrlHolder;
 import utils.pickers.request.LoginDataRequestPicker;
 import validators.entity.Errors;
 import validators.UserLoginValidator;
@@ -15,6 +16,7 @@ import validators.UserLoginValidator;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
 /**
  * Created by click on 11/18/2016.
@@ -46,7 +48,7 @@ public class LoginCommand implements Command {
                 session.setAttribute(AttributesHolder.ID, existUser.getId());
                 session.setAttribute(AttributesHolder.ROLE, existUser.getRole());
                 request.setAttribute(AttributesHolder.USER, existUser);
-                return PagesHolder.PROFILE;
+                return UrlHolder.PROFILE;
             } else {
                 // invalid auth data
                 errors.addMessage(AttributesHolder.EMAIL, ErrorsMessages.INVALID_AUTH_DATA);

@@ -41,7 +41,7 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th><fmt:message key="id" bundle="${msg}"/></th>
+                        <th></th>
                         <th><fmt:message key="full.name" bundle="${msg}"/></th>
                         <th><fmt:message key="mark" bundle="${msg}"/></th>
                         <th><fmt:message key="note" bundle="${msg}"/></th>
@@ -72,7 +72,7 @@
                                     </c:if>
                                     <input name="note" class="form-control" value="<c:out value="${progress.note}"/>"/>
                                 </td>
-                                <td><button class="btn btn-success" name="${AttributesHolder.COURSE}" type="submit" value="<c:out value="${progress.course.id}"/>">Save</button></td>
+                                <td><button class="btn btn-success" name="${AttributesHolder.COURSE}" type="submit" value="<c:out value="${progress.course.id}"/>"><fmt:message key="${'save'}" bundle="${msg}" /></button></td>
                             </form>
                         </tr>
                     </c:forEach>

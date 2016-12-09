@@ -29,4 +29,7 @@ public class UrlHolder {
     public static final String UNFOLLOW = PREFIX + "/unfollow";
     public static final String COURSE_DELETE = COURSE + "delete";
     public static final String USER = "/user";
+    public static final String PAGE_NOT_FOUND = "/notFound";
+    public static final String STUDENTS_COURSE_GET = STUDENTS + "/?course=";
+    public static final String COURSE_EDIT_GET = COURSE + "?id=";
 }

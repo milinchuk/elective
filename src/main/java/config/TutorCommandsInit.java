@@ -37,7 +37,6 @@ public class TutorCommandsInit implements CommandsInit {
         getCommand.put(User.TUTOR + UrlHolder.MY_COURSES, new UserCoursesCommand());
         getCommand.put(User.TUTOR + UrlHolder.STUDENTS + UrlHolder.SUFFIX,
                 new ProgressStudentsCommand(new ParameterValidator()));
-        getCommand.put(User.TUTOR + UrlHolder.LOGOUT, new LogoutCommand());
         getCommand.put(User.TUTOR + UrlHolder.COURSE, new OpenCourseCommand());
         getCommand.put(User.TUTOR + UrlHolder.COURSE_ADD, new CourseCommand());
         return getCommand;
@@ -58,6 +57,7 @@ public class TutorCommandsInit implements CommandsInit {
                 new ProgressUpdateCommand(new ProgressRequestPicker(), getProgressValidator()));
         // delete
         postCommand.put(User.TUTOR + UrlHolder.COURSE_DELETE, new CourseDeleteCommand());
+        postCommand.put(User.TUTOR + UrlHolder.LOGOUT, new LogoutCommand());
         return postCommand;
     }
 

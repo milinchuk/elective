@@ -9,6 +9,7 @@ import utils.constants.UrlHolder;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
@@ -22,8 +23,8 @@ public class AuthFilter implements Filter {
 
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
         // check credentials
-        HttpServletRequest request = ((HttpServletRequest) req);
-        //new Permission().hasPermission(request);
+        HttpServletRequest request = (HttpServletRequest) req;
+        request.setCharacterEncoding("UTF-8");
         boolean isAuth = isAuthorize(request);
         if (request.getRequestURI().startsWith(UrlHolder.USER)) {
             if (!isAuth) {

@@ -34,61 +34,65 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void create(User user) {
-        AbstractConnection connection = connectionFactory.getMySqlConnection();
-        UserDAO userDAO = daoFactory.getUserDAO(connection);
-
-        if((user != null) && (userDAO.findOne(user.getEmail()) == null)) {
-            connection.beginTransaction();
-            userDAO.create(user);
-            connection.commit();
+        try (AbstractConnection connection = connectionFactory.getMySqlConnection()) {
+            UserDAO userDAO = daoFactory.getUserDAO(connection);
+            if ((user != null) && (userDAO.findOne(user.getEmail()) == null)) {
+                connection.beginTransaction();
+                userDAO.create(user);
+                connection.commit();
+            }
+            connection.close();
         }
-
-        connection.close();
     }
 
     @Override
     public void delete(String email) {
-        AbstractConnection connection = connectionFactory.getMySqlConnection();
-        connection.beginTransaction();
-        UserDAO userDAO = daoFactory.getUserDAO(connection);
-        connection.commit();
-        userDAO.delete(email);
+        try (AbstractConnection connection = connectionFactory.getMySqlConnection()) {
+            connection.beginTransaction();
+            UserDAO userDAO = daoFactory.getUserDAO(connection);
+            connection.commit();
+            userDAO.delete(email);
+        }
     }
 
     @Override
     public void update(User user) {
-        AbstractConnection connection = connectionFactory.getMySqlConnection();
-        UserDAO userDAO = daoFactory.getUserDAO(connection);
-        connection.beginTransaction();
-        userDAO.update(user);
-        connection.commit();
-        connection.close();
+        try (AbstractConnection connection = connectionFactory.getMySqlConnection()) {
+            UserDAO userDAO = daoFactory.getUserDAO(connection);
+            connection.beginTransaction();
+            userDAO.update(user);
+            connection.commit();
+            connection.close();
+        }
     }
 
     @Override
     public User findOne(Integer id) {
-        AbstractConnection connection = connectionFactory.getMySqlConnection();
-        UserDAO userDAO = daoFactory.getUserDAO(connection);
-        User user = userDAO.findOne(id);
-        connection.close();
-        return user;
+        try(AbstractConnection connection = connectionFactory.getMySqlConnection()) {
+            UserDAO userDAO = daoFactory.getUserDAO(connection);
+            User user = userDAO.findOne(id);
+            connection.close();
+            return user;
+        }
     }
 
     @Override
     public User findOne(String email) {
-        AbstractConnection connection = connectionFactory.getMySqlConnection();
-        UserDAO userDAO = daoFactory.getUserDAO(connection);
-        User user = userDAO.findOne(email);
-        connection.close();
-        return user;
+        try (AbstractConnection connection = connectionFactory.getMySqlConnection()) {
+            UserDAO userDAO = daoFactory.getUserDAO(connection);
+            User user = userDAO.findOne(email);
+            connection.close();
+            return user;
+        }
     }
 
     @Override
     public List<User> findByCourse(Integer id) {
-        AbstractConnection connection = connectionFactory.getMySqlConnection();
-        UserDAO userDAO = daoFactory.getUserDAO(connection);
-        List<User> users = userDAO.findByCourseFollow(id);
-        connection.close();
-        return users;
+        try (AbstractConnection connection = connectionFactory.getMySqlConnection()) {
+            UserDAO userDAO = daoFactory.getUserDAO(connection);
+            List<User> users = userDAO.findByCourseFollow(id);
+            connection.close();
+            return users;
+        }
     }
 }

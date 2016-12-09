@@ -5,6 +5,7 @@ import model.service.CourseServiceImpl;
 import model.service.interfaces.CourseService;
 import utils.constants.AttributesHolder;
 import utils.constants.PagesHolder;
+import utils.constants.UrlHolder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,6 +22,6 @@ public class CourseDeleteCommand implements Command {
         Integer id = Integer.valueOf(request.getParameter(AttributesHolder.ID));
         courseService.delete(id);
         request.setAttribute(AttributesHolder.COURSES, courseService.findByTutor(tutorId));
-        return PagesHolder.TUTOR_COURSES;
+        return UrlHolder.MY_COURSES;
     }
 }

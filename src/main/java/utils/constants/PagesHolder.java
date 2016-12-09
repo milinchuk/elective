@@ -15,4 +15,5 @@ public class PagesHolder {
     public static final String STUDENT_COURSES = PREFIX + "/studentCourses.jsp";
     public static final String ADD_COURSE = PREFIX + "/addCourse.jsp";
     public static final String SIGNUP = PREFIX + "/signup.jsp";
+    public static final String ERROR_PAGE = PREFIX + "/error.jsp";
 }

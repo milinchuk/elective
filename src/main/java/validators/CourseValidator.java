@@ -26,7 +26,7 @@ public class CourseValidator implements Validator<Course> {
             }
 
             if (!textPattern.matcher(course.getAbout()).matches()) {
-                setError(errors, AttributesHolder.ABOUT, ErrorsMessages.COURSE_NAME_INVALID);
+                setError(errors, AttributesHolder.ABOUT, ErrorsMessages.ABOUT_INVALID);
             }
 
             // dates validate

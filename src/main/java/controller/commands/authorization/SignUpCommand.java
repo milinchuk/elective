@@ -8,6 +8,7 @@ import model.service.UserServiceImpl;
 import model.service.interfaces.UserService;
 import utils.constants.AttributesHolder;
 import utils.constants.PagesHolder;
+import utils.constants.UrlHolder;
 import utils.pickers.request.SignupDataRequestPicker;
 import validators.entity.Errors;
 import validators.UserSignUpValidator;
@@ -50,7 +51,7 @@ public class SignUpCommand implements Command {
 
                 // redirect to profile
                 request.setAttribute(AttributesHolder.USER, userService.findOne(user.getEmail()));
-                return PagesHolder.PROFILE;
+                return UrlHolder.PROFILE;
             }
             // user exist
             errors.addMessage(AttributesHolder.EMAIL, ErrorsMessages.USER_EXIST);

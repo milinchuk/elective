@@ -53,10 +53,6 @@
             <h2><small><fmt:message key="msg.edit.course" bundle="${msg}"/></small></h2>
             <hr>
             <form action="${UrlHolder.COURSE_EDIT}" method="post">
-
-                <label><fmt:message key="id" bundle="${msg}"/></label>
-                <input name="${AttributesHolder.ID}" style="border: none" readonly value="<c:out value="${course.id}"/>"/>
-
                 <br>
                 <c:if test="${errors != null && errors.messages['name'] != null}">
                     <div class="alrt alert-danger">

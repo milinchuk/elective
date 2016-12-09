@@ -35,66 +35,72 @@ public class ProgressServiceImpl implements ProgressService {
     @Override
     public void create(Progress progress) {
         // add cheking
-        AbstractConnection connection = connectionFactory.getMySqlConnection();
-        ProgressDAO progressDAO = daoFactory.getProgressDAO(connection);
-        connection.beginTransaction();
-        Progress existProgress = progressDAO.findOne(progress.getStudent().getId(), progress.getCourse().getId());
-        if(existProgress == null) {
-            progressDAO.create(progress);
-        }
-        connection.commit();
-        connection.close();
+       try (AbstractConnection connection = connectionFactory.getMySqlConnection()) {
+           ProgressDAO progressDAO = daoFactory.getProgressDAO(connection);
+           connection.beginTransaction();
+           Progress existProgress = progressDAO.findOne(progress.getStudent().getId(), progress.getCourse().getId());
+           if (existProgress == null) {
+               progressDAO.create(progress);
+           }
+           connection.commit();
+           connection.close();
+       }
     }
 
     @Override
     public void delete(Integer progressId) {
         // add checking
-        AbstractConnection connection = connectionFactory.getMySqlConnection();
-        ProgressDAO progressDAO = daoFactory.getProgressDAO(connection);
-        connection.beginTransaction();
-        progressDAO.delete(progressId);
-        connection.commit();
-        connection.close();
+        try (AbstractConnection connection = connectionFactory.getMySqlConnection()) {
+            ProgressDAO progressDAO = daoFactory.getProgressDAO(connection);
+            connection.beginTransaction();
+            progressDAO.delete(progressId);
+            connection.commit();
+            connection.close();
+        }
     }
 
     @Override
     public void update(Progress progress) {
         // add check
-        AbstractConnection connection = connectionFactory.getMySqlConnection();
-        ProgressDAO progressDAO = daoFactory.getProgressDAO(connection);
-        connection.beginTransaction();
-        progressDAO.update(progress);
-        connection.commit();
-        connection.close();
+        try (AbstractConnection connection = connectionFactory.getMySqlConnection()) {
+            ProgressDAO progressDAO = daoFactory.getProgressDAO(connection);
+            connection.beginTransaction();
+            progressDAO.update(progress);
+            connection.commit();
+            connection.close();
+        }
     }
 
     @Override
     public Progress findOne(Integer id) {
         // add check
-        AbstractConnection connection = connectionFactory.getMySqlConnection();
-        ProgressDAO progressDAO = daoFactory.getProgressDAO(connection);
-        Progress progress = progressDAO.findOne(id);
-        connection.close();
-        return progress;
+        try (AbstractConnection connection = connectionFactory.getMySqlConnection()) {
+            ProgressDAO progressDAO = daoFactory.getProgressDAO(connection);
+            Progress progress = progressDAO.findOne(id);
+            connection.close();
+            return progress;
+        }
     }
 
     @Override
     public List<Progress> findByUser(Integer id) {
         // add check
-        AbstractConnection connection = connectionFactory.getMySqlConnection();
-        ProgressDAO progressDAO = daoFactory.getProgressDAO(connection);
-        List<Progress> progresses = progressDAO.findByUser(id);
-        connection.close();
-        return progresses;
+        try (AbstractConnection connection = connectionFactory.getMySqlConnection()) {
+            ProgressDAO progressDAO = daoFactory.getProgressDAO(connection);
+            List<Progress> progresses = progressDAO.findByUser(id);
+            connection.close();
+            return progresses;
+        }
     }
 
     @Override
     public List<Progress> findByCourse(Integer id) {
         // add check
-        AbstractConnection connection = connectionFactory.getMySqlConnection();
-        ProgressDAO progressDAO = daoFactory.getProgressDAO(connection);
-        List<Progress> progresses = progressDAO.findByCourse(id);
-        connection.close();
-        return progresses;
+        try (AbstractConnection connection = connectionFactory.getMySqlConnection()) {
+            ProgressDAO progressDAO = daoFactory.getProgressDAO(connection);
+            List<Progress> progresses = progressDAO.findByCourse(id);
+            connection.close();
+            return progresses;
+        }
     }
 }

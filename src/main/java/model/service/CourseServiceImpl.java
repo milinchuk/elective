@@ -36,85 +36,95 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public void create(Course course) {
-        AbstractConnection connection = connectionFactory.getMySqlConnection();
-        CourseDAO courseDAO = daoFactory.getCourseDAO(connection);
-        connection.beginTransaction();
-        courseDAO.create(course);
-        connection.commit();
-        connection.close();
+        try (AbstractConnection connection = connectionFactory.getMySqlConnection()){
+            CourseDAO courseDAO = daoFactory.getCourseDAO(connection);
+            connection.beginTransaction();
+            courseDAO.create(course);
+            connection.commit();
+            connection.close();
+        }
+
     }
 
     @Override
     public void delete(Integer id) {
-        AbstractConnection connection = connectionFactory.getMySqlConnection();
-        CourseDAO courseDAO = daoFactory.getCourseDAO(connection);
-        connection.beginTransaction();
-        courseDAO.delete(id);
-        connection.commit();
-        connection.close();
+        try (AbstractConnection connection = connectionFactory.getMySqlConnection()){
+            CourseDAO courseDAO = daoFactory.getCourseDAO(connection);
+            connection.beginTransaction();
+            courseDAO.delete(id);
+            connection.commit();
+            connection.close();
+        }
     }
 
     @Override
     public void update(Course course) {
-        AbstractConnection connection = connectionFactory.getMySqlConnection();
-        CourseDAO courseDAO = daoFactory.getCourseDAO(connection);
-        connection.beginTransaction();
-        courseDAO.update(course);
-        connection.commit();
-        connection.close();
+        try (AbstractConnection connection = connectionFactory.getMySqlConnection()){
+            CourseDAO courseDAO = daoFactory.getCourseDAO(connection);
+            connection.beginTransaction();
+            courseDAO.update(course);
+            connection.commit();
+            connection.close();
+        }
     }
 
     @Override
     public Course findOne(Integer id) {
-        AbstractConnection connection = connectionFactory.getMySqlConnection();
-        CourseDAO courseDAO = daoFactory.getCourseDAO(connection);
-        Course course =  courseDAO.findOne(id);
-        connection.close();
-        return course;
+        try (AbstractConnection connection = connectionFactory.getMySqlConnection()) {
+            CourseDAO courseDAO = daoFactory.getCourseDAO(connection);
+            Course course = courseDAO.findOne(id);
+            connection.close();
+            return course;
+        }
     }
 
     @Override
     public List<Course> findByTutor(Integer id) {
-        AbstractConnection connection = connectionFactory.getMySqlConnection();
-        CourseDAO courseDAO = daoFactory.getCourseDAO(connection);
-        List<Course> courses = courseDAO.findByTutor(id);
-        connection.close();
-        return courses;
+        try (AbstractConnection connection = connectionFactory.getMySqlConnection()) {
+            CourseDAO courseDAO = daoFactory.getCourseDAO(connection);
+            List<Course> courses = courseDAO.findByTutor(id);
+            connection.close();
+            return courses;
+        }
     }
 
     @Override
     public List<Course> findByStudent(Integer id) {
-        AbstractConnection connection = connectionFactory.getMySqlConnection();
-        CourseDAO courseDAO = daoFactory.getCourseDAO(connection);
-        List<Course> courses = courseDAO.findByStudent(id);
-        connection.close();
-        return courses;
+        try (AbstractConnection connection = connectionFactory.getMySqlConnection()) {
+            CourseDAO courseDAO = daoFactory.getCourseDAO(connection);
+            List<Course> courses = courseDAO.findByStudent(id);
+            connection.close();
+            return courses;
+        }
     }
 
     @Override
     public List<Course> findUnfollow(Integer studentId) {
-        AbstractConnection connection = connectionFactory.getMySqlConnection();
-        CourseDAO courseDAO = daoFactory.getCourseDAO(connection);
-        List<Course> courses = courseDAO.findUnfollow(studentId);
-        connection.close();
-        return courses;
+        try (AbstractConnection connection = connectionFactory.getMySqlConnection()) {
+            CourseDAO courseDAO = daoFactory.getCourseDAO(connection);
+            List<Course> courses = courseDAO.findUnfollow(studentId);
+            connection.close();
+            return courses;
+        }
     }
 
     @Override
     public Course findByName(String name) {
-        AbstractConnection connection = connectionFactory.getMySqlConnection();
-        CourseDAO courseDAO = daoFactory.getCourseDAO(connection);
-        Course course = courseDAO.findByName();
-        connection.close();
-        return course;
+        try (AbstractConnection connection = connectionFactory.getMySqlConnection()) {
+            CourseDAO courseDAO = daoFactory.getCourseDAO(connection);
+            Course course = courseDAO.findByName();
+            connection.close();
+            return course;
+        }
     }
 
     @Override
     public List<Course> findAll() {
-        AbstractConnection connection = connectionFactory.getMySqlConnection();
-        CourseDAO courseDAO = daoFactory.getCourseDAO(connection);
-        List<Course> courses = courseDAO.findAll();
-        connection.close();
-        return courses;
+        try (AbstractConnection connection = connectionFactory.getMySqlConnection()) {
+            CourseDAO courseDAO = daoFactory.getCourseDAO(connection);
+            List<Course> courses = courseDAO.findAll();
+            connection.close();
+            return courses;
+        }
     }
 }

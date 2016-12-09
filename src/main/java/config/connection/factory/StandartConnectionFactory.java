@@ -2,6 +2,8 @@ package config.connection.factory;
 
 import config.connection.AbstractConnection;
 import config.connection.MySqlConnection;
+import org.apache.log4j.Logger;
+import utils.constants.LoggingMessagesHanldler;
 
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
@@ -12,6 +14,7 @@ import java.sql.Connection;
  */
 public class StandartConnectionFactory implements ConnectionFactory {
     public static final String RESOURCE_NAME = "java:comp/env/jdbc/elective";
+    private static final Logger logger = Logger.getLogger(StandartConnectionFactory.class);
 
     private StandartConnectionFactory() {
     }
@@ -28,10 +31,11 @@ public class StandartConnectionFactory implements ConnectionFactory {
         try {
             InitialContext context = new InitialContext();
             DataSource dataSource = (DataSource) context.lookup(RESOURCE_NAME);
+            logger.info(LoggingMessagesHanldler.SUCCESSFUL_CONNECTION);
             return new MySqlConnection(dataSource.getConnection());
         } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+            logger.error(LoggingMessagesHanldler.ERROR_CONNECTION);
+            throw new RuntimeException(LoggingMessagesHanldler.ERROR_CONNECTION);
         }
     }
 }

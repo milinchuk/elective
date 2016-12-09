@@ -30,4 +30,6 @@ public interface LoggingMessagesHanldler {
     String SUCCESSFUL_PICK_DATA = "Successful set data.";
     String SUCCESSFUL_SAVE = "Successful save.";
     String TRY_ADD_INCORRECT_DATA = "Try add incorrect data";
+    String SUCCESSFUL_CONNECTION = "Create connection successful";
+    String ERROR_CONNECTION = "Error while creating connection";
 }

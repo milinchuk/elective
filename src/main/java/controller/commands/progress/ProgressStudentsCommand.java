@@ -6,6 +6,7 @@ import model.service.ProgressServiceImpl;
 import model.service.interfaces.ProgressService;
 import utils.constants.AttributesHolder;
 import utils.constants.PagesHolder;
+import utils.constants.UrlHolder;
 import validators.ParameterValidator;
 import validators.Validator;
 
