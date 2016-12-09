@@ -38,9 +38,10 @@ public class CourseUpdateCommand implements Command {
             request.setAttribute(AttributesHolder.COURSES, courseService.findByTutor(id));
             return UrlHolder.MY_COURSES;
         } else {
-            request.setAttribute(AttributesHolder.COURSE, course);
-            request.setAttribute(AttributesHolder.ERRORS, errors);
-            return PagesHolder.COURSE;
+            request.getSession().setAttribute(AttributesHolder.COURSE, course);
+            request.getSession().setAttribute(AttributesHolder.ERRORS, errors);
+            return UrlHolder.COURSE_EDIT_GET + course.getId();
         }
+
     }
 }

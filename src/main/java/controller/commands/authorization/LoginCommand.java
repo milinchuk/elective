@@ -56,8 +56,8 @@ public class LoginCommand implements Command {
             }
         }
 
-        request.setAttribute(AttributesHolder.USER, user);
-        request.setAttribute(AttributesHolder.ERRORS, errors);
-        return PagesHolder.LOGIN;
+        request.getSession().setAttribute(AttributesHolder.USER, user);
+        request.getSession().setAttribute(AttributesHolder.ERRORS, errors);
+        return UrlHolder.LOGIN;
     }
 }

@@ -45,12 +45,10 @@ public class UpdateProfileCommand implements Command {
             userService.update(user);
             user = userService.findOne(user.getId());
             request.setAttribute(AttributesHolder.USER, user);
-            return UrlHolder.PROFILE;
         } else {
-            request.setAttribute(AttributesHolder.ERRORS, errors);
-            request.setAttribute(AttributesHolder.USER, user);
-            return PagesHolder.PROFILE;
+            request.getSession().setAttribute(AttributesHolder.ERRORS, errors);
+            request.getSession().setAttribute(AttributesHolder.USER, user);
         }
-
+        return UrlHolder.PROFILE;
     }
 }

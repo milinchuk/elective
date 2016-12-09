@@ -16,27 +16,24 @@
 <head>
     <title></title>
     <link rel="stylesheet" type="text/css" href="<c:url value="/bootstrap.css"/>" >
-    <style>
-    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript">
-        $(function () {
-            $('#datetimepicker1').datetimepicker({
-                defaultDate: "11/1/2013",
-                disabledDates: [
-                    moment("12/25/2013"),
-                    new Date(2013, 11 - 1, 21),
-                    "11/22/2013 00:53"
-                ]
-            });
-            $('#datetimepicker2').datetimepicker({
-                defaultDate: "11/1/2013",
-                disabledDates: [
-                    moment("12/25/2013"),
-                    new Date(2013, 11 - 1, 21),
-                    "11/22/2013 00:53"
-                ]
-            });
-        });
+        function addYears(id) {
+            var div = document.getElementById(id);
+            var val;
+            for (i = 2010; i <= 2020; i++) {
+                val += ("<option>" + i + "</option>");
+            }
+            div.innerHTML = val;
+        }
+        function addDays(id) {
+            var div = document.getElementById(id);
+            var val;
+            for (i = 1; i <= 31; i++) {
+                val += ("<option>" + i + "</option>");
+            }
+            div.innerHTML = val;
+        }
     </script>
 </head>
 
@@ -74,11 +71,27 @@
                     </div>
                 </c:if>
                 <label for="name"><fmt:message key="start.date" bundle="${msg}"/></label>
-                <div class='input-group date col-xs-3' id='datetimepicker1'>
-                    <input type='text' class="form-control"/>
-                        <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-calendar"></span>
-                        </span>
+                <div class="form-group">
+                    <label for="day">Day:</label>
+                    <select class="form-control" onclick="addDays('startDay')" name="${AttributesHolder.START_DAY}"
+                            id="startDay" >
+                        <option>1</option>
+                    </select>
+
+                    <label for="month">Month:</label>
+                    <select class="form-control" name="${AttributesHolder.START_MONTH}" id="startMonth" >
+                        <c:forEach items="${DateHolder.MONTHS}" var="month">
+                            <option>
+                                <fmt:message key="${month}" bundle="${msg}" />
+                            </option>
+                        </c:forEach>
+                    </select>
+
+                    <label for="year">Year:</label>
+                    <select class="form-control" onclick="addYears('startYear')" name="${AttributesHolder.START_YEAR}"
+                            id="startYear" >
+                        <option>2016</option>
+                    </select>
                 </div>
 
                 <c:if test="${errors != null && errors.messages['endDate'] != null}">
@@ -87,11 +100,25 @@
                     </div>
                 </c:if>
                 <label for="name"><fmt:message key="end.date" bundle="${msg}"/></label>
-                <div class='input-group date col-xs-3' id='datetimepicker2'>
-                    <input type='text' class="form-control"/>
-                        <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-calendar"></span>
-                        </span>
+                <div class="form-group">
+                    <label for="day">Day:</label>
+                    <select class="form-control" onclick="addDays('day')" name="${AttributesHolder.END_DAY}" id="day">
+                        <option>1</option>
+                    </select>
+
+                    <label for="month">Month:</label>
+                    <select class="form-control" name="${AttributesHolder.END_MONTH}" id="month">
+                        <c:forEach items="${DateHolder.MONTHS}" var="month">
+                            <option>
+                                <fmt:message key="${month}" bundle="${msg}" />
+                            </option>
+                        </c:forEach>
+                    </select>
+
+                    <label for="year">Year:</label>
+                    <select class="form-control" onclick="addYears('year')" name="${AttributesHolder.END_YEAR}" id="year">
+                        <option>2016</option>
+                    </select>
                 </div>
 
                 <br>

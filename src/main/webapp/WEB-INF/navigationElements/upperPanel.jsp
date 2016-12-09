@@ -52,7 +52,7 @@
             </c:if>
 
             <c:forEach items="${LocaleHolder.SUPPORTED}" var="locale"> |
-                <a href="${requestScope.header["Referer"]}?${AttributesHolder.LANG}=${locale.language}">${locale.language}</a>
+                <a href="?${AttributesHolder.LANG}=${locale.language}">${locale.language}</a>
             </c:forEach>
         </ul>
     </div>

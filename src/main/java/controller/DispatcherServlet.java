@@ -47,13 +47,7 @@ public class DispatcherServlet extends HttpServlet {
                 String.valueOf(request.getSession().getAttribute(AttributesHolder.ROLE))
                 + request.getRequestURI());
         String path = doRequest(request, response, command);
-        if (request.getAttribute(AttributesHolder.ERRORS) != null &&
-                ((Errors)request.getAttribute(AttributesHolder.ERRORS)).hasError() ) {
-            request.getRequestDispatcher(path).forward(request, response);
-        } else {
-            response.sendRedirect(path);
-        }
-
+        response.sendRedirect(path);
     }
 
     protected String doRequest(HttpServletRequest request, HttpServletResponse response, Command command)

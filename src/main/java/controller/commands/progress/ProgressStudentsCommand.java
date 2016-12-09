@@ -36,6 +36,13 @@ public class ProgressStudentsCommand implements Command {
         Integer id = Integer.parseInt(String.valueOf(courseId));
         List<Progress> students = progressService.findByCourse(id);
         request.setAttribute(AttributesHolder.STUDENTS, students);
+        if (request.getSession().getAttribute(AttributesHolder.ERRORS) != null) {
+            request.setAttribute(AttributesHolder.ERRORS, request.getSession().getAttribute(AttributesHolder.ERRORS));
+            request.getSession().setAttribute(AttributesHolder.ERRORS, null);
+            request.setAttribute(AttributesHolder.STUDENT,
+                    request.getSession().getAttribute(AttributesHolder.STUDENT));
+            request.getSession().setAttribute(AttributesHolder.STUDENT, null);
+        }
         return PagesHolder.STUDENTS;
     }
 }

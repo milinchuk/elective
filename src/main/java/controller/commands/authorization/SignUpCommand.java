@@ -59,8 +59,8 @@ public class SignUpCommand implements Command {
         }
         user.setPassword(null);
         user.setConfirmPassword(null);
-        request.setAttribute(AttributesHolder.USER, user);
-        request.setAttribute(AttributesHolder.ERRORS, errors);
-        return PagesHolder.SIGNUP;
+        request.getSession().setAttribute(AttributesHolder.USER, user);
+        request.getSession().setAttribute(AttributesHolder.ERRORS, errors);
+        return UrlHolder.SIGNUP;
     }
 }

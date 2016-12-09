@@ -19,9 +19,17 @@ public class ProfileCommand implements Command {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) {
         // get id from session
-        Integer id = Integer.valueOf(String.valueOf(request.getSession().getAttribute(AttributesHolder.ID)));
-        User user = userService.findOne(id);
-        request.setAttribute(AttributesHolder.USER, user);
+        if (request.getSession().getAttribute(AttributesHolder.ERRORS) != null) {
+            request.setAttribute(AttributesHolder.ERRORS, request.getSession().getAttribute(AttributesHolder.ERRORS));
+            request.getSession().setAttribute(AttributesHolder.ERRORS, null);
+            request.setAttribute(AttributesHolder.USER,
+                    request.getSession().getAttribute(AttributesHolder.USER));
+            request.getSession().setAttribute(AttributesHolder.USER, null);
+        } else {
+            Integer id = Integer.valueOf(String.valueOf(request.getSession().getAttribute(AttributesHolder.ID)));
+            User user = userService.findOne(id);
+            request.setAttribute(AttributesHolder.USER, user);
+        }
         return PagesHolder.PROFILE;
     }
 }

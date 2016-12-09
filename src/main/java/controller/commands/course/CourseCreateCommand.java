@@ -41,8 +41,8 @@ public class CourseCreateCommand implements Command {
             request.setAttribute(AttributesHolder.COURSES, courses);
             return UrlHolder.MY_COURSES;
         } else {
-            request.setAttribute(AttributesHolder.COURSE, course);
-            request.setAttribute(AttributesHolder.ERRORS, errors);
+            request.getSession().setAttribute(AttributesHolder.COURSE, course);
+            request.getSession().setAttribute(AttributesHolder.ERRORS, errors);
             return UrlHolder.COURSE_ADD;
         }
     }

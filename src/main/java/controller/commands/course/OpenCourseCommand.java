@@ -30,6 +30,12 @@ public class OpenCourseCommand implements Command {
         Integer id = Integer.valueOf(request.getParameter(AttributesHolder.ID));
         Course course = courseService.findOne(id);
         request.setAttribute(AttributesHolder.COURSE, course);
+        if (request.getSession().getAttribute(AttributesHolder.ERRORS) != null) {
+            request.setAttribute(AttributesHolder.ERRORS, request.getSession().getAttribute(AttributesHolder.ERRORS));
+            request.getSession().setAttribute(AttributesHolder.ERRORS, null);
+            request.setAttribute(AttributesHolder.COURSE, request.getSession().getAttribute(AttributesHolder.COURSE));
+            request.getSession().setAttribute(AttributesHolder.COURSE, null);
+        }
         return PagesHolder.COURSE;
     }
 }
