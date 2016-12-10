@@ -72,61 +72,61 @@
                 <textarea name="${AttributesHolder.ABOUT}" style="resize: none;" class="form-control" rows="3"><c:out value="${course.about}"/>
                 </textarea>
 
-                <c:if test="${errors != null && errors.messages['startDate'] != null}">
-                    <div class="alrt alert-danger">
-                        <fmt:message key="${errors.messages['startDate']}" bundle="${msg}" />
-                    </div>
-                </c:if>
-                <label for="name"><fmt:message key="start.date" bundle="${msg}"/></label>
-                <div class="form-group">
-                    <label for="day">Day:</label>
-                    <select class="form-control" onclick="addDays('startDay')" name="${AttributesHolder.START_DAY}"
-                            id="startDay" >
-                        <option>1</option>
-                    </select>
+                <%--<c:if test="${errors != null && errors.messages['startDate'] != null}">--%>
+                    <%--<div class="alrt alert-danger">--%>
+                        <%--<fmt:message key="${errors.messages['startDate']}" bundle="${msg}" />--%>
+                    <%--</div>--%>
+                <%--</c:if>--%>
+                <%--<label for="name"><fmt:message key="start.date" bundle="${msg}"/></label>--%>
+                <%--<div class="form-group">--%>
+                    <%--<label for="day">Day:</label>--%>
+                    <%--<select class="form-control" onclick="addDays('startDay')" name="${AttributesHolder.START_DAY}"--%>
+                            <%--id="startDay" >--%>
+                        <%--<option>1</option>--%>
+                    <%--</select>--%>
 
-                    <label for="month">Month:</label>
-                    <select class="form-control" name="${AttributesHolder.START_MONTH}" id="startMonth" >
-                        <c:forEach items="${DateHolder.MONTHS}" var="month">
-                            <option>
-                                <fmt:message key="${month}" bundle="${msg}" />
-                            </option>
-                        </c:forEach>
-                    </select>
+                    <%--<label for="month">Month:</label>--%>
+                    <%--<select class="form-control" name="${AttributesHolder.START_MONTH}" id="startMonth" >--%>
+                        <%--<c:forEach items="${DateHolder.MONTHS}" var="month">--%>
+                            <%--<option>--%>
+                                <%--<fmt:message key="${month}" bundle="${msg}" />--%>
+                            <%--</option>--%>
+                        <%--</c:forEach>--%>
+                    <%--</select>--%>
 
-                    <label for="year">Year:</label>
-                    <select class="form-control" onclick="addYears('startYear')" name="${AttributesHolder.START_YEAR}"
-                            id="startYear" >
-                        <option>2016</option>
-                    </select>
-                </div>
+                    <%--<label for="year">Year:</label>--%>
+                    <%--<select class="form-control" onclick="addYears('startYear')" name="${AttributesHolder.START_YEAR}"--%>
+                            <%--id="startYear" >--%>
+                        <%--<option>2016</option>--%>
+                    <%--</select>--%>
+                <%--</div>--%>
 
-                <c:if test="${errors != null && errors.messages['endDate'] != null}">
-                    <div class="alrt alert-danger">
-                        <fmt:message key="${errors.messages['endDate']}" bundle="${msg}" />
-                    </div>
-                </c:if>
-                <label for="name"><fmt:message key="end.date" bundle="${msg}"/></label>
-                <div class="form-group">
-                    <label for="day">Day:</label>
-                    <select class="form-control" onclick="addDays('day')" name="${AttributesHolder.END_DAY}" id="day">
-                        <option>1</option>
-                    </select>
+                <%--<c:if test="${errors != null && errors.messages['endDate'] != null}">--%>
+                    <%--<div class="alrt alert-danger">--%>
+                        <%--<fmt:message key="${errors.messages['endDate']}" bundle="${msg}" />--%>
+                    <%--</div>--%>
+                <%--</c:if>--%>
+                <%--<label for="name"><fmt:message key="end.date" bundle="${msg}"/></label>--%>
+                <%--<div class="form-group">--%>
+                    <%--<label for="day">Day:</label>--%>
+                    <%--<select class="form-control" onclick="addDays('day')" name="${AttributesHolder.END_DAY}" id="day">--%>
+                        <%--<option>1</option>--%>
+                    <%--</select>--%>
 
-                    <label for="month">Month:</label>
-                    <select class="form-control" name="${AttributesHolder.END_MONTH}" id="month">
-                        <c:forEach items="${DateHolder.MONTHS}" var="month">
-                            <option>
-                                <fmt:message key="${month}" bundle="${msg}" />
-                            </option>
-                        </c:forEach>
-                    </select>
+                    <%--<label for="month">Month:</label>--%>
+                    <%--<select class="form-control" name="${AttributesHolder.END_MONTH}" id="month">--%>
+                        <%--<c:forEach items="${DateHolder.MONTHS}" var="month">--%>
+                            <%--<option>--%>
+                                <%--<fmt:message key="${month}" bundle="${msg}" />--%>
+                            <%--</option>--%>
+                        <%--</c:forEach>--%>
+                    <%--</select>--%>
 
-                    <label for="year">Year:</label>
-                    <select class="form-control" onclick="addYears('year')" name="${AttributesHolder.END_YEAR}" id="year">
-                        <option>2016</option>
-                    </select>
-                </div>
+                    <%--<label for="year">Year:</label>--%>
+                    <%--<select class="form-control" onclick="addYears('year')" name="${AttributesHolder.END_YEAR}" id="year">--%>
+                        <%--<option>2016</option>--%>
+                    <%--</select>--%>
+                <%--</div>--%>
 
                 <button class="btn btn-success" type="submit"><fmt:message key="save" bundle="${msg}"/></button>
             </form>

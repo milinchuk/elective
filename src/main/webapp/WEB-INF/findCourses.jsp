@@ -47,6 +47,7 @@
                         </button>
                     </form>
                 </div>
+                <br>
             </c:forEach>
         </div>
     </div>

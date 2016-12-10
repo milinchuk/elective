@@ -23,26 +23,28 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class FirstServlet
 */
 public class DispatcherServlet extends HttpServlet {
+    public static final String UTF_8 = "UTF-8";
     private CommandHolder commandHolder = CommandHolderFullInit.init();
     private static final Logger logger = Logger.getLogger(DispatcherServlet.class);
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding(UTF_8);
+        response.setCharacterEncoding(UTF_8);
         Command command = commandHolder.getGetCommand(
                 String.valueOf(request.getSession().getAttribute(AttributesHolder.ROLE))
                         + request.getRequestURI());
         String path = doRequest(request, response, command);
+        logger.info(request.getQueryString());
         request.getRequestDispatcher(path).forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding(UTF_8);
+        response.setCharacterEncoding(UTF_8);
         Command command = commandHolder.getPostCommand(
                 String.valueOf(request.getSession().getAttribute(AttributesHolder.ROLE))
                 + request.getRequestURI());
