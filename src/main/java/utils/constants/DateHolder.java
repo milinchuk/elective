@@ -21,4 +21,6 @@ public class DateHolder {
             "october",
             "november",
             "december");
+
+    public static final String DATE_FORMAT = "dd-MM-yyyy";
 }

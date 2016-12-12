@@ -32,4 +32,7 @@ public interface LoggingMessagesHanldler {
     String TRY_ADD_INCORRECT_DATA = "Try add incorrect data";
     String SUCCESSFUL_CONNECTION = "Create connection successful";
     String ERROR_CONNECTION = "Error while creating connection";
+    String ERROR_PICK_DATE = "Error while pick date";
+    String INFO_SET_LOCALE = "Set locale";
+    String TRY_LOGIN_UNAUTHORIZE = "Try login unauthorize";
 }

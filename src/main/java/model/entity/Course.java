@@ -1,7 +1,9 @@
 package model.entity;
 
-import java.sql.Date;
-import java.util.Calendar;
+import utils.constants.DateHolder;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by click on 11/5/2016.
@@ -50,10 +52,6 @@ public class Course {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
     public User getTutor() {
         return tutor;
     }
@@ -65,5 +63,27 @@ public class Course {
     @Override
     public boolean equals(Object course){
         return this.getId().equals(((Course)course).getId());
+    }
+
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public String getStartDateToString(){
+        return getStringDate(startDate);
+    }
+
+    public String getEndDateToString(){
+        return getStringDate(endDate);
+    }
+
+    private String getStringDate(Date date) {
+        SimpleDateFormat sdf = new SimpleDateFormat(DateHolder.DATE_FORMAT);
+        String stringDate = null;
+        if (date != null) {
+            stringDate = sdf.format(date);
+        }
+        return stringDate;
     }
 }

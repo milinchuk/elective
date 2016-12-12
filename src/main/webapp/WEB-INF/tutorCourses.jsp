@@ -93,8 +93,8 @@
                             </td>
                             <td><c:out value="${course.name}"/></td>
                             <td><c:out value="${course.about}"/></td>
-                            <td><c:out value="${course.startDate}"/></td>
-                            <td><c:out value="${course.endDate}"/></td>
+                            <td><c:out value="${course.startDateToString}"/></td>
+                            <td><c:out value="${course.endDateToString}"/></td>
                             <td>
                                 <a href="${UrlHolder.STUDENTS}/?${AttributesHolder.COURSE}=<c:out value="${course.id}"/>">
                                     <button type="button" class="btn btn-primary">

@@ -32,4 +32,8 @@ public class UrlHolder {
     public static final String PAGE_NOT_FOUND = "/notFound";
     public static final String STUDENTS_COURSE_GET = STUDENTS + "/?course=";
     public static final String COURSE_EDIT_GET = COURSE + "?id=";
+    public static final String LANG_GET = "lang=";
+    public static final String QUESTION_SYMBOL = "?";
+    public static final String EQUAL_SYMBOL = "=";
+    public static final String AND_SYMBOL = "&";
 }

@@ -6,14 +6,14 @@ import config.CommandHolderFullInit;
 import controller.commands.Command;
 import controller.commands.holder.CommandHolder;
 import org.apache.log4j.Logger;
+import sun.plugin.dom.core.Attr;
 import utils.constants.AttributesHolder;
 import utils.constants.PagesHolder;
+import utils.constants.UrlHolder;
 import validators.*;
-import validators.entity.Errors;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -36,7 +36,9 @@ public class DispatcherServlet extends HttpServlet {
                 String.valueOf(request.getSession().getAttribute(AttributesHolder.ROLE))
                         + request.getRequestURI());
         String path = doRequest(request, response, command);
-        logger.info(request.getQueryString());
+        System.out.println(path);
+        System.out.println(request.getAttribute(AttributesHolder.URL_PARAM));
+
         request.getRequestDispatcher(path).forward(request, response);
     }
 

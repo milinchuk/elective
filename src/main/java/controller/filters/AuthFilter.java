@@ -3,7 +3,9 @@ package controller.filters;
 import controller.security.Permission;
 import model.entity.User;
 import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
 import utils.constants.AttributesHolder;
+import utils.constants.LoggingMessagesHanldler;
 import utils.constants.PagesHolder;
 import utils.constants.UrlHolder;
 
@@ -17,7 +19,7 @@ import java.io.IOException;
  * Created by click on 11/15/2016.
  */
 public class AuthFilter implements Filter {
-
+    private static final Logger logger = Logger.getLogger(AuthFilter.class);
     public void init(FilterConfig config) throws ServletException {
     }
 
@@ -28,6 +30,7 @@ public class AuthFilter implements Filter {
         boolean isAuth = isAuthorize(request);
         if (request.getRequestURI().startsWith(UrlHolder.USER)) {
             if (!isAuth) {
+                logger.info(LoggingMessagesHanldler.TRY_LOGIN_UNAUTHORIZE);
                 req.getRequestDispatcher(PagesHolder.LOGIN).forward(req, resp);
             }
         }

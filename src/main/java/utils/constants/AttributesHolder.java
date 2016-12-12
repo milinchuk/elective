@@ -27,7 +27,7 @@ public class AttributesHolder {
     public static final String ERRORS = "errors";
     public static final String STUDENT = "student";
     public static final String TUTOR = "tutor";
-    public static final String URL_PARAMETER = "urlParam";
+    public static final String URL_PARAM = "urlParam";
     public static final String COMMAND = "command";
     public static final String LOCALE = "locale";
     public static final String LANG = "lang";
@@ -43,4 +43,5 @@ public class AttributesHolder {
     public static final String END_DAY = "endDay";
     public static final String END_MONTH = "endMonth";
     public static final String END_YEAR = "endYear";
+    public static final String PARAMS = "params";
 }

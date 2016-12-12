@@ -30,10 +30,13 @@ public class CourseValidator implements Validator<Course> {
             }
 
             // dates validate
-//        if (course.getStartDate()!= null && course.getStartDate().compareTo(course.getEndDate()) == 1) {
-//            setError(errors, AttributesHolder.START_DATE, ErrorsMessages.DATE_INVALID);
-//        }
+            if (course.getStartDate() == null || (course.getStartDate().compareTo(course.getEndDate()) == 1)) {
+                setError(errors, AttributesHolder.START_DATE, ErrorsMessages.DATE_INVALID);
+            }
 
+            if (course.getEndDate() == null) {
+                setError(errors, AttributesHolder.END_DATE, ErrorsMessages.DATE_INVALID);
+            }
         } else {
             setError(errors, AttributesHolder.COURSE, ErrorsMessages.INVALID);
         }

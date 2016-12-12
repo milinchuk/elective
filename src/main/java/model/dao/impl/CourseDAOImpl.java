@@ -7,10 +7,7 @@ import model.entity.Course;
 import org.apache.log4j.Logger;
 import utils.constants.LoggingMessagesHanldler;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -111,8 +108,8 @@ public class CourseDAOImpl implements CourseDAO {
             PreparedStatement statement = connection.prepareStatement(resource.getQuery(QueryResource.CREATE));
             statement.setString(1, course.getName());
             statement.setString(2, course.getAbout());
-            statement.setDate(3, course.getStartDate());
-            statement.setDate(4, course.getEndDate());
+            statement.setDate(3, new Date(course.getStartDate().getTime()));
+            statement.setDate(4, new Date(course.getEndDate().getTime()));
             statement.setInt(5, course.getTutor().getId());
             statement.executeUpdate();
             statement.close();
@@ -129,8 +126,8 @@ public class CourseDAOImpl implements CourseDAO {
             PreparedStatement statement = connection.prepareStatement(resource.getQuery(QueryResource.UPDATE));
             statement.setString(1, course.getName());
             statement.setString(2, course.getAbout());
-            statement.setDate(3, course.getStartDate());
-            statement.setDate(4, course.getEndDate());
+            statement.setDate(3, new Date(course.getStartDate().getTime()));
+            statement.setDate(4, new Date(course.getEndDate().getTime()));
             statement.setInt(5, course.getTutor().getId());
             statement.setInt(6, course.getId());
             statement.executeUpdate();

@@ -12,7 +12,7 @@ public class ParameterValidator implements Validator {
     @Override
     public boolean validate(Object o, Errors errors) {
         if(!validate(o)){
-            errors.addMessage(AttributesHolder.URL_PARAMETER, ErrorsMessages.INVALID_NUMBER_VALUE);
+            errors.addMessage(AttributesHolder.URL_PARAM, ErrorsMessages.INVALID_NUMBER_VALUE);
             errors.setResult(true);
             return false;
         }

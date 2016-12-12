@@ -52,7 +52,9 @@
             </c:if>
 
             <c:forEach items="${LocaleHolder.SUPPORTED}" var="locale"> |
-                <a href="${requestScope.pageContext.request.queryString}?${AttributesHolder.LANG}=${locale.language}">${locale.language}</a>
+                <a href="${urlParam}${locale.language}">
+                    ${locale.language}
+                </a>
             </c:forEach>
         </ul>
     </div>
