@@ -26,7 +26,7 @@ public class AuthFilter implements Filter {
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
         // check credentials
         HttpServletRequest request = (HttpServletRequest) req;
-        request.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding(AttributesHolder.UTF_8);
         boolean isAuth = isAuthorize(request);
         if (request.getRequestURI().startsWith(UrlHolder.USER)) {
             if (!isAuth) {
