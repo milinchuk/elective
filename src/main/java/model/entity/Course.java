@@ -6,7 +6,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Created by click on 11/5/2016.
+ * Course of some subject
+ *
+ * @author Anastasia Milinchuk
  */
 public class Course {
     private Integer id;

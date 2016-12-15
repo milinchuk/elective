@@ -6,14 +6,34 @@ import model.dao.interfaces.ProgressDAO;
 import model.dao.interfaces.UserDAO;
 
 /**
- * Created by click on 11/5/2016.
+ * DAO factory
+ *
+ * @author Anastasia Milinchuk
+ *
+ * @see model.dao.interfaces.CourseDAO
+ * @see model.dao.interfaces.UserDAO
+ * @see model.dao.interfaces.ProgressDAO
  */
 public interface DAOFactory {
+    /**
+     * Create CourseDAO
+     *
+     * @param connection is abstract connection to storage
+     * @return certain course DAO
+     */
     CourseDAO getCourseDAO(AbstractConnection connection);
+
+    /**
+     * Create UserDAO
+     * @param connection is abstract connection to storage
+     * @return user DAO
+     */
     UserDAO getUserDAO(AbstractConnection connection);
+
+    /**
+     * Create ProgressDAO
+     * @param connection is abstract connection to storage
+     * @return progress DAO
+     */
     ProgressDAO getProgressDAO(AbstractConnection connection);
 }
-
-/*
- * Abstract connection : startTransaction, commit, rollback
- */

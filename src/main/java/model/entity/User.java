@@ -1,7 +1,9 @@
 package model.entity;
 
 /**
- * Created by click on 11/5/2016.
+ * User
+ *
+ * @author Anastasia Milinchuk
  */
 public class User {
     private Integer id;

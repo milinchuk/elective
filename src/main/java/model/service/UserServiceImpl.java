@@ -2,7 +2,7 @@ package model.service;
 
 import config.connection.AbstractConnection;
 import config.connection.factory.ConnectionFactory;
-import config.connection.factory.StandartConnectionFactory;
+import config.connection.factory.ConnectionFactoryImpl;
 import model.dao.factory.DAOFactory;
 import model.dao.factory.DAOFactoryImpl;
 import model.dao.interfaces.UserDAO;
@@ -12,7 +12,10 @@ import model.service.interfaces.UserService;
 import java.util.List;
 
 /**
- * Created by click on 11/6/2016.
+ * Implementation of UserService
+ *
+ * @author Anastasia Milinchuk
+ * @see model.service.interfaces.UserService
  */
 public class UserServiceImpl implements UserService {
     private ConnectionFactory connectionFactory;
@@ -24,7 +27,7 @@ public class UserServiceImpl implements UserService {
     }
 
     private static class LazyHolder{
-        private static final UserServiceImpl INSTANCE = new UserServiceImpl(StandartConnectionFactory.getInstance(),
+        private static final UserServiceImpl INSTANCE = new UserServiceImpl(ConnectionFactoryImpl.getInstance(),
                 DAOFactoryImpl.getInstance());
     }
 
@@ -46,12 +49,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void delete(String email) {
+    public void delete(Integer id) {
         try (AbstractConnection connection = connectionFactory.getMySqlConnection()) {
             connection.beginTransaction();
             UserDAO userDAO = daoFactory.getUserDAO(connection);
             connection.commit();
-            userDAO.delete(email);
+            userDAO.delete(id);
         }
     }
 
@@ -86,13 +89,4 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    @Override
-    public List<User> findByCourse(Integer id) {
-        try (AbstractConnection connection = connectionFactory.getMySqlConnection()) {
-            UserDAO userDAO = daoFactory.getUserDAO(connection);
-            List<User> users = userDAO.findByCourseFollow(id);
-            connection.close();
-            return users;
-        }
-    }
 }

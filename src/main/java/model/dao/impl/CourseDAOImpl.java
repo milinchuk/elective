@@ -12,12 +12,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by click on 11/5/2016.
+ * Implementation of CourseDAO which works with MySQL
+ *
+ * @author Anastasia Milinchuk
+ * @see model.dao.interfaces.ProgressDAO
+ * @see model.entity.Progress
  */
 public class CourseDAOImpl implements CourseDAO {
+    /**
+     * Logger for logging errors
+     */
     private static final Logger logger = Logger.getLogger(CourseDAOImpl.class);
+
+    /**
+     * Concrete sql connection
+     */
     private Connection connection;
+
+    /**
+     * Class for retrieving course from ResultSet
+     */
     private CourseResultSetPicker coursePickUtil;
+
+    /**
+     * Class with resources urls for obtaining properties file
+     */
     private QueryResource resource;
 
     public CourseDAOImpl(Connection connection) {
@@ -151,11 +170,6 @@ public class CourseDAOImpl implements CourseDAO {
             logger.error(LoggingMessagesHanldler.ERROR_DELETE, e);
             throw new RuntimeException(LoggingMessagesHanldler.ERROR_DELETE, e);
         }
-    }
-
-    @Override
-    public Course findByName() {
-        return null;
     }
 
     @Override

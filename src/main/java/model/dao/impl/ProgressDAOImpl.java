@@ -15,12 +15,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by click on 11/10/2016.
+ * Implementation of ProgressDAO which works with MySQL
+ *
+ * @author Anastasia Milinchuk
+ * @see model.dao.interfaces.ProgressDAO
+ * @see model.entity.Progress
  */
 public class ProgressDAOImpl implements ProgressDAO {
+    /**
+     * Logger for logging errors
+     */
     private static final Logger logger = Logger.getLogger(ProgressDAOImpl.class);
+
+    /**
+     * Concrete sql connection
+     */
     private Connection connection;
+
+    /**
+     * Class for retrieving progress from ResultSet
+     */
     private ProgressResultSetPicker progressPickUtil;
+
+    /**
+     * Class with resources urls for obtaining properties file
+     */
     private QueryResource resource;
 
     public ProgressDAOImpl(Connection connection) {

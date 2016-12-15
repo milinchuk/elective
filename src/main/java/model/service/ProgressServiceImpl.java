@@ -2,7 +2,7 @@ package model.service;
 
 import config.connection.AbstractConnection;
 import config.connection.factory.ConnectionFactory;
-import config.connection.factory.StandartConnectionFactory;
+import config.connection.factory.ConnectionFactoryImpl;
 import model.dao.factory.DAOFactory;
 import model.dao.factory.DAOFactoryImpl;
 import model.dao.interfaces.ProgressDAO;
@@ -12,10 +12,19 @@ import model.service.interfaces.ProgressService;
 import java.util.List;
 
 /**
- * Created by click on 11/10/2016.
+ * Implementation of ProgressService
+ *
+ * @author Anastasia Milinchuk
  */
 public class ProgressServiceImpl implements ProgressService {
+    /**
+     * Factory that generate new connections
+     */
     private ConnectionFactory connectionFactory;
+
+    /**
+     * Factory that generate DAOs
+     */
     private DAOFactory daoFactory;
 
     private ProgressServiceImpl(ConnectionFactory connectionFactory, DAOFactory daoFactory) {
@@ -24,7 +33,7 @@ public class ProgressServiceImpl implements ProgressService {
     }
 
     private static class LazyHolder{
-        private static final ProgressServiceImpl INSTANCE = new ProgressServiceImpl(StandartConnectionFactory.getInstance(),
+        private static final ProgressServiceImpl INSTANCE = new ProgressServiceImpl(ConnectionFactoryImpl.getInstance(),
                 DAOFactoryImpl.getInstance());
     }
 
@@ -34,7 +43,6 @@ public class ProgressServiceImpl implements ProgressService {
 
     @Override
     public void create(Progress progress) {
-        // add cheking
        try (AbstractConnection connection = connectionFactory.getMySqlConnection()) {
            ProgressDAO progressDAO = daoFactory.getProgressDAO(connection);
            connection.beginTransaction();
@@ -49,7 +57,6 @@ public class ProgressServiceImpl implements ProgressService {
 
     @Override
     public void delete(Integer progressId) {
-        // add checking
         try (AbstractConnection connection = connectionFactory.getMySqlConnection()) {
             ProgressDAO progressDAO = daoFactory.getProgressDAO(connection);
             connection.beginTransaction();
@@ -61,7 +68,6 @@ public class ProgressServiceImpl implements ProgressService {
 
     @Override
     public void update(Progress progress) {
-        // add check
         try (AbstractConnection connection = connectionFactory.getMySqlConnection()) {
             ProgressDAO progressDAO = daoFactory.getProgressDAO(connection);
             connection.beginTransaction();
@@ -73,7 +79,6 @@ public class ProgressServiceImpl implements ProgressService {
 
     @Override
     public Progress findOne(Integer id) {
-        // add check
         try (AbstractConnection connection = connectionFactory.getMySqlConnection()) {
             ProgressDAO progressDAO = daoFactory.getProgressDAO(connection);
             Progress progress = progressDAO.findOne(id);
@@ -84,7 +89,6 @@ public class ProgressServiceImpl implements ProgressService {
 
     @Override
     public List<Progress> findByUser(Integer id) {
-        // add check
         try (AbstractConnection connection = connectionFactory.getMySqlConnection()) {
             ProgressDAO progressDAO = daoFactory.getProgressDAO(connection);
             List<Progress> progresses = progressDAO.findByUser(id);
@@ -95,7 +99,6 @@ public class ProgressServiceImpl implements ProgressService {
 
     @Override
     public List<Progress> findByCourse(Integer id) {
-        // add check
         try (AbstractConnection connection = connectionFactory.getMySqlConnection()) {
             ProgressDAO progressDAO = daoFactory.getProgressDAO(connection);
             List<Progress> progresses = progressDAO.findByCourse(id);

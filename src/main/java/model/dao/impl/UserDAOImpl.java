@@ -12,12 +12,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by click on 11/5/2016.
+ * Implementation of UserDAO which works with MySQL
+ *
+ * @author Anastasia Milinchuk
+ * @see model.dao.interfaces.ProgressDAO
+ * @see model.entity.Progress
  */
 public class UserDAOImpl implements UserDAO {
+    /**
+     * Logger for logging errors
+     */
     private static final Logger logger = Logger.getLogger(ProgressDAOImpl.class);
+
+    /**
+     * Concrete sql connection
+     */
     private Connection connection;
+
+    /**
+     * Class for retrieving user from ResultSet
+     */
     private UserResultSetPicker userPickUtil;
+
+    /**
+     * Class with resources urls for obtaining properties file
+     */
     private QueryResource resource;
 
     public UserDAOImpl(Connection connection) {
@@ -66,25 +85,6 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public List<User> findByCourseFollow(Integer id) {
-        try {
-            PreparedStatement statement = connection.prepareStatement(resource.getQuery(QueryResource.FIND_BY_COURSE));
-            statement.setInt(1, id);
-            ResultSet resultSet = statement.executeQuery();
-            List<User> users = new ArrayList<User>();
-            while (resultSet.next()){
-                users.add(userPickUtil.pick(resultSet));
-            }
-            statement.close();
-            logger.info(LoggingMessagesHanldler.SUCCESSFUL_FIND_BY_COURSE);
-            return users;
-        } catch (SQLException e) {
-            logger.error(LoggingMessagesHanldler.ERROR_FIND_BY_COURSE, e);
-            throw new RuntimeException(LoggingMessagesHanldler.ERROR_FIND_BY_COURSE, e);
-        }
-    }
-
-    @Override
     public void create(User user) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(resource.getQuery(QueryResource.CREATE));
@@ -120,9 +120,10 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public void delete(String email) {
+    public void delete(Integer id) {
         try {
             PreparedStatement statement = connection.prepareStatement(resource.getQuery(QueryResource.DELETE));
+            statement.setInt(1, id);
             statement.execute();
             statement.close();
             logger.info(LoggingMessagesHanldler.SUCCESSFUL_DELETE);

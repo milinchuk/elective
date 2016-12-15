@@ -1,7 +1,9 @@
 package model.entity;
 
 /**
- * Created by click on 11/10/2016.
+ * Student's progress
+ *
+ * @author Anastasia Milinchuk
  */
 public class Progress {
     private Integer id;

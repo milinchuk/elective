@@ -6,7 +6,9 @@ import javax.swing.*;
 import java.util.List;
 
 /**
- * Created by click on 11/10/2016.
+ * Progress service
+ *
+ * @author Anastasia Milinchuk
  */
 public interface ProgressService {
     void create(Progress progress);
