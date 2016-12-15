@@ -8,15 +8,28 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
- * Created by click on 11/25/2016.
+ * This class holder current, default locale. And array with existing locales in application.
+ *
+ * @author Anastasia Milinchuk
+ * @see java.util.Locale
  */
 public class LocaleHolder {
+    /**
+     * This object contain current locale in application
+     */
+    private Locale currentLocale;
+
+    /**
+     * Array of locales that support application
+     */
     public static final Locale[] SUPPORTED = { new Locale(AttributesHolder.EN, AttributesHolder.EN.toUpperCase()),
             new Locale(AttributesHolder.RU, AttributesHolder.RU.toUpperCase()),
             new Locale(AttributesHolder.UA, AttributesHolder.UA.toUpperCase()) };
 
-    private Locale currentLocale;
-    public static final Locale DEFAULT = new Locale("en", "EN");
+    /**
+     * Default locale
+     */
+    public static final Locale DEFAULT = new Locale(AttributesHolder.EN, AttributesHolder.EN.toUpperCase());
 
     public LocaleHolder(Locale currentLocale) {
         this.currentLocale = currentLocale;
