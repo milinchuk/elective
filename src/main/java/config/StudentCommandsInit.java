@@ -22,15 +22,32 @@ import java.util.Map;
 import java.util.Properties;
 
 /**
- * Created by click on 12/2/2016.
+ * This class initialize STUDENT commands: only student has access for this commands.
+ *
+ * @author Anastasia Milichuk
+ * @see controller.commands.Command
+ * @see config.CommandsInit
  */
 public class StudentCommandsInit implements CommandsInit {
+    /**
+     * Properties file that contain regular expressions for validators
+     */
     private Properties regex;
 
+    /**
+     * Constructor which obtain properties file with regular expression and set it.
+     *
+     * @param regex is file with regular expressions
+     */
     public StudentCommandsInit(Properties regex) {
         this.regex = regex;
     }
 
+    /**
+     * Initialization of GET commands for STUDENT
+     *
+     * @return map with key as path for command and directly Command
+     */
     @Override
     public Map<String, Command> initGetCommands() {
         Map<String, Command> getCommand = new HashMap<>();
@@ -41,6 +58,11 @@ public class StudentCommandsInit implements CommandsInit {
         return getCommand;
     }
 
+    /**
+     * Initialization of POST commands for STUDENT
+     *
+     * @return map with key as path for command and directly Command
+     */
     @Override
     public Map<String, Command> initPostCommands() {
         Map<String, Command> postCommand = new HashMap<>();
@@ -56,6 +78,11 @@ public class StudentCommandsInit implements CommandsInit {
         return postCommand;
     }
 
+    /**
+     * This method for creating {@link validators.ProfileValidator}
+     *
+     * @return validator for user data which gets from profile page
+     */
     private ProfileValidator getProfileValidator() {
         return new ProfileValidator(regex.getProperty(AttributesHolder.NAME),
                 new EmailValidator(regex.getProperty(AttributesHolder.EMAIL)));

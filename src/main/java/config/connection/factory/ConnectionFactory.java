@@ -6,8 +6,17 @@ import java.sql.Connection;
 import java.sql.Statement;
 
 /**
- * Created by click on 11/8/2016.
+ * Abstract factory for connections.
+ * Factory retrieve AbstractConnection for some type of storage.
+ *
+ * @author Anastasia Milinchuk
+ * @see config.connection.AbstractConnection
  */
 public interface ConnectionFactory {
+    /**
+     * Retrieve abstract connection for MySql database
+     *
+     * @return connection for MySql
+     */
     public AbstractConnection getMySqlConnection();
 }

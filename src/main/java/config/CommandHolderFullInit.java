@@ -9,9 +9,20 @@ import java.util.Map;
 import java.util.Properties;
 
 /**
- * Created by click on 12/2/2016.
+ * This class put together all commands that configure in project
+ * and init {@link controller.commands.holder.CommandHolder}. Commands divide by purpose,
+ * for example: default, for student, for tutor. And for type: get/post.
+ *
+ * @author Anastasia Milinchuk
+ * @see controller.commands.holder.CommandHolder
  */
 public class CommandHolderFullInit {
+    /**
+     * This method gather commands and fill CommandHolder with these commands.
+     * Get properties file with regular expression, which use in commands.
+     *
+     * @return holder of commands that contain all commands that use in project.
+     */
     public static CommandHolder init(){
         Properties properties = new Properties();
         try {
