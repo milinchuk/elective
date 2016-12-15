@@ -14,10 +14,21 @@ import java.io.IOException;
 import java.util.Locale;
 
 /**
- * Created by click on 11/25/2016.
+ * Localization filter provides for handling get request with
+ * language parameters. It changes and sets a locale. Check correctness of parameter.
+ * Fill correct url for locale.
+ *
+ * @author Anastasia Milinchuk
  */
 public class LocalizationFilter implements Filter {
+    /**
+     * Logger for logging operations.
+     */
     private static final Logger logger = Logger.getLogger(LocalizationFilter.class);
+
+    /**
+     * This holder has a current locale and array with supported locales.
+     */
     protected LocaleHolder localeHolder;
 
     @Override
@@ -25,6 +36,15 @@ public class LocalizationFilter implements Filter {
         localeHolder = new LocaleHolder(LocaleHolder.DEFAULT);
     }
 
+    /**
+     * In this method sets a locale. Get locale parameter, check if it is correct,
+     * set locale.
+     * @param request
+     * @param response
+     * @param chain
+     * @throws IOException
+     * @throws ServletException
+     */
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
@@ -54,6 +74,13 @@ public class LocalizationFilter implements Filter {
     public void destroy() {
     }
 
+    /**
+     * This method parse string with get parameters for setting unique lang field
+     * and construct correct queries string.
+     *
+     * @param request is request from client
+     * @return queries string
+     */
     private String getQueriesWithoutLang(HttpServletRequest request){
         String queries = UrlHolder.QUESTION_SYMBOL;
         String queryString = request.getQueryString();
