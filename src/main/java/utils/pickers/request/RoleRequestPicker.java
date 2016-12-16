@@ -3,7 +3,7 @@ package utils.pickers.request;
 import model.entity.User;
 import org.apache.log4j.Logger;
 import utils.constants.AttributesHolder;
-import utils.constants.LoggingMessagesHanldler;
+import utils.constants.LoggingMessagesHolder;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -23,7 +23,7 @@ public class RoleRequestPicker extends RequestPicker<Integer> {
                 return User.TUTOR;
             }
         } catch (Exception e) {
-            logger.error(LoggingMessagesHanldler.ERROR_PICK, e);
+            logger.error(LoggingMessagesHolder.ERROR_PICK, e);
         }
         return null;
     }

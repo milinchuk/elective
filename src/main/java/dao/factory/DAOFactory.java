@@ -1,18 +1,18 @@
-package model.dao.factory;
+package dao.factory;
 
 import config.connection.AbstractConnection;
-import model.dao.interfaces.CourseDAO;
-import model.dao.interfaces.ProgressDAO;
-import model.dao.interfaces.UserDAO;
+import dao.interfaces.CourseDAO;
+import dao.interfaces.ProgressDAO;
+import dao.interfaces.UserDAO;
 
 /**
  * DAO factory
  *
  * @author Anastasia Milinchuk
  *
- * @see model.dao.interfaces.CourseDAO
- * @see model.dao.interfaces.UserDAO
- * @see model.dao.interfaces.ProgressDAO
+ * @see dao.interfaces.CourseDAO
+ * @see dao.interfaces.UserDAO
+ * @see dao.interfaces.ProgressDAO
  */
 public interface DAOFactory {
     /**

@@ -4,7 +4,7 @@ import model.entity.Course;
 import model.entity.User;
 import org.apache.log4j.Logger;
 import utils.constants.AttributesHolder;
-import utils.constants.LoggingMessagesHanldler;
+import utils.constants.LoggingMessagesHolder;
 
 import java.sql.ResultSet;
 
@@ -27,11 +27,11 @@ public class CourseResultSetPicker implements ResultSetPicker<Course> {
             UserResultSetPicker userPickUtil = new UserResultSetPicker();
             User user = userPickUtil.pick(resultSet);
             course.setTutor(user);
-            logger.info(LoggingMessagesHanldler.SUCCESSFUL_PICK_DATA);
+            logger.info(LoggingMessagesHolder.SUCCESSFUL_PICK_DATA);
             return course;
         } catch (Exception e){
-            logger.error(LoggingMessagesHanldler.ERROR_PICK, e);
-            throw new RuntimeException(LoggingMessagesHanldler.ERROR_PICK, e);
+            logger.error(LoggingMessagesHolder.ERROR_PICK, e);
+            throw new RuntimeException(LoggingMessagesHolder.ERROR_PICK, e);
         }
     }
 }

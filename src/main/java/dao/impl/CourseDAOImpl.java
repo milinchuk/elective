@@ -1,11 +1,11 @@
-package model.dao.impl;
+package dao.impl;
 
 import utils.QueryResource;
-import model.dao.interfaces.CourseDAO;
+import dao.interfaces.CourseDAO;
+import utils.constants.LoggingMessagesHolder;
 import utils.pickers.resultSet.CourseResultSetPicker;
 import model.entity.Course;
 import org.apache.log4j.Logger;
-import utils.constants.LoggingMessagesHanldler;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ import java.util.List;
  * Implementation of CourseDAO which works with MySQL
  *
  * @author Anastasia Milinchuk
- * @see model.dao.interfaces.ProgressDAO
+ * @see dao.interfaces.ProgressDAO
  * @see model.entity.Progress
  */
 public class CourseDAOImpl implements CourseDAO {
@@ -56,11 +56,11 @@ public class CourseDAOImpl implements CourseDAO {
                 course = coursePickUtil.pick(resultSet);
             }
             statement.close();
-            logger.info(LoggingMessagesHanldler.SUCCESSFUL_FIND_ONE);
+            logger.info(LoggingMessagesHolder.SUCCESSFUL_FIND_ONE);
             return course;
         } catch (Exception e){
-            logger.error(LoggingMessagesHanldler.ERROR_FIND_ONE, e);
-            throw new RuntimeException(LoggingMessagesHanldler.ERROR_FIND_ONE, e);
+            logger.error(LoggingMessagesHolder.ERROR_FIND_ONE, e);
+            throw new RuntimeException(LoggingMessagesHolder.ERROR_FIND_ONE, e);
         }
     }
 
@@ -75,11 +75,11 @@ public class CourseDAOImpl implements CourseDAO {
                 courses.add(coursePickUtil.pick(resultSet));
             }
             statement.close();
-            logger.info(LoggingMessagesHanldler.SUCCESSFUL_FIND_UNFOLLOW);
+            logger.info(LoggingMessagesHolder.SUCCESSFUL_FIND_UNFOLLOW);
             return courses;
         } catch (SQLException e) {
-            logger.error(LoggingMessagesHanldler.ERROR_UNFOLLOW, e);
-            throw new RuntimeException(LoggingMessagesHanldler.ERROR_UNFOLLOW, e);
+            logger.error(LoggingMessagesHolder.ERROR_UNFOLLOW, e);
+            throw new RuntimeException(LoggingMessagesHolder.ERROR_UNFOLLOW, e);
         }
     }
 
@@ -94,11 +94,11 @@ public class CourseDAOImpl implements CourseDAO {
                 courses.add(coursePickUtil.pick(resultSet));
             }
             statement.close();
-            logger.info(LoggingMessagesHanldler.SUCCESSFUL_FIND_BY_TUTOR);
+            logger.info(LoggingMessagesHolder.SUCCESSFUL_FIND_BY_TUTOR);
             return courses;
         } catch (SQLException e) {
-            logger.error(LoggingMessagesHanldler.ERROR_FIND_BY_TUTOR, e);
-            throw new RuntimeException(LoggingMessagesHanldler.ERROR_FIND_BY_TUTOR, e);
+            logger.error(LoggingMessagesHolder.ERROR_FIND_BY_TUTOR, e);
+            throw new RuntimeException(LoggingMessagesHolder.ERROR_FIND_BY_TUTOR, e);
         }
     }
 
@@ -113,11 +113,11 @@ public class CourseDAOImpl implements CourseDAO {
                 courses.add(coursePickUtil.pick(resultSet));
             }
             statement.close();
-            logger.info(LoggingMessagesHanldler.SUCCESSFUL_FIND_BY_STUDENT);
+            logger.info(LoggingMessagesHolder.SUCCESSFUL_FIND_BY_STUDENT);
             return courses;
         } catch (SQLException e) {
-            logger.error(LoggingMessagesHanldler.ERROR_FIND_BY_STUDENT, e);
-            throw new RuntimeException(LoggingMessagesHanldler.ERROR_FIND_BY_STUDENT, e);
+            logger.error(LoggingMessagesHolder.ERROR_FIND_BY_STUDENT, e);
+            throw new RuntimeException(LoggingMessagesHolder.ERROR_FIND_BY_STUDENT, e);
         }
     }
 
@@ -133,8 +133,8 @@ public class CourseDAOImpl implements CourseDAO {
             statement.executeUpdate();
             statement.close();
         } catch (SQLException e) {
-            logger.error(LoggingMessagesHanldler.ERROR_CREATE, e);
-            throw new RuntimeException(LoggingMessagesHanldler.ERROR_CREATE, e);
+            logger.error(LoggingMessagesHolder.ERROR_CREATE, e);
+            throw new RuntimeException(LoggingMessagesHolder.ERROR_CREATE, e);
         }
 
     }
@@ -151,10 +151,10 @@ public class CourseDAOImpl implements CourseDAO {
             statement.setInt(6, course.getId());
             statement.executeUpdate();
             statement.close();
-            logger.info(LoggingMessagesHanldler.SUCCESSFUL_UPDATE);
+            logger.info(LoggingMessagesHolder.SUCCESSFUL_UPDATE);
         } catch (SQLException e) {
-            logger.error(LoggingMessagesHanldler.ERROR_UPDATE, e);
-            throw new RuntimeException(LoggingMessagesHanldler.ERROR_UPDATE, e);
+            logger.error(LoggingMessagesHolder.ERROR_UPDATE, e);
+            throw new RuntimeException(LoggingMessagesHolder.ERROR_UPDATE, e);
         }
     }
 
@@ -165,10 +165,10 @@ public class CourseDAOImpl implements CourseDAO {
             statement.setInt(1, id);
             statement.execute();
             statement.close();
-            logger.info(LoggingMessagesHanldler.SUCCESSFUL_DELETE);
+            logger.info(LoggingMessagesHolder.SUCCESSFUL_DELETE);
         } catch (SQLException e) {
-            logger.error(LoggingMessagesHanldler.ERROR_DELETE, e);
-            throw new RuntimeException(LoggingMessagesHanldler.ERROR_DELETE, e);
+            logger.error(LoggingMessagesHolder.ERROR_DELETE, e);
+            throw new RuntimeException(LoggingMessagesHolder.ERROR_DELETE, e);
         }
     }
 
@@ -182,11 +182,11 @@ public class CourseDAOImpl implements CourseDAO {
                 courses.add(coursePickUtil.pick(resultSet));
             }
             statement.close();
-            logger.info(LoggingMessagesHanldler.SUCCESSFUL_FIND_ALL);
+            logger.info(LoggingMessagesHolder.SUCCESSFUL_FIND_ALL);
             return courses;
         } catch (SQLException e) {
-            logger.error(LoggingMessagesHanldler.ERROR_FIND_ALL, e);
-            throw new RuntimeException(LoggingMessagesHanldler.ERROR_FIND_ALL, e);
+            logger.error(LoggingMessagesHolder.ERROR_FIND_ALL, e);
+            throw new RuntimeException(LoggingMessagesHolder.ERROR_FIND_ALL, e);
         }
     }
 
@@ -197,10 +197,10 @@ public class CourseDAOImpl implements CourseDAO {
             statement.setInt(1, id);
             statement.execute();
             statement.close();
-            logger.info(LoggingMessagesHanldler.SUCCESSFUL_DELETE);
+            logger.info(LoggingMessagesHolder.SUCCESSFUL_DELETE);
         } catch (SQLException e) {
-            logger.error(LoggingMessagesHanldler.ERROR_DELETE, e);
-            throw new RuntimeException(LoggingMessagesHanldler.ERROR_DELETE, e);
+            logger.error(LoggingMessagesHolder.ERROR_DELETE, e);
+            throw new RuntimeException(LoggingMessagesHolder.ERROR_DELETE, e);
         }
     }
 

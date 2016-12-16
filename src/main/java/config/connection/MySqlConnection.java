@@ -1,7 +1,7 @@
 package config.connection;
 
 import org.apache.log4j.Logger;
-import utils.constants.LoggingMessagesHanldler;
+import utils.constants.LoggingMessagesHolder;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -59,8 +59,8 @@ public class MySqlConnection implements AbstractConnection  {
             connection.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
             connection.setAutoCommit(false);
         } catch (SQLException e) {
-            logger.error(LoggingMessagesHanldler.ERROR_BEGIN_TRANSACTION, e);
-            throw new RuntimeException(LoggingMessagesHanldler.ERROR_BEGIN_TRANSACTION, e);
+            logger.error(LoggingMessagesHolder.ERROR_BEGIN_TRANSACTION, e);
+            throw new RuntimeException(LoggingMessagesHolder.ERROR_BEGIN_TRANSACTION, e);
         }
     }
 
@@ -74,8 +74,8 @@ public class MySqlConnection implements AbstractConnection  {
             connection.rollback();
             connection.setAutoCommit(true);
         } catch (SQLException e) {
-            logger.error(LoggingMessagesHanldler.ERROR_COMMIT, e);
-            throw new RuntimeException(LoggingMessagesHanldler.ERROR_COMMIT, e);
+            logger.error(LoggingMessagesHolder.ERROR_COMMIT, e);
+            throw new RuntimeException(LoggingMessagesHolder.ERROR_COMMIT, e);
         }
     }
 
@@ -89,8 +89,8 @@ public class MySqlConnection implements AbstractConnection  {
             connection.setAutoCommit(true);
             isTransactionCommitted = true;
         } catch (SQLException e) {
-            logger.error(LoggingMessagesHanldler.ERROR_COMMIT, e);
-            throw new RuntimeException(LoggingMessagesHanldler.ERROR_COMMIT, e);
+            logger.error(LoggingMessagesHolder.ERROR_COMMIT, e);
+            throw new RuntimeException(LoggingMessagesHolder.ERROR_COMMIT, e);
         }
     }
 
@@ -105,8 +105,8 @@ public class MySqlConnection implements AbstractConnection  {
             }
             connection.close();
         } catch (SQLException e) {
-            logger.error(LoggingMessagesHanldler.ERROR_COMMIT, e);
-            throw new RuntimeException(LoggingMessagesHanldler.ERROR_COMMIT, e);
+            logger.error(LoggingMessagesHolder.ERROR_COMMIT, e);
+            throw new RuntimeException(LoggingMessagesHolder.ERROR_COMMIT, e);
         }
     }
 }

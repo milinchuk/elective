@@ -1,4 +1,4 @@
-package model.dao.interfaces;
+package dao.interfaces;
 
 /**
  * DAO for general operations.
@@ -7,9 +7,9 @@ package model.dao.interfaces;
  *
  * @author Anastasia Milinchuk
  *
- * @see model.dao.interfaces.CourseDAO
- * @see model.dao.interfaces.ProgressDAO
- * @see model.dao.interfaces.UserDAO
+ * @see dao.interfaces.CourseDAO
+ * @see dao.interfaces.ProgressDAO
+ * @see dao.interfaces.UserDAO
  */
 public interface GeneralDAO<T, P> {
     /**

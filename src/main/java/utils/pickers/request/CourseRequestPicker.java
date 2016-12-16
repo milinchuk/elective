@@ -6,14 +6,12 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import utils.constants.AttributesHolder;
 import utils.constants.DateHolder;
-import utils.constants.LoggingMessagesHanldler;
-import utils.constants.PagesHolder;
+import utils.constants.LoggingMessagesHolder;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.concurrent.ExecutionException;
 
 /**
  *
@@ -40,10 +38,10 @@ public class CourseRequestPicker extends RequestPicker<Course> {
             Date endDate = pickDate(request.getParameter(AttributesHolder.END_DATE));
             course.setStartDate(startDate);
             course.setEndDate(endDate);
-            logger.info(LoggingMessagesHanldler.SUCCESSFUL_PICK_DATA);
+            logger.info(LoggingMessagesHolder.SUCCESSFUL_PICK_DATA);
             return course;
         } catch (Exception e) {
-            logger.error(LoggingMessagesHanldler.ERROR_PICK, e);
+            logger.error(LoggingMessagesHolder.ERROR_PICK, e);
             return null;
         }
     }
@@ -54,7 +52,7 @@ public class CourseRequestPicker extends RequestPicker<Course> {
         try {
             formatDate = sdf.parse(date);
         } catch (ParseException e) {
-            logger.error(LoggingMessagesHanldler.ERROR_PICK_DATE);
+            logger.error(LoggingMessagesHolder.ERROR_PICK_DATE);
         }
         return formatDate;
     }

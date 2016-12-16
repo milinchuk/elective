@@ -1,4 +1,4 @@
-package model.dao.interfaces;
+package dao.interfaces;
 
 import model.entity.Course;
 
@@ -10,9 +10,9 @@ import java.util.List;
  * @author Anastasia Milinchuk
  *
  * @see model.entity.Course
- * @see model.dao.interfaces.UserDAO
- * @see model.dao.interfaces.ProgressDAO
- * @see model.dao.interfaces.GeneralDAO
+ * @see dao.interfaces.UserDAO
+ * @see dao.interfaces.ProgressDAO
+ * @see dao.interfaces.GeneralDAO
  */
 public interface CourseDAO extends GeneralDAO<Course, Integer> {
     /**

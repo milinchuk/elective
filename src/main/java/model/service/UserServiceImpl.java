@@ -3,13 +3,11 @@ package model.service;
 import config.connection.AbstractConnection;
 import config.connection.factory.ConnectionFactory;
 import config.connection.factory.ConnectionFactoryImpl;
-import model.dao.factory.DAOFactory;
-import model.dao.factory.DAOFactoryImpl;
-import model.dao.interfaces.UserDAO;
+import dao.factory.DAOFactory;
+import dao.factory.DAOFactoryImpl;
+import dao.interfaces.UserDAO;
 import model.entity.User;
 import model.service.interfaces.UserService;
-
-import java.util.List;
 
 /**
  * Implementation of UserService

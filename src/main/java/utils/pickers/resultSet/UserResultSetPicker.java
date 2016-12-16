@@ -1,11 +1,9 @@
 package utils.pickers.resultSet;
 
-import controller.commands.authorization.LoginCommand;
 import model.entity.User;
 import org.apache.log4j.Logger;
-import sun.rmi.runtime.Log;
 import utils.constants.AttributesHolder;
-import utils.constants.LoggingMessagesHanldler;
+import utils.constants.LoggingMessagesHolder;
 
 import java.sql.ResultSet;
 
@@ -27,11 +25,11 @@ public class UserResultSetPicker implements ResultSetPicker<User> {
             user.setFirstName(resultSet.getString(FIRST_NAME));
             user.setLastName(resultSet.getString(LAST_NAME));
             user.setRole(resultSet.getInt(ROLE_ID));
-            logger.info(LoggingMessagesHanldler.SUCCESSFUL_PICK_DATA);
+            logger.info(LoggingMessagesHolder.SUCCESSFUL_PICK_DATA);
             return user;
         } catch (Exception e){
-            logger.error(LoggingMessagesHanldler.ERROR_PICK, e);
-            throw new RuntimeException(LoggingMessagesHanldler.ERROR_PICK, e);
+            logger.error(LoggingMessagesHolder.ERROR_PICK, e);
+            throw new RuntimeException(LoggingMessagesHolder.ERROR_PICK, e);
         }
 
     }

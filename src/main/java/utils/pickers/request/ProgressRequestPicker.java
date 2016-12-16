@@ -4,7 +4,7 @@ import model.entity.Course;
 import model.entity.Progress;
 import org.apache.log4j.Logger;
 import utils.constants.AttributesHolder;
-import utils.constants.LoggingMessagesHanldler;
+import utils.constants.LoggingMessagesHolder;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -23,10 +23,10 @@ public class ProgressRequestPicker extends RequestPicker<Progress>{
             progress.setCourse(course);
             progress.setMark(request.getParameter(AttributesHolder.MARK));
             progress.setNote(request.getParameter(AttributesHolder.NOTE));
-            logger.info(LoggingMessagesHanldler.SUCCESSFUL_PICK_DATA);
+            logger.info(LoggingMessagesHolder.SUCCESSFUL_PICK_DATA);
             return progress;
         } catch (Exception e) {
-            logger.error(LoggingMessagesHanldler.ERROR_PICK, e);
+            logger.error(LoggingMessagesHolder.ERROR_PICK, e);
             return null;
         }
     }

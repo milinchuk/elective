@@ -3,7 +3,7 @@ package utils.constants;
 /**
  * Created by click on 12/1/2016.
  */
-public interface LoggingMessagesHanldler {
+public interface LoggingMessagesHolder {
     String ERROR_BEGIN_TRANSACTION = "Error begin transaction.";
     String ERROR_COMMIT = "Error commit.";
     String ERROR_FIND_ONE = "Error with find one operation.";

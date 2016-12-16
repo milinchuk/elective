@@ -1,7 +1,7 @@
 package controller.security;
 
 import org.apache.log4j.Logger;
-import utils.constants.LoggingMessagesHanldler;
+import utils.constants.LoggingMessagesHolder;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -47,7 +47,7 @@ public class EncryptPassword {
             generatedPassword = sb.toString();
         }
         catch (NoSuchAlgorithmException e) {
-            logger.error(LoggingMessagesHanldler.ERROR_ENCRYPT_ALGORITHM);
+            logger.error(LoggingMessagesHolder.ERROR_ENCRYPT_ALGORITHM);
             throw new RuntimeException(e);
         }
         return generatedPassword;

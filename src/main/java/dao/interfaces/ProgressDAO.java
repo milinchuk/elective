@@ -1,4 +1,4 @@
-package model.dao.interfaces;
+package dao.interfaces;
 
 import model.entity.Progress;
 
@@ -10,9 +10,9 @@ import java.util.List;
  * @author Anastasia Milinchuk
  *
  * @see model.entity.Progress
- * @see model.dao.interfaces.CourseDAO
- * @see model.dao.interfaces.UserDAO
- * @see model.dao.interfaces.GeneralDAO
+ * @see dao.interfaces.CourseDAO
+ * @see dao.interfaces.UserDAO
+ * @see dao.interfaces.GeneralDAO
  */
 public interface ProgressDAO extends GeneralDAO<Progress, Integer> {
     /**

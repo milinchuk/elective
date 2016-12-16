@@ -36,13 +36,6 @@ public class AttributesHolder {
     public static final String UA = "ua";
     public static final String LOGIN = "login";
     public static final String USERS = "users";
-    public static final String START_DAY = "startDay";
-    public static final String START_MONTH = "startMonth";
-    public static final String START_YEAR = "startYear";
-
-    public static final String END_DAY = "endDay";
-    public static final String END_MONTH = "endMonth";
-    public static final String END_YEAR = "endYear";
     public static final String PARAMS = "params";
     public static final String UTF_8 = "UTF-8";
     public static final String FOLLOWING = "following";

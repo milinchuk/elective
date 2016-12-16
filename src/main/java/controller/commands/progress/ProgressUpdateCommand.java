@@ -6,8 +6,7 @@ import model.service.ProgressServiceImpl;
 import model.service.interfaces.ProgressService;
 import org.apache.log4j.Logger;
 import utils.constants.AttributesHolder;
-import utils.constants.LoggingMessagesHanldler;
-import utils.constants.PagesHolder;
+import utils.constants.LoggingMessagesHolder;
 import utils.constants.UrlHolder;
 import utils.pickers.request.ProgressRequestPicker;
 import validators.ProgressValidator;
@@ -44,7 +43,7 @@ public class ProgressUpdateCommand implements Command {
             try {
                 progressService.update(progress);
             } catch (Exception e) {
-                logger.error(LoggingMessagesHanldler.ERROR_UPDATE);
+                logger.error(LoggingMessagesHolder.ERROR_UPDATE);
                 errors.addMessage(AttributesHolder.PROGRESS, e.getMessage());
                 request.getSession().setAttribute(AttributesHolder.ERRORS, errors);
             }

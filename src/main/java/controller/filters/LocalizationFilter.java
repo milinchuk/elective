@@ -4,7 +4,7 @@ import i18n.LocaleHolder;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import utils.constants.AttributesHolder;
-import utils.constants.LoggingMessagesHanldler;
+import utils.constants.LoggingMessagesHolder;
 import utils.constants.UrlHolder;
 
 import javax.servlet.*;
@@ -53,7 +53,7 @@ public class LocalizationFilter implements Filter {
         HttpSession session = req.getSession();
         Locale locale = localeHolder.getCurrentLocale();
         if(req.getParameter(AttributesHolder.LANG) != null) {
-            logger.info(LoggingMessagesHanldler.INFO_SET_LOCALE);
+            logger.info(LoggingMessagesHolder.INFO_SET_LOCALE);
             for (Locale loc : LocaleHolder.SUPPORTED) {
                 if (loc.getLanguage().equals(req.getParameter(AttributesHolder.LANG))) {
                     localeHolder.setCurrentLocale(loc);
@@ -62,7 +62,7 @@ public class LocalizationFilter implements Filter {
                 }
             }
         }
-        logger.info(LoggingMessagesHanldler.INFO_SET_LOCALE);
+        logger.info(LoggingMessagesHolder.INFO_SET_LOCALE);
         req.setAttribute(AttributesHolder.LOCALE, locale);
         req.setAttribute(AttributesHolder.URL_PARAM, getQueriesWithoutLang(req));
         response.setLocale(locale);

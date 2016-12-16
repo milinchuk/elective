@@ -1,14 +1,14 @@
-package model.dao.factory;
+package dao.factory;
 
 import config.connection.AbstractConnection;
-import model.dao.impl.CourseDAOImpl;
-import model.dao.impl.ProgressDAOImpl;
-import model.dao.impl.UserDAOImpl;
-import model.dao.interfaces.CourseDAO;
-import model.dao.interfaces.ProgressDAO;
-import model.dao.interfaces.UserDAO;
+import dao.impl.CourseDAOImpl;
+import dao.impl.ProgressDAOImpl;
+import dao.impl.UserDAOImpl;
+import dao.interfaces.CourseDAO;
+import dao.interfaces.ProgressDAO;
+import dao.interfaces.UserDAO;
 import org.apache.log4j.Logger;
-import utils.constants.LoggingMessagesHanldler;
+import utils.constants.LoggingMessagesHolder;
 
 import java.sql.Connection;
 
@@ -16,7 +16,7 @@ import java.sql.Connection;
  * Implementation of DAOFactory
  *
  * @author Anastasia Milinchuk
- * @see model.dao.factory.DAOFactory
+ * @see dao.factory.DAOFactory
  */
 public class DAOFactoryImpl implements DAOFactory {
     private static final Logger logger = Logger.getLogger(DAOFactoryImpl.class);
@@ -36,7 +36,7 @@ public class DAOFactoryImpl implements DAOFactory {
         if(connection.getConnection() instanceof Connection) {
             return new CourseDAOImpl((Connection)connection.getConnection());
         } else {
-            logger.error(LoggingMessagesHanldler.ERROR_WITH_CREATING_DAO);
+            logger.error(LoggingMessagesHolder.ERROR_WITH_CREATING_DAO);
             throw new RuntimeException();
         }
     }
@@ -46,7 +46,7 @@ public class DAOFactoryImpl implements DAOFactory {
         if (connection.getConnection() instanceof Connection) {
             return new UserDAOImpl((Connection)connection.getConnection());
         } else {
-            logger.error(LoggingMessagesHanldler.ERROR_WITH_CREATING_DAO);
+            logger.error(LoggingMessagesHolder.ERROR_WITH_CREATING_DAO);
             throw new RuntimeException();
         }
     }
@@ -56,7 +56,7 @@ public class DAOFactoryImpl implements DAOFactory {
         if (connection.getConnection() instanceof Connection) {
             return new ProgressDAOImpl((Connection)connection.getConnection());
         } else {
-            logger.error(LoggingMessagesHanldler.ERROR_WITH_CREATING_DAO);
+            logger.error(LoggingMessagesHolder.ERROR_WITH_CREATING_DAO);
             throw new RuntimeException();
         }
     }

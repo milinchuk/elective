@@ -1,11 +1,11 @@
-package model.dao.impl;
+package dao.impl;
 
+import utils.constants.LoggingMessagesHolder;
 import utils.pickers.resultSet.ProgressResultSetPicker;
 import utils.QueryResource;
-import model.dao.interfaces.ProgressDAO;
+import dao.interfaces.ProgressDAO;
 import model.entity.Progress;
 import org.apache.log4j.Logger;
-import utils.constants.LoggingMessagesHanldler;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,7 +18,7 @@ import java.util.List;
  * Implementation of ProgressDAO which works with MySQL
  *
  * @author Anastasia Milinchuk
- * @see model.dao.interfaces.ProgressDAO
+ * @see dao.interfaces.ProgressDAO
  * @see model.entity.Progress
  */
 public class ProgressDAOImpl implements ProgressDAO {
@@ -56,10 +56,10 @@ public class ProgressDAOImpl implements ProgressDAO {
             statement.setInt(2, progress.getStudent().getId());
             statement.executeUpdate();
             statement.close();
-            logger.info(LoggingMessagesHanldler.SUCCESSFUL_CREATE);
+            logger.info(LoggingMessagesHolder.SUCCESSFUL_CREATE);
         } catch (SQLException e) {
-            logger.error(LoggingMessagesHanldler.ERROR_CREATE, e);
-            throw new RuntimeException(LoggingMessagesHanldler.ERROR_CREATE, e);
+            logger.error(LoggingMessagesHolder.ERROR_CREATE, e);
+            throw new RuntimeException(LoggingMessagesHolder.ERROR_CREATE, e);
         }
     }
 
@@ -70,10 +70,10 @@ public class ProgressDAOImpl implements ProgressDAO {
             statement.setInt(1, id);
             statement.executeUpdate();
             statement.close();
-            logger.info(LoggingMessagesHanldler.SUCCESSFUL_DELETE);
+            logger.info(LoggingMessagesHolder.SUCCESSFUL_DELETE);
         } catch (SQLException e) {
-            logger.error(LoggingMessagesHanldler.ERROR_DELETE, e);
-            throw new RuntimeException(LoggingMessagesHanldler.ERROR_DELETE, e);
+            logger.error(LoggingMessagesHolder.ERROR_DELETE, e);
+            throw new RuntimeException(LoggingMessagesHolder.ERROR_DELETE, e);
         }
     }
 
@@ -86,10 +86,10 @@ public class ProgressDAOImpl implements ProgressDAO {
             statement.setInt(3, progress.getId());
             statement.executeUpdate();
             statement.close();
-            logger.info(LoggingMessagesHanldler.SUCCESSFUL_UPDATE);
+            logger.info(LoggingMessagesHolder.SUCCESSFUL_UPDATE);
         } catch (SQLException e) {
-            logger.error(LoggingMessagesHanldler.ERROR_UPDATE, e);
-            throw new RuntimeException(LoggingMessagesHanldler.ERROR_UPDATE, e);
+            logger.error(LoggingMessagesHolder.ERROR_UPDATE, e);
+            throw new RuntimeException(LoggingMessagesHolder.ERROR_UPDATE, e);
         }
     }
 
@@ -104,11 +104,11 @@ public class ProgressDAOImpl implements ProgressDAO {
                 progress = progressPickUtil.pick(resultSet);
             }
             statement.close();
-            logger.info(LoggingMessagesHanldler.SUCCESSFUL_FIND_ONE);
+            logger.info(LoggingMessagesHolder.SUCCESSFUL_FIND_ONE);
             return progress;
         } catch (SQLException e) {
-            logger.error(LoggingMessagesHanldler.ERROR_FIND_ONE, e);
-            throw new RuntimeException(LoggingMessagesHanldler.ERROR_FIND_ONE, e);
+            logger.error(LoggingMessagesHolder.ERROR_FIND_ONE, e);
+            throw new RuntimeException(LoggingMessagesHolder.ERROR_FIND_ONE, e);
         }
     }
 
@@ -124,11 +124,11 @@ public class ProgressDAOImpl implements ProgressDAO {
                 progress = progressPickUtil.pick(resultSet);
             }
             statement.close();
-            logger.info(LoggingMessagesHanldler.SUCCESSFUL_FIND_ONE);
+            logger.info(LoggingMessagesHolder.SUCCESSFUL_FIND_ONE);
             return progress;
         } catch (SQLException e) {
-            logger.error(LoggingMessagesHanldler.ERROR_FIND_ONE, e);
-            throw new RuntimeException(LoggingMessagesHanldler.ERROR_FIND_ONE, e);
+            logger.error(LoggingMessagesHolder.ERROR_FIND_ONE, e);
+            throw new RuntimeException(LoggingMessagesHolder.ERROR_FIND_ONE, e);
         }
     }
 
@@ -143,11 +143,11 @@ public class ProgressDAOImpl implements ProgressDAO {
                 progresses.add(progressPickUtil.pick(resultSet));
             }
             statement.close();
-            logger.info(LoggingMessagesHanldler.SUCCESSFUL_FIND_BY_STUDENT);
+            logger.info(LoggingMessagesHolder.SUCCESSFUL_FIND_BY_STUDENT);
             return progresses;
         } catch (Exception e){
-            logger.error(LoggingMessagesHanldler.ERROR_FIND_BY_STUDENT, e);
-            throw new RuntimeException(LoggingMessagesHanldler.ERROR_FIND_BY_STUDENT, e);
+            logger.error(LoggingMessagesHolder.ERROR_FIND_BY_STUDENT, e);
+            throw new RuntimeException(LoggingMessagesHolder.ERROR_FIND_BY_STUDENT, e);
         }
     }
 
@@ -162,11 +162,11 @@ public class ProgressDAOImpl implements ProgressDAO {
                 progresses.add(progressPickUtil.pick(resultSet));
             }
             statement.close();
-            logger.info(LoggingMessagesHanldler.SUCCESSFUL_FIND_BY_COURSE);
+            logger.info(LoggingMessagesHolder.SUCCESSFUL_FIND_BY_COURSE);
             return progresses;
         } catch (Exception e){
-            logger.error(LoggingMessagesHanldler.ERROR_FIND_BY_COURSE, e);
-            throw new RuntimeException(LoggingMessagesHanldler.ERROR_FIND_BY_COURSE, e);
+            logger.error(LoggingMessagesHolder.ERROR_FIND_BY_COURSE, e);
+            throw new RuntimeException(LoggingMessagesHolder.ERROR_FIND_BY_COURSE, e);
         }
     }
 }

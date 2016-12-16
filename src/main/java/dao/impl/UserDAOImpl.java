@@ -1,21 +1,19 @@
-package model.dao.impl;
+package dao.impl;
 
 import utils.QueryResource;
-import model.dao.interfaces.UserDAO;
+import dao.interfaces.UserDAO;
+import utils.constants.LoggingMessagesHolder;
 import utils.pickers.resultSet.UserResultSetPicker;
 import model.entity.User;
 import org.apache.log4j.Logger;
-import utils.constants.LoggingMessagesHanldler;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Implementation of UserDAO which works with MySQL
  *
  * @author Anastasia Milinchuk
- * @see model.dao.interfaces.ProgressDAO
+ * @see dao.interfaces.ProgressDAO
  * @see model.entity.Progress
  */
 public class UserDAOImpl implements UserDAO {
@@ -56,11 +54,11 @@ public class UserDAOImpl implements UserDAO {
                 user = userPickUtil.pick(resultSet);
             }
             statement.close();
-            logger.info(LoggingMessagesHanldler.SUCCESSFUL_FIND_ONE);
+            logger.info(LoggingMessagesHolder.SUCCESSFUL_FIND_ONE);
             return user;
         } catch (Exception e){
-            logger.error(LoggingMessagesHanldler.ERROR_FIND_ONE, e);
-            throw new RuntimeException(LoggingMessagesHanldler.ERROR_FIND_ONE, e);
+            logger.error(LoggingMessagesHolder.ERROR_FIND_ONE, e);
+            throw new RuntimeException(LoggingMessagesHolder.ERROR_FIND_ONE, e);
         }
     }
 
@@ -76,11 +74,11 @@ public class UserDAOImpl implements UserDAO {
                 user = userPickUtil.pick(resultSet);
             }
             statement.close();
-            logger.info(LoggingMessagesHanldler.SUCCESSFUL_FIND_ONE);
+            logger.info(LoggingMessagesHolder.SUCCESSFUL_FIND_ONE);
             return user;
         } catch (Exception e) {
-            logger.error(LoggingMessagesHanldler.ERROR_FIND_ONE, e);
-            throw new RuntimeException(LoggingMessagesHanldler.ERROR_FIND_ONE, e);
+            logger.error(LoggingMessagesHolder.ERROR_FIND_ONE, e);
+            throw new RuntimeException(LoggingMessagesHolder.ERROR_FIND_ONE, e);
         }
     }
 
@@ -95,10 +93,10 @@ public class UserDAOImpl implements UserDAO {
             preparedStatement.setInt(5, user.getRole());
             preparedStatement.executeUpdate();
             preparedStatement.close();
-            logger.info(LoggingMessagesHanldler.SUCCESSFUL_CREATE);
+            logger.info(LoggingMessagesHolder.SUCCESSFUL_CREATE);
         } catch (Exception e){
-            logger.error(LoggingMessagesHanldler.ERROR_CREATE, e);
-            throw new RuntimeException(LoggingMessagesHanldler.ERROR_CREATE, e);
+            logger.error(LoggingMessagesHolder.ERROR_CREATE, e);
+            throw new RuntimeException(LoggingMessagesHolder.ERROR_CREATE, e);
         }
     }
 
@@ -112,10 +110,10 @@ public class UserDAOImpl implements UserDAO {
             statement.setInt(4, user.getId());
             statement.executeUpdate();
             statement.close();
-            logger.info(LoggingMessagesHanldler.SUCCESSFUL_UPDATE);
+            logger.info(LoggingMessagesHolder.SUCCESSFUL_UPDATE);
         } catch (SQLException e) {
-            logger.error(LoggingMessagesHanldler.ERROR_UPDATE, e);
-            throw new RuntimeException(LoggingMessagesHanldler.ERROR_UPDATE, e);
+            logger.error(LoggingMessagesHolder.ERROR_UPDATE, e);
+            throw new RuntimeException(LoggingMessagesHolder.ERROR_UPDATE, e);
         }
     }
 
@@ -126,10 +124,10 @@ public class UserDAOImpl implements UserDAO {
             statement.setInt(1, id);
             statement.execute();
             statement.close();
-            logger.info(LoggingMessagesHanldler.SUCCESSFUL_DELETE);
+            logger.info(LoggingMessagesHolder.SUCCESSFUL_DELETE);
         } catch (SQLException e) {
-            logger.error(LoggingMessagesHanldler.ERROR_DELETE, e);
-            throw new RuntimeException(LoggingMessagesHanldler.ERROR_DELETE, e);
+            logger.error(LoggingMessagesHolder.ERROR_DELETE, e);
+            throw new RuntimeException(LoggingMessagesHolder.ERROR_DELETE, e);
         }
     }
 }

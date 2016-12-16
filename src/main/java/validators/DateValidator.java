@@ -4,7 +4,7 @@ import java.util.Date;
 import i18n.messages.error.ErrorsMessages;
 import org.apache.log4j.Logger;
 import utils.constants.AttributesHolder;
-import utils.constants.LoggingMessagesHanldler;
+import utils.constants.LoggingMessagesHolder;
 import validators.entity.Errors;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -36,7 +36,7 @@ public class DateValidator implements Validator<String> {
             Date date = formatter.parse(dateInString);
             return true;
         } catch (ParseException e) {
-            logger.info(LoggingMessagesHanldler.ERROR_DATE);
+            logger.info(LoggingMessagesHolder.ERROR_DATE);
             return false;
         }
     }

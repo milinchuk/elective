@@ -1,8 +1,6 @@
-package model.dao.interfaces;
+package dao.interfaces;
 
 import model.entity.User;
-
-import java.util.List;
 
 /**
  * DAO for User
@@ -10,9 +8,9 @@ import java.util.List;
  * @author Anastasia Milinchuk
  *
  * @see model.entity.User
- * @see model.dao.interfaces.CourseDAO
- * @see model.dao.interfaces.ProgressDAO
- * @see model.dao.interfaces.GeneralDAO
+ * @see dao.interfaces.CourseDAO
+ * @see dao.interfaces.ProgressDAO
+ * @see dao.interfaces.GeneralDAO
  */
 public interface UserDAO extends GeneralDAO<User, Integer> {
     /**

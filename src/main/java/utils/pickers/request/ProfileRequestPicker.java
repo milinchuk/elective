@@ -1,11 +1,9 @@
 package utils.pickers.request;
 
-import model.entity.Progress;
 import model.entity.User;
 import org.apache.log4j.Logger;
-import org.w3c.dom.Attr;
 import utils.constants.AttributesHolder;
-import utils.constants.LoggingMessagesHanldler;
+import utils.constants.LoggingMessagesHolder;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -24,10 +22,10 @@ public class ProfileRequestPicker extends RequestPicker<User>{
             user.setFirstName(String.valueOf(request.getParameter(AttributesHolder.FIRST_NAME)));
             System.out.println("FIRST :"+ user.getFirstName());
             user.setLastName(String.valueOf(request.getParameter(AttributesHolder.LAST_NAME)));
-            logger.info(LoggingMessagesHanldler.SUCCESSFUL_PICK_DATA);
+            logger.info(LoggingMessagesHolder.SUCCESSFUL_PICK_DATA);
             return user;
         } catch (RuntimeException e) {
-            logger.error(LoggingMessagesHanldler.ERROR_PICK, e);
+            logger.error(LoggingMessagesHolder.ERROR_PICK, e);
             return null;
         }
     }

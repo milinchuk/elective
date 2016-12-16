@@ -3,7 +3,7 @@ package controller.filters;
 import model.entity.User;
 import org.apache.log4j.Logger;
 import utils.constants.AttributesHolder;
-import utils.constants.LoggingMessagesHanldler;
+import utils.constants.LoggingMessagesHolder;
 import utils.constants.PagesHolder;
 import utils.constants.UrlHolder;
 
@@ -50,7 +50,7 @@ public class AuthFilter implements Filter {
         boolean isAuth = isAuthorize(request);
         if (request.getRequestURI().startsWith(UrlHolder.USER)) {
             if (!isAuth) {
-                logger.info(LoggingMessagesHanldler.TRY_LOGIN_UNAUTHORIZE);
+                logger.info(LoggingMessagesHolder.TRY_LOGIN_UNAUTHORIZE);
                 req.getRequestDispatcher(PagesHolder.LOGIN).forward(req, resp);
             }
         }
