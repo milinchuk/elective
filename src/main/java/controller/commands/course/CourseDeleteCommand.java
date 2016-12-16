@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Created by click on 11/18/2016.
+ * @author Anastasia Milinchuk
  */
 public class CourseDeleteCommand implements Command {
     protected CourseService courseService = CourseServiceImpl.getInstance();

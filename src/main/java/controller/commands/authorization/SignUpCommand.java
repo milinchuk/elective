@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Created by click on 11/18/2016.
+ * @author Anastasia Milinchuk
  */
 public class SignUpCommand implements Command {
     protected UserService userService = UserServiceImpl.getInstance();

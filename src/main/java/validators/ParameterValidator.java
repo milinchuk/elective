@@ -6,7 +6,7 @@ import utils.constants.AttributesHolder;
 import validators.entity.Errors;
 
 /**
- * Created by click on 11/21/2016.
+ * @author Anastasia Milinchuk
  */
 public class ParameterValidator implements Validator {
     @Override

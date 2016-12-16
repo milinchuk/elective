@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
- * Created by click on 11/18/2016.
+ * @author Anastasia Milinchuk
  */
 public class CourseFollowCommand implements Command {
     protected ProgressService progressService = ProgressServiceImpl.getInstance();

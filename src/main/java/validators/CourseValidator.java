@@ -8,7 +8,7 @@ import validators.entity.Errors;
 import java.util.regex.Pattern;
 
 /**
- * Created by click on 12/1/2016.
+ * @author Anastasia Milinchuk
  */
 public class CourseValidator implements Validator<Course> {
     private Pattern textPattern;

@@ -8,7 +8,7 @@ import validators.entity.Errors;
 import java.util.regex.Pattern;
 
 /**
- * Created by click on 11/24/2016.
+ * @author Anastasia Milinchuk
  */
 public class UserSignUpValidator implements Validator<User> {
     private EmailValidator emailValidator;

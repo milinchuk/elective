@@ -16,21 +16,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Created by click on 11/18/2016.
+ * @author Anastasia Milinchuk
  */
 public class UpdateProfileCommand implements Command {
     protected UserService userService = UserServiceImpl.getInstance();
     private ProfileValidator profileValidator;
     private ProfileRequestPicker profileRequestPicker;
-//    private static Picker<User,HttpServletRequest> picker = request ->  {
-//        User user = new User();
-//        user.setId(Integer.parseInt(String.valueOf(request.getSession().getAttribute(AttributesHolder.ID))));
-//        user.setEmail(String.valueOf(request.getParameter(AttributesHolder.EMAIL)));
-//        user.setFirstName(String.valueOf(request.getParameter(AttributesHolder.FIRST_NAME)));
-//        user.setLastName(String.valueOf(request.getParameter(AttributesHolder.LAST_NAME)));
-//        return user;
-//    };
-
 
     public UpdateProfileCommand(ProfileValidator profileValidator, ProfileRequestPicker profileRequestPicker) {
         this.profileValidator = profileValidator;

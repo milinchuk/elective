@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Created by click on 11/22/2016.
+ * @author Anastasia Milinchuk
  */
 public class CourseCommand implements Command {
     @Override

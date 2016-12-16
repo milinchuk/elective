@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
- * Created by click on 11/18/2016.
+ * @author Anastasia Milinchuk
  */
 public class LoginCommand implements Command {
     protected UserService userService = UserServiceImpl.getInstance();

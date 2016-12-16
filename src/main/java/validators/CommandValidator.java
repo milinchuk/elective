@@ -5,7 +5,7 @@ import utils.constants.AttributesHolder;
 import validators.entity.Errors;
 
 /**
- * Created by click on 11/20/2016.
+ * @author Anastasia Milinchuk
  */
 public class CommandValidator implements Validator {
     @Override

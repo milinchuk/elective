@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Created by click on 11/24/2016.
+ * @author Anastasia Milinchuk
  */
 public class OpenSignUpCommand implements Command {
     @Override

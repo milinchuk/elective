@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created by click on 11/20/2016.
+ * @author Anastasia Milinchuk
  */
 public class PageNotFoundCommand implements Command {
     @Override

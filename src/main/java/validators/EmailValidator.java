@@ -7,7 +7,7 @@ import validators.entity.Errors;
 import java.util.regex.Pattern;
 
 /**
- * Created by click on 12/1/2016.
+ * @author Anastasia Milinchuk
  */
 public class EmailValidator implements Validator<String>{
     private Pattern emailPattern;

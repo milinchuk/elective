@@ -7,7 +7,7 @@ import utils.constants.AttributesHolder;
 import validators.entity.Errors;
 
 /**
- * Created by click on 11/24/2016.
+ * @author Anastasia Milinchuk
  */
 public class UserLoginValidator implements Validator<User> {
     @Override

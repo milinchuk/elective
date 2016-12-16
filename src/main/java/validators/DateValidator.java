@@ -10,7 +10,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 /**
- * Created by click on 12/1/2016.
+ * @author Anastasia Milinchuk
  */
 public class DateValidator implements Validator<String> {
     private static final Logger logger = Logger.getLogger(DateValidator.class);
