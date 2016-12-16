@@ -56,7 +56,6 @@ public class MySqlConnection implements AbstractConnection  {
     public void beginTransaction() {
         try {
             isTransactionBegin = true;
-            connection.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
             connection.setAutoCommit(false);
         } catch (SQLException e) {
             logger.error(LoggingMessagesHolder.ERROR_BEGIN_TRANSACTION, e);
