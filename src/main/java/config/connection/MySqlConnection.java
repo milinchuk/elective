@@ -22,6 +22,16 @@ public class MySqlConnection implements AbstractConnection  {
     private Connection connection;
 
     /**
+     * This variable describes if transaction committed
+     */
+    private boolean isTransactionCommitted = false;
+
+    /**
+     * This variable describes if transaction start
+     */
+    private boolean isTransactionBegin = false;
+
+    /**
      * Logger for logging operations and exception.
      */
     private static final Logger logger = Logger.getLogger(MySqlConnection.class);
@@ -45,6 +55,8 @@ public class MySqlConnection implements AbstractConnection  {
     @Override
     public void beginTransaction() {
         try {
+            isTransactionBegin = true;
+            connection.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
             connection.setAutoCommit(false);
         } catch (SQLException e) {
             logger.error(LoggingMessagesHanldler.ERROR_BEGIN_TRANSACTION, e);
@@ -58,7 +70,9 @@ public class MySqlConnection implements AbstractConnection  {
     @Override
     public void rollback() {
         try {
+            isTransactionCommitted = true;
             connection.rollback();
+            connection.setAutoCommit(true);
         } catch (SQLException e) {
             logger.error(LoggingMessagesHanldler.ERROR_COMMIT, e);
             throw new RuntimeException(LoggingMessagesHanldler.ERROR_COMMIT, e);
@@ -73,6 +87,7 @@ public class MySqlConnection implements AbstractConnection  {
         try {
             connection.commit();
             connection.setAutoCommit(true);
+            isTransactionCommitted = true;
         } catch (SQLException e) {
             logger.error(LoggingMessagesHanldler.ERROR_COMMIT, e);
             throw new RuntimeException(LoggingMessagesHanldler.ERROR_COMMIT, e);
@@ -85,6 +100,9 @@ public class MySqlConnection implements AbstractConnection  {
     @Override
     public void close() {
         try {
+            if (isTransactionBegin && !isTransactionCommitted) {
+                rollback();
+            }
             connection.close();
         } catch (SQLException e) {
             logger.error(LoggingMessagesHanldler.ERROR_COMMIT, e);

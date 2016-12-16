@@ -44,7 +44,6 @@ public class UserServiceImpl implements UserService {
                 userDAO.create(user);
                 connection.commit();
             }
-            connection.close();
         }
     }
 
@@ -65,7 +64,6 @@ public class UserServiceImpl implements UserService {
             connection.beginTransaction();
             userDAO.update(user);
             connection.commit();
-            connection.close();
         }
     }
 
@@ -73,9 +71,7 @@ public class UserServiceImpl implements UserService {
     public User findOne(Integer id) {
         try(AbstractConnection connection = connectionFactory.getMySqlConnection()) {
             UserDAO userDAO = daoFactory.getUserDAO(connection);
-            User user = userDAO.findOne(id);
-            connection.close();
-            return user;
+            return userDAO.findOne(id);
         }
     }
 
@@ -83,9 +79,7 @@ public class UserServiceImpl implements UserService {
     public User findOne(String email) {
         try (AbstractConnection connection = connectionFactory.getMySqlConnection()) {
             UserDAO userDAO = daoFactory.getUserDAO(connection);
-            User user = userDAO.findOne(email);
-            connection.close();
-            return user;
+            return userDAO.findOne(email);
         }
     }
 

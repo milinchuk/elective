@@ -50,7 +50,6 @@ public class CourseServiceImpl implements CourseService {
             connection.beginTransaction();
             courseDAO.create(course);
             connection.commit();
-            connection.close();
         }
 
     }
@@ -68,7 +67,6 @@ public class CourseServiceImpl implements CourseService {
                 courseDAO.delete(id);
             }
             connection.commit();
-            connection.close();
         }
     }
 
@@ -79,7 +77,6 @@ public class CourseServiceImpl implements CourseService {
             connection.beginTransaction();
             courseDAO.update(course);
             connection.commit();
-            connection.close();
         }
     }
 
@@ -88,7 +85,6 @@ public class CourseServiceImpl implements CourseService {
         try (AbstractConnection connection = connectionFactory.getMySqlConnection()) {
             CourseDAO courseDAO = daoFactory.getCourseDAO(connection);
             Course course = courseDAO.findOne(id);
-            connection.close();
             return course;
         }
     }
@@ -97,9 +93,7 @@ public class CourseServiceImpl implements CourseService {
     public List<Course> findByTutor(Integer id) {
         try (AbstractConnection connection = connectionFactory.getMySqlConnection()) {
             CourseDAO courseDAO = daoFactory.getCourseDAO(connection);
-            List<Course> courses = courseDAO.findByTutor(id);
-            connection.close();
-            return courses;
+            return courseDAO.findByTutor(id);
         }
     }
 
@@ -107,9 +101,7 @@ public class CourseServiceImpl implements CourseService {
     public List<Course> findUnfollow(Integer studentId) {
         try (AbstractConnection connection = connectionFactory.getMySqlConnection()) {
             CourseDAO courseDAO = daoFactory.getCourseDAO(connection);
-            List<Course> courses = courseDAO.findUnfollow(studentId);
-            connection.close();
-            return courses;
+            return courseDAO.findUnfollow(studentId);
         }
     }
 }

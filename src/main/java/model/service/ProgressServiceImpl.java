@@ -60,7 +60,6 @@ public class ProgressServiceImpl implements ProgressService {
                progressDAO.create(progress);
            }
            connection.commit();
-           connection.close();
        }
     }
 
@@ -71,7 +70,6 @@ public class ProgressServiceImpl implements ProgressService {
             connection.beginTransaction();
             progressDAO.delete(progressId);
             connection.commit();
-            connection.close();
         }
     }
 
@@ -91,7 +89,6 @@ public class ProgressServiceImpl implements ProgressService {
             }
             progressDAO.update(progress);
             connection.commit();
-            connection.close();
         }
     }
 
@@ -109,9 +106,7 @@ public class ProgressServiceImpl implements ProgressService {
     public List<Progress> findByUser(Integer id) {
         try (AbstractConnection connection = connectionFactory.getMySqlConnection()) {
             ProgressDAO progressDAO = daoFactory.getProgressDAO(connection);
-            List<Progress> progresses = progressDAO.findByUser(id);
-            connection.close();
-            return progresses;
+            return progressDAO.findByUser(id);
         }
     }
 
