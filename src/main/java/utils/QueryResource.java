@@ -13,6 +13,7 @@ public class QueryResource implements ResourseNames {
 
     public static final String CREATE = "create";
     public static final String DELETE = "delete";
+    public static final String SOFT_DELETE = "soft.delete";
     public static final String UPDATE = "update";
     public static final String FIND_ONE = "find.one";
     public static final String FIND_BY_COURSE = "find.by.course";

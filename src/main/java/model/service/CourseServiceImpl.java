@@ -6,7 +6,9 @@ import config.connection.factory.ConnectionFactoryImpl;
 import model.dao.factory.DAOFactory;
 import model.dao.factory.DAOFactoryImpl;
 import model.dao.interfaces.CourseDAO;
+import model.dao.interfaces.ProgressDAO;
 import model.entity.Course;
+import model.entity.Progress;
 import model.service.interfaces.CourseService;
 
 import java.util.List;
@@ -56,9 +58,15 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public void delete(Integer id) {
         try (AbstractConnection connection = connectionFactory.getMySqlConnection()){
-            CourseDAO courseDAO = daoFactory.getCourseDAO(connection);
             connection.beginTransaction();
-            courseDAO.delete(id);
+            CourseDAO courseDAO = daoFactory.getCourseDAO(connection);
+            ProgressDAO progressDAO = daoFactory.getProgressDAO(connection);
+            List<Progress> progresses = progressDAO.findByCourse(id);
+            if (progresses != null) {
+                courseDAO.softDelete(id);
+            } else {
+                courseDAO.delete(id);
+            }
             connection.commit();
             connection.close();
         }

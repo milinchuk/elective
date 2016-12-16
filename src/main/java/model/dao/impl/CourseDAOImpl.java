@@ -189,4 +189,20 @@ public class CourseDAOImpl implements CourseDAO {
             throw new RuntimeException(LoggingMessagesHanldler.ERROR_FIND_ALL, e);
         }
     }
+
+    @Override
+    public void softDelete(Integer id) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(resource.getQuery(QueryResource.SOFT_DELETE));
+            statement.setInt(1, id);
+            statement.execute();
+            statement.close();
+            logger.info(LoggingMessagesHanldler.SUCCESSFUL_DELETE);
+        } catch (SQLException e) {
+            logger.error(LoggingMessagesHanldler.ERROR_DELETE, e);
+            throw new RuntimeException(LoggingMessagesHanldler.ERROR_DELETE, e);
+        }
+    }
+
+
 }

@@ -62,11 +62,18 @@ public class Course {
         this.tutor = tutor;
     }
 
+    public boolean getIsActive() {
+        if (startDate != null && endDate != null) {
+            Date now = new Date();
+            return (now.after(startDate) && now.before(endDate));
+        }
+        return false;
+    }
+
     @Override
     public boolean equals(Object course){
         return this.getId().equals(((Course)course).getId());
     }
-
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;

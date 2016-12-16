@@ -3,11 +3,15 @@ package model.service;
 import config.connection.AbstractConnection;
 import config.connection.factory.ConnectionFactory;
 import config.connection.factory.ConnectionFactoryImpl;
+import i18n.messages.error.ErrorsMessages;
 import model.dao.factory.DAOFactory;
 import model.dao.factory.DAOFactoryImpl;
+import model.dao.interfaces.CourseDAO;
 import model.dao.interfaces.ProgressDAO;
+import model.entity.Course;
 import model.entity.Progress;
 import model.service.interfaces.ProgressService;
+import java.util.Date;
 
 import java.util.List;
 
@@ -44,8 +48,13 @@ public class ProgressServiceImpl implements ProgressService {
     @Override
     public void create(Progress progress) {
        try (AbstractConnection connection = connectionFactory.getMySqlConnection()) {
-           ProgressDAO progressDAO = daoFactory.getProgressDAO(connection);
            connection.beginTransaction();
+           ProgressDAO progressDAO = daoFactory.getProgressDAO(connection);
+           CourseDAO courseDAO = daoFactory.getCourseDAO(connection);
+           Course course = courseDAO.findOne(progress.getCourse().getId());
+           if (!course.getIsActive()) {
+               throw new RuntimeException(ErrorsMessages.ERROR_FOLLOW_COURSE_TIME);
+           }
            Progress existProgress = progressDAO.findOne(progress.getStudent().getId(), progress.getCourse().getId());
            if (existProgress == null) {
                progressDAO.create(progress);
@@ -69,8 +78,17 @@ public class ProgressServiceImpl implements ProgressService {
     @Override
     public void update(Progress progress) {
         try (AbstractConnection connection = connectionFactory.getMySqlConnection()) {
-            ProgressDAO progressDAO = daoFactory.getProgressDAO(connection);
             connection.beginTransaction();
+            ProgressDAO progressDAO = daoFactory.getProgressDAO(connection);
+            CourseDAO courseDAO = daoFactory.getCourseDAO(connection);
+            Course course = courseDAO.findOne(progress.getCourse().getId());
+            if (new Date().compareTo(course.getEndDate()) == -1) {
+                throw new RuntimeException(ErrorsMessages.NOT_SAVE_PROGRESS);
+            }
+            Progress oldProgress = progressDAO.findOne(progress.getId());
+            if (oldProgress == null) {
+                throw new RuntimeException(ErrorsMessages.ERROR_STUDENT_UNFOLLOW);
+            }
             progressDAO.update(progress);
             connection.commit();
             connection.close();

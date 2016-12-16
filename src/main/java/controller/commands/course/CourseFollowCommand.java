@@ -1,6 +1,7 @@
 package controller.commands.course;
 
 import controller.commands.Command;
+import i18n.LocaleHolder;
 import model.entity.Course;
 import model.entity.Progress;
 import model.entity.User;
@@ -11,6 +12,7 @@ import model.service.interfaces.ProgressService;
 import utils.constants.AttributesHolder;
 import utils.constants.PagesHolder;
 import utils.constants.UrlHolder;
+import validators.entity.Errors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,7 +35,14 @@ public class CourseFollowCommand implements Command {
         user.setId(Integer.parseInt(String.valueOf(request.getSession().getAttribute(AttributesHolder.ID))));
         progress.setCourse(course);
         progress.setStudent(user);
-        progressService.create(progress);
+        Errors errors = new Errors();
+        try {
+            progressService.create(progress);
+            request.getSession().setAttribute(AttributesHolder.ADD_MESSAGE, true);
+        } catch (Exception e) {
+            errors.addMessage(AttributesHolder.FOLLOWING, e.getMessage());
+            request.getSession().setAttribute(AttributesHolder.ERRORS, errors);
+        }
         List<Course> courses = courseService.findUnfollow(user.getId());
         request.setAttribute(AttributesHolder.COURSES, courses);
         return UrlHolder.FIND;

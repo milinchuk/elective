@@ -54,4 +54,10 @@ public interface CourseDAO extends GeneralDAO<Course, Integer> {
      * @return list of all courses
      */
     List<Course> findAll();
+
+    /**
+     * Get course didn't active
+     * @param id is course id
+     */
+    void softDelete(Integer id);
 }

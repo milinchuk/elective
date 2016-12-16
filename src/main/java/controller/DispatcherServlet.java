@@ -96,7 +96,7 @@ public class DispatcherServlet extends HttpServlet {
             return command.execute(request, response);
         } catch (Exception e) {
             logger.error(e.getMessage());
-            return PagesHolder.ERROR_PAGE;
+            return UrlHolder.ERROR;
         }
     }
 }

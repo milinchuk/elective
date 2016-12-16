@@ -49,6 +49,11 @@
                     </tr>
                 </thead>
                 <tbody>
+                <c:if test="${errors != null && errors.messages['progress'] != null}">
+                    <div class="alrt alert-danger">
+                        <fmt:message key="${errors.messages['progress']}" bundle="${msg}" />
+                    </div>
+                </c:if>
                     <c:forEach items="${students}" var="progress">
                         <tr>
                             <form action="${UrlHolder.STUDENT_EDIT}" method="post">

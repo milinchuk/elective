@@ -45,4 +45,6 @@ public class AttributesHolder {
     public static final String END_YEAR = "endYear";
     public static final String PARAMS = "params";
     public static final String UTF_8 = "UTF-8";
+    public static final String FOLLOWING = "following";
+    public static final String ADD_MESSAGE = "addMessage";
 }

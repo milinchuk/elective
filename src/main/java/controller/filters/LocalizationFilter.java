@@ -97,7 +97,6 @@ public class LocalizationFilter implements Filter {
             }
         }
         queries += UrlHolder.LANG_GET;
-        System.out.println(queries);
         return queries;
     }
 }

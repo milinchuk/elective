@@ -4,7 +4,9 @@ import controller.commands.Command;
 import model.entity.Progress;
 import model.service.ProgressServiceImpl;
 import model.service.interfaces.ProgressService;
+import org.apache.log4j.Logger;
 import utils.constants.AttributesHolder;
+import utils.constants.LoggingMessagesHanldler;
 import utils.constants.PagesHolder;
 import utils.constants.UrlHolder;
 import utils.pickers.request.ProgressRequestPicker;
@@ -15,9 +17,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Created by click on 11/18/2016.
+ * Command for progress update
+ *
+ * @author Anastasia Milinchuk
  */
 public class ProgressUpdateCommand implements Command {
+    /**
+     * Logger for logging errors and operations
+     */
+    private static final Logger logger = Logger.getLogger(ProgressUpdateCommand.class);
     protected ProgressService progressService = ProgressServiceImpl.getInstance();
     private ProgressRequestPicker progressRequestPicker;
     private ProgressValidator progressValidator;
@@ -33,7 +41,13 @@ public class ProgressUpdateCommand implements Command {
         Progress progress = progressRequestPicker.pick(request);
         Errors errors = new Errors();
         if (progressValidator.validate(progress, errors)) {
-            progressService.update(progress);
+            try {
+                progressService.update(progress);
+            } catch (Exception e) {
+                logger.error(LoggingMessagesHanldler.ERROR_UPDATE);
+                errors.addMessage(AttributesHolder.PROGRESS, e.getMessage());
+                request.getSession().setAttribute(AttributesHolder.ERRORS, errors);
+            }
             request.setAttribute(AttributesHolder.STUDENTS,
                     progressService.findByCourse(progress.getCourse().getId()));
         } else {

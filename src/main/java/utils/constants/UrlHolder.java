@@ -36,4 +36,5 @@ public class UrlHolder {
     public static final String QUESTION_SYMBOL = "?";
     public static final String EQUAL_SYMBOL = "=";
     public static final String AND_SYMBOL = "&";
+    public static final String ERROR = PREFIX + "/error";
 }

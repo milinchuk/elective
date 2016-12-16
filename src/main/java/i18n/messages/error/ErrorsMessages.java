@@ -24,4 +24,7 @@ public interface ErrorsMessages {
     String INVALID_NOTE = "invalid.note";
     String INVALID_MARK = "invalid.mark";
     String INVALID = "invalid";
+    String NOT_SAVE_PROGRESS = "not.save.progress";
+    String ERROR_STUDENT_UNFOLLOW = "student.unfollow.error";
+    String ERROR_FOLLOW_COURSE_TIME = "student.follow.time.error";
 }

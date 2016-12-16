@@ -35,4 +35,6 @@ public interface LoggingMessagesHanldler {
     String ERROR_PICK_DATE = "Error while pick date";
     String INFO_SET_LOCALE = "Set locale";
     String TRY_LOGIN_UNAUTHORIZE = "Try login unauthorize";
+    String ERROR_ENCRYPT_ALGORITHM = "No such algorithm for encrypt";
+    String ERROR_WITH_CREATING_DAO = "Error with creating dao";
 }

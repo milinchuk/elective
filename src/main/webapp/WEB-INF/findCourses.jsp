@@ -12,7 +12,6 @@
     <style>
         .course-mini{
             width: 28%;
-            height: 30%;
             float: left;
             border-bottom: 1px gray;
         }
@@ -30,6 +29,11 @@
         <div class="col-sm-9 section">
             <h2><small><fmt:message key="find.courses" bundle="${msg}"/></small></h2>
             <hr>
+            <c:if test="${addMessage}">
+                <div class="alert alert-success">
+                    <fmt:message key="add" bundle="${msg}"/>
+                </div>
+            </c:if>
             <c:forEach items="${courses}" var="course">
                 <div class="course-mini">
                     <h2><a href="#"><c:out value="${course.name}"/></a></h2>
@@ -39,13 +43,28 @@
                     <p><fmt:message key="about" bundle="${msg}"/>:
                         <c:out value="${course.about}"/>
                     </p>
+                    <p><fmt:message key="start.date" bundle="${msg}"/>:
+                        <c:out value="${course.startDate}"/>
+                    </p>
+                    <p><fmt:message key="end.date" bundle="${msg}"/>:
+                        <c:out value="${course.endDate}"/>
+                    </p>
                     <%--here must be form--%>
+                    <c:if test="${course.isActive}">
                     <form action="${UrlHolder.FOLLOW}" method="post">
                         <button type="submit" name="${AttributesHolder.COURSE}" class="btn btn-primary"
                                 value="<c:out value="${course.id}"/>">
                             <fmt:message key="follow" bundle="${msg}"/>
                         </button>
                     </form>
+                    </c:if>
+                    <c:if test="${!course.isActive}">
+                        <button type="button" name="${AttributesHolder.COURSE}" class="btn btn-primary disabled"
+                                value="<c:out value="${course.id}"/>">
+                            <fmt:message key="follow" bundle="${msg}"/>
+                        </button>
+                    </c:if>
+                    <br>
                 </div>
                 <br>
             </c:forEach>
