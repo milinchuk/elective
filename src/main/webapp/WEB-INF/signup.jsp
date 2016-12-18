@@ -47,7 +47,7 @@
             <form action="" method="post">
                 <h2 class="form-signin-heading"><fmt:message key="signup" bundle="${msg}"/></h2>
                 <br>
-                <c:if test="${errors != null && errors.messages['firstname'] != null}">
+                <c:if test="${errors != null && errors.messages['firstName'] != null}">
                     <div class="alrt alert-danger">
                         <fmt:message key="${errors.messages['firstName']}" bundle="${msg}"/>
                     </div>
@@ -56,7 +56,7 @@
                        placeholder="<fmt:message key="first.name" bundle="${msg}"/>" required>
 
                 <br>
-                <c:if test="${errors != null && errors.messages['lastname'] != null}">
+                <c:if test="${errors != null && errors.messages['lastName'] != null}">
                     <div class="alrt alert-danger">
                         <fmt:message key="${errors.messages['lastName']}" bundle="${msg}" />
                     </div>
