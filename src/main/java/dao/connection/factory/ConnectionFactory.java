@@ -1,13 +1,13 @@
-package config.connection.factory;
+package dao.connection.factory;
 
-import config.connection.AbstractConnection;
+import dao.connection.AbstractConnection;
 
 /**
  * Abstract factory for connections.
  * Factory retrieve AbstractConnection for some type of storage.
  *
  * @author Anastasia Milinchuk
- * @see config.connection.AbstractConnection
+ * @see dao.connection.AbstractConnection
  */
 public interface ConnectionFactory {
     /**

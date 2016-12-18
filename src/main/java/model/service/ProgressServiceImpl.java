@@ -1,8 +1,8 @@
 package model.service;
 
-import config.connection.AbstractConnection;
-import config.connection.factory.ConnectionFactory;
-import config.connection.factory.ConnectionFactoryImpl;
+import dao.connection.AbstractConnection;
+import dao.connection.factory.ConnectionFactory;
+import dao.connection.factory.ConnectionFactoryImpl;
 import i18n.messages.error.ErrorsMessages;
 import dao.factory.DAOFactory;
 import dao.factory.DAOFactoryImpl;

@@ -1,6 +1,6 @@
 package dao.factory;
 
-import config.connection.AbstractConnection;
+import dao.connection.AbstractConnection;
 import dao.impl.CourseDAOImpl;
 import dao.impl.ProgressDAOImpl;
 import dao.impl.UserDAOImpl;

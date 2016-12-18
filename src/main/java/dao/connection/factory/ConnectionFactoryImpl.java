@@ -1,10 +1,10 @@
-package config.connection.factory;
+package dao.connection.factory;
 
-import config.connection.AbstractConnection;
-import config.connection.MySqlConnection;
+import dao.connection.AbstractConnection;
+import dao.connection.MySqlConnection;
 import org.apache.log4j.Logger;
 import utils.constants.LoggingMessagesHolder;
-import utils.constants.ResourseNames;
+import utils.constants.ResourceNames;
 
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
@@ -31,7 +31,7 @@ public class ConnectionFactoryImpl implements ConnectionFactory {
     public AbstractConnection getMySqlConnection() {
         try {
             InitialContext context = new InitialContext();
-            DataSource dataSource = (DataSource) context.lookup(ResourseNames.DATA_SOURCE);
+            DataSource dataSource = (DataSource) context.lookup(ResourceNames.DATA_SOURCE);
             return new MySqlConnection(dataSource.getConnection());
         } catch (Exception e) {
             logger.error(LoggingMessagesHolder.ERROR_CONNECTION);

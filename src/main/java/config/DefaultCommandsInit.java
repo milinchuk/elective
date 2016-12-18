@@ -44,9 +44,9 @@ public class DefaultCommandsInit implements CommandsInit {
     @Override
     public Map<String, Command> initPostCommands() {
         Map<String, Command> postCommand = new HashMap<>();
-        postCommand.put(UrlHolder.NULL + UrlHolder.LOGIN, new LoginCommand(new LoginDataRequestPicker(),
+        postCommand.put(UrlHolder.LOGIN, new LoginCommand(new LoginDataRequestPicker(),
                 getUserLoginValidator()));
-        postCommand.put(UrlHolder.NULL + UrlHolder.SIGNUP, new SignUpCommand(new SignupDataRequestPicker(),
+        postCommand.put(UrlHolder.SIGNUP, new SignUpCommand(new SignupDataRequestPicker(),
                 getUserSignUpValidator()));
         return postCommand;
     }
@@ -59,8 +59,8 @@ public class DefaultCommandsInit implements CommandsInit {
     @Override
     public Map<String, Command> initGetCommands() {
         Map<String, Command> getCommand = new HashMap<>();
-        getCommand.put(UrlHolder.NULL + UrlHolder.LOGIN, new OpenLoginCommand());
-        getCommand.put(UrlHolder.NULL + UrlHolder.SIGNUP, new OpenSignUpCommand());
+        getCommand.put(UrlHolder.LOGIN, new OpenLoginCommand());
+        getCommand.put(UrlHolder.SIGNUP, new OpenSignUpCommand());
         return getCommand;
     }
 

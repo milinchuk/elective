@@ -21,6 +21,9 @@ public class EncryptPassword {
      * Name of algorithm that using for encryption
      */
     public static final String ALGORITHM = "MD5";
+    public static final int RADIX = 16;
+    public static final int SUFFIX = 0xff;
+    public static final int PREFIX = 0x100;
 
     /**
      * Method for encryption
@@ -32,18 +35,12 @@ public class EncryptPassword {
         try {
             // Create MessageDigest instance for MD5
             MessageDigest md = MessageDigest.getInstance(ALGORITHM);
-            //Add password bytes to digest
             md.update(passwordToHash.getBytes());
-            //Get the hash's bytes
             byte[] bytes = md.digest();
-            //This bytes[] has bytes in decimal format;
-            //Convert it to hexadecimal format
             StringBuilder sb = new StringBuilder();
-            for(int i = 0; i < bytes.length ;i++)
-            {
-                sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+            for(int i = 0; i < bytes.length; i++){
+                sb.append(Integer.toString((bytes[i] & SUFFIX) + PREFIX, RADIX).substring(1));
             }
-            //Get complete hashed password in hex format
             generatedPassword = sb.toString();
         }
         catch (NoSuchAlgorithmException e) {

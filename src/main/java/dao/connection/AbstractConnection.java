@@ -1,4 +1,4 @@
-package config.connection;
+package dao.connection;
 
 /**
  * This Abstract connection interface provide operations for any exactly connection to database

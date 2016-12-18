@@ -44,7 +44,6 @@ public class AuthFilter implements Filter {
      * @throws IOException
      */
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
-        // check credentials
         HttpServletRequest request = (HttpServletRequest) req;
         request.setCharacterEncoding(AttributesHolder.UTF_8);
         boolean isAuth = isAuthorize(request);
@@ -86,6 +85,7 @@ public class AuthFilter implements Filter {
                 return true;
             }
         }
+        session.setAttribute(AttributesHolder.ROLE, new String());
         return false;
     }
 

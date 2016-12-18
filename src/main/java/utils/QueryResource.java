@@ -1,6 +1,6 @@
 package utils;
 
-import utils.constants.ResourseNames;
+import utils.constants.ResourceNames;
 
 import java.io.IOException;
 import java.util.Properties;
@@ -8,7 +8,7 @@ import java.util.Properties;
 /**
  * Created by click on 11/11/2016.
  */
-public class QueryResource implements ResourseNames {
+public class QueryResource implements ResourceNames {
     private Properties properties;
 
     public static final String CREATE = "create";

@@ -1,4 +1,4 @@
-package config.connection;
+package dao.connection;
 
 import org.apache.log4j.Logger;
 import utils.constants.LoggingMessagesHolder;
@@ -7,12 +7,12 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 /**
- * This concrete implementation of {@link config.connection.AbstractConnection}
+ * This concrete implementation of {@link dao.connection.AbstractConnection}
  * for MySql database. Object contains concrete sql connection {@link java.sql.Connection}
  *
  * @author Anastasia Milichuk
  *
- * @see config.connection.AbstractConnection
+ * @see dao.connection.AbstractConnection
  * @see java.sql.Connection
  */
 public class MySqlConnection implements AbstractConnection  {

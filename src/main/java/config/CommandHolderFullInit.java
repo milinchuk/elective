@@ -2,7 +2,7 @@ package config;
 
 import controller.commands.Command;
 import controller.commands.holder.CommandHolder;
-import utils.constants.ResourseNames;
+import utils.constants.ResourceNames;
 
 import java.io.IOException;
 import java.util.Map;
@@ -26,7 +26,7 @@ public class CommandHolderFullInit {
     public static CommandHolder init(){
         Properties properties = new Properties();
         try {
-            properties.load(CommandHolderFullInit.class.getClassLoader().getResourceAsStream(ResourseNames.REGEX));
+            properties.load(CommandHolderFullInit.class.getClassLoader().getResourceAsStream(ResourceNames.REGEX));
         } catch (IOException e) {
             e.printStackTrace();
         }
