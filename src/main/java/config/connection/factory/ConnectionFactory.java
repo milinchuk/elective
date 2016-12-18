@@ -2,9 +2,6 @@ package config.connection.factory;
 
 import config.connection.AbstractConnection;
 
-import java.sql.Connection;
-import java.sql.Statement;
-
 /**
  * Abstract factory for connections.
  * Factory retrieve AbstractConnection for some type of storage.

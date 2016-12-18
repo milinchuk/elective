@@ -3,7 +3,6 @@ package controller.commands.course;
 import controller.commands.Command;
 import utils.constants.AttributesHolder;
 import utils.constants.PagesHolder;
-import utils.constants.UrlHolder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

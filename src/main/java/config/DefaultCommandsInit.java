@@ -1,17 +1,12 @@
 package config;
 
 import controller.commands.Command;
-import controller.commands.authorization.LoginCommand;
-import controller.commands.authorization.OpenLoginCommand;
-import controller.commands.authorization.OpenSignUpCommand;
-import controller.commands.authorization.SignUpCommand;
+import controller.commands.authorization.*;
 import utils.constants.AttributesHolder;
 import utils.constants.UrlHolder;
 import utils.pickers.request.LoginDataRequestPicker;
 import utils.pickers.request.SignupDataRequestPicker;
-import validators.EmailValidator;
-import validators.UserLoginValidator;
-import validators.UserSignUpValidator;
+import validators.*;
 
 import java.util.HashMap;
 import java.util.Map;

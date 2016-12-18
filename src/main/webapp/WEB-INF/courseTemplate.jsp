@@ -31,9 +31,7 @@
         <fmt:message key="${errors.messages['about']}" bundle="${msg}" />
     </div>
 </c:if>
-<textarea name="${AttributesHolder.ABOUT}" style="resize: none;" class="form-control" rows="3">
-    <c:out value="${course.about}"/>
-</textarea>
+<textarea name="${AttributesHolder.ABOUT}" style="resize: none;" class="form-control" rows="3"><c:out value="${course.about}"/></textarea>
 
 <br>
 <label for="name"><fmt:message key="start.date" bundle="${msg}"/></label>

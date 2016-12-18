@@ -7,7 +7,6 @@ import controller.commands.progress.*;
 import controller.commands.user.*;
 import model.entity.User;
 import utils.constants.AttributesHolder;
-import utils.constants.ResourseNames;
 import utils.constants.UrlHolder;
 import utils.pickers.request.CourseRequestPicker;
 import utils.pickers.request.ProfileRequestPicker;

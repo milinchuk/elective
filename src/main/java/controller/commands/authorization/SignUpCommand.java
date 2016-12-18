@@ -7,7 +7,6 @@ import model.entity.User;
 import model.service.UserServiceImpl;
 import model.service.interfaces.UserService;
 import utils.constants.AttributesHolder;
-import utils.constants.PagesHolder;
 import utils.constants.UrlHolder;
 import utils.pickers.request.SignupDataRequestPicker;
 import validators.entity.Errors;

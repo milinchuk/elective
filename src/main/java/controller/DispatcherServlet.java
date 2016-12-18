@@ -6,9 +6,7 @@ import config.CommandHolderFullInit;
 import controller.commands.Command;
 import controller.commands.holder.CommandHolder;
 import org.apache.log4j.Logger;
-import sun.plugin.dom.core.Attr;
 import utils.constants.AttributesHolder;
-import utils.constants.PagesHolder;
 import utils.constants.UrlHolder;
 import validators.*;
 

@@ -2,11 +2,9 @@ package controller.commands.course;
 
 import controller.commands.Command;
 import model.entity.Course;
-import model.entity.User;
 import model.service.CourseServiceImpl;
 import model.service.interfaces.CourseService;
 import utils.constants.AttributesHolder;
-import utils.constants.PagesHolder;
 import utils.constants.UrlHolder;
 import utils.pickers.request.CourseRequestPicker;
 import validators.CourseValidator;

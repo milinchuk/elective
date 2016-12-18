@@ -1,7 +1,6 @@
 package controller.commands.course;
 
 import controller.commands.Command;
-import i18n.LocaleHolder;
 import model.entity.Course;
 import model.entity.Progress;
 import model.entity.User;
@@ -10,7 +9,6 @@ import model.service.ProgressServiceImpl;
 import model.service.interfaces.CourseService;
 import model.service.interfaces.ProgressService;
 import utils.constants.AttributesHolder;
-import utils.constants.PagesHolder;
 import utils.constants.UrlHolder;
 import validators.entity.Errors;
 

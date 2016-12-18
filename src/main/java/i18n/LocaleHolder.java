@@ -2,10 +2,7 @@ package i18n;
 
 import utils.constants.AttributesHolder;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 /**
  * This class holder current, default locale. And array with existing locales in application.

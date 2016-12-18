@@ -12,7 +12,6 @@ import model.entity.User;
 import utils.constants.AttributesHolder;
 import utils.constants.UrlHolder;
 import utils.pickers.request.ProfileRequestPicker;
-import utils.pickers.request.ProgressRequestPicker;
 import validators.EmailValidator;
 import validators.ParameterValidator;
 import validators.ProfileValidator;
