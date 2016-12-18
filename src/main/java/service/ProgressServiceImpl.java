@@ -1,16 +1,16 @@
-package model.service;
+package service;
 
 import dao.connection.AbstractConnection;
 import dao.connection.factory.ConnectionFactory;
 import dao.connection.factory.ConnectionFactoryImpl;
-import i18n.messages.error.ErrorsMessages;
+import controller.i18n.messages.error.ErrorsMessages;
 import dao.factory.DAOFactory;
 import dao.factory.DAOFactoryImpl;
 import dao.interfaces.CourseDAO;
 import dao.interfaces.ProgressDAO;
 import model.entity.Course;
 import model.entity.Progress;
-import model.service.interfaces.ProgressService;
+import service.interfaces.ProgressService;
 import java.util.Date;
 
 import java.util.List;

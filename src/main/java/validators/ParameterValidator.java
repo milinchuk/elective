@@ -1,6 +1,6 @@
 package validators;
 
-import i18n.messages.error.ErrorsMessages;
+import controller.i18n.messages.error.ErrorsMessages;
 import org.apache.commons.lang.StringUtils;
 import utils.constants.AttributesHolder;
 import validators.entity.Errors;

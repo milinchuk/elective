@@ -1,8 +1,7 @@
-package model.service.interfaces;
+package service.interfaces;
 
 import model.entity.Progress;
 
-import javax.swing.*;
 import java.util.List;
 
 /**

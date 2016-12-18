@@ -37,7 +37,7 @@
 </head>
 
 <body>
-    <jsp:include page="navigationElements/upperPanel.jsp"/>
+    <jsp:include page="../navigationElements/upperPanel.jsp"/>
     <fmt:requestEncoding value="UTF-8" />
     <fmt:setLocale value="${sessionScope[AttributesHolder.LOCALE]}" />
     <fmt:setBundle basename="user" var="msg"/>

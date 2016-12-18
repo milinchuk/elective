@@ -2,8 +2,8 @@ package controller.commands.progress;
 
 import controller.commands.Command;
 import model.entity.Progress;
-import model.service.ProgressServiceImpl;
-import model.service.interfaces.ProgressService;
+import service.ProgressServiceImpl;
+import service.interfaces.ProgressService;
 import org.apache.log4j.Logger;
 import utils.constants.AttributesHolder;
 import utils.constants.LoggingMessagesHolder;

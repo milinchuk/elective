@@ -1,7 +1,6 @@
-package model.service.interfaces;
+package service.interfaces;
 
 import model.entity.Course;
-import model.entity.User;
 
 import java.util.List;
 

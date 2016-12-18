@@ -1,10 +1,10 @@
-package i18n.messages.error;
+package controller.i18n.messages.error;
 
 /**
  * Messages with keys for localization of errors.
  *
  * @author Anastasia Milinchuk
- * @see i18n.LocaleHolder
+ * @see controller.i18n.LocaleHolder
  */
 public interface ErrorsMessages {
     String EMAIL_EMPTY = "email.empty";

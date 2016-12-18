@@ -44,8 +44,6 @@ public class DispatcherServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setCharacterEncoding(AttributesHolder.UTF_8);
-        response.setCharacterEncoding(AttributesHolder.UTF_8);
         Command command = commandHolder.getGetCommand(
                 String.valueOf(request.getSession().getAttribute(AttributesHolder.ROLE))
                         + request.getRequestURI());
@@ -64,8 +62,6 @@ public class DispatcherServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setCharacterEncoding(AttributesHolder.UTF_8);
-        response.setCharacterEncoding(AttributesHolder.UTF_8);
         Command command = commandHolder.getPostCommand(
                 String.valueOf(request.getSession().getAttribute(AttributesHolder.ROLE))
                 + request.getRequestURI());

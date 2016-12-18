@@ -1,6 +1,6 @@
 package controller.filters;
 
-import i18n.LocaleHolder;
+import controller.i18n.LocaleHolder;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import utils.constants.AttributesHolder;

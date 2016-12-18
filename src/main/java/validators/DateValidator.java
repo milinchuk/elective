@@ -1,7 +1,7 @@
 package validators;
 import java.util.Date;
 
-import i18n.messages.error.ErrorsMessages;
+import controller.i18n.messages.error.ErrorsMessages;
 import org.apache.log4j.Logger;
 import utils.constants.AttributesHolder;
 import utils.constants.LoggingMessagesHolder;

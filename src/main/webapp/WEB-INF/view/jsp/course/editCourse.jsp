@@ -17,17 +17,17 @@
 <html>
 <head>
     <title></title>
-    <jsp:include page="including.elements/styles.jsp"/>
+    <jsp:include page="../including.elements/styles.jsp"/>
 </head>
 
 <body>
-<jsp:include page="navigationElements/upperPanel.jsp"/>
+<jsp:include page="../navigationElements/upperPanel.jsp"/>
 <fmt:requestEncoding value="UTF-8" />
 <fmt:setLocale value="${sessionScope[AttributesHolder.LOCALE]}" />
 <fmt:setBundle basename="course" var="msg"/>
 <div class="container-fluid">
     <div class="row content">
-        <jsp:include page="navigationElements/leftPanel.jsp" />
+        <jsp:include page="../navigationElements/leftPanel.jsp" />
         <div class="col-sm-9 section">
             <h2><small><fmt:message key="msg.edit.course" bundle="${msg}"/></small></h2>
             <hr>

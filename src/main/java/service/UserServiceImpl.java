@@ -1,4 +1,4 @@
-package model.service;
+package service;
 
 import dao.connection.AbstractConnection;
 import dao.connection.factory.ConnectionFactory;
@@ -7,13 +7,13 @@ import dao.factory.DAOFactory;
 import dao.factory.DAOFactoryImpl;
 import dao.interfaces.UserDAO;
 import model.entity.User;
-import model.service.interfaces.UserService;
+import service.interfaces.UserService;
 
 /**
  * Implementation of UserService
  *
  * @author Anastasia Milinchuk
- * @see model.service.interfaces.UserService
+ * @see service.interfaces.UserService
  */
 public class UserServiceImpl implements UserService {
     private ConnectionFactory connectionFactory;

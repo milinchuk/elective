@@ -2,10 +2,10 @@ package controller.commands.authorization;
 
 import controller.commands.Command;
 import controller.security.EncryptPassword;
-import i18n.messages.error.ErrorsMessages;
+import controller.i18n.messages.error.ErrorsMessages;
 import model.entity.User;
-import model.service.UserServiceImpl;
-import model.service.interfaces.UserService;
+import service.UserServiceImpl;
+import service.interfaces.UserService;
 import utils.constants.AttributesHolder;
 import utils.constants.UrlHolder;
 import utils.pickers.request.SignupDataRequestPicker;

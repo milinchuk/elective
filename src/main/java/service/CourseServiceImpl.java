@@ -1,4 +1,4 @@
-package model.service;
+package service;
 
 import dao.connection.AbstractConnection;
 import dao.connection.factory.ConnectionFactory;
@@ -9,7 +9,7 @@ import dao.interfaces.CourseDAO;
 import dao.interfaces.ProgressDAO;
 import model.entity.Course;
 import model.entity.Progress;
-import model.service.interfaces.CourseService;
+import service.interfaces.CourseService;
 
 import java.util.List;
 

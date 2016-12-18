@@ -1,4 +1,4 @@
-package i18n;
+package controller.i18n;
 
 import utils.constants.AttributesHolder;
 

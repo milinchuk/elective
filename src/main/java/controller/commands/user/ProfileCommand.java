@@ -2,8 +2,8 @@ package controller.commands.user;
 
 import controller.commands.Command;
 import model.entity.User;
-import model.service.UserServiceImpl;
-import model.service.interfaces.UserService;
+import service.UserServiceImpl;
+import service.interfaces.UserService;
 import utils.constants.AttributesHolder;
 import utils.constants.PagesHolder;
 

@@ -4,10 +4,10 @@ import controller.commands.Command;
 import model.entity.Course;
 import model.entity.Progress;
 import model.entity.User;
-import model.service.CourseServiceImpl;
-import model.service.ProgressServiceImpl;
-import model.service.interfaces.CourseService;
-import model.service.interfaces.ProgressService;
+import service.CourseServiceImpl;
+import service.ProgressServiceImpl;
+import service.interfaces.CourseService;
+import service.interfaces.ProgressService;
 import utils.constants.AttributesHolder;
 import utils.constants.PagesHolder;
 

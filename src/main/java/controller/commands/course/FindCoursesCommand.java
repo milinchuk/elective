@@ -2,8 +2,8 @@ package controller.commands.course;
 
 import controller.commands.Command;
 import model.entity.Course;
-import model.service.CourseServiceImpl;
-import model.service.interfaces.CourseService;
+import service.CourseServiceImpl;
+import service.interfaces.CourseService;
 import utils.constants.AttributesHolder;
 import utils.constants.PagesHolder;
 

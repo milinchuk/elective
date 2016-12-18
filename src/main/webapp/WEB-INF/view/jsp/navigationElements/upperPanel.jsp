@@ -1,7 +1,7 @@
 <%@ page import="utils.constants.UrlHolder" %>
 <%@ page import="utils.constants.AttributesHolder" %>
 <%@ page import="model.entity.User" %>
-<%@ page import="i18n.LocaleHolder" %>
+<%@ page import="controller.i18n.LocaleHolder" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%--
   Created by IntelliJ IDEA.
