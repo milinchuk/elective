@@ -36,7 +36,7 @@ public class UserCommandTest extends LoginCommandTest{
     }
 
     @Test
-    public void return2CourcesWhenUserTutor() {
+    public void returnTwoCoursesWhenUserTutor() {
         ArrayList<Course> coursesToReturn = new ArrayList<>();
         Course mathCourse = new Course();
         mathCourse.setName("mathCourse");
